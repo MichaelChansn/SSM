@@ -18,6 +18,7 @@ public class UserController {
   
   @RequestMapping("/showUser")
   public String toIndex(HttpServletRequest request,Model model){
+	  System.err.println("reauest is in");
 	  String id=request.getParameter("id");
 	  if(id!=null)
 	  {
