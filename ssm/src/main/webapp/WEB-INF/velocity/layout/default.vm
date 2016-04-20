@@ -1,0 +1,4 @@
+$!screen_placeholder
+#parse($!__head)
+#parse($!__screen)
+#parse($!__foot)
