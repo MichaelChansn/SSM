@@ -1,0 +1,18 @@
+网站练手采用:
+1.Spring＋
+2.SpringMvc＋
+3.MyBatis＋
+4.Velocity（或FreeMarker）＋
+5.MySQL＋
+6.Jquery＋
+7.Bootstrap＋
+8.Log4j＋
+9.Junit
+
+Eclipse中使用Maven搭建SSM系统需要注意的地方：
+1.Deployment Assembly中添加web的Maven依赖包路径。
+2.project facets 中Dynamic Web Module选择3.0以上版本。
+3.java编译环境java complier选择1.7以上版本。
+4.整个项目所有文件编码使用UTF-8。
+5.JRE System Library 使用 Workspace default JRE 1.7以上，与3对应。
+
