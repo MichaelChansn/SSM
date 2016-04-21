@@ -16,3 +16,29 @@ Eclipse中使用Maven搭建SSM系统需要注意的地方：
 4.整个项目所有文件编码使用UTF-8。
 5.JRE System Library 使用 Workspace default JRE 1.7以上，与3对应。
 
+
+解决maven 项目中java Resources文件夹上有小红叉问题：
+1.Go to project Build Path and change the Java Library version to 1.7
+2.Go to Eclipse Preferences -> Java -> Compilre -> Change compliance level to 1.7 
+3.Right click on project -> Properties -> Project Facets
+Uncheck Dynamic Web Module and click Apply (also uncheck JavaServer Faces if you had that)
+Change the Java facet version to 1.7 and click Apply
+Add the Dyanmic Web Module v3.0, apply.
+
+Eclipse's facets configuration is buggy. Make sure you keep hitting Apply between checking and unchecking of facets.
+
+
+<build>
+     <plugins>
+        <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.1</version>
+        <configuration>
+        	<encoding>UTF-8</encoding>
+            <source>1.7</source> <!-- yours Java version -->
+            <target>1.7</target> <!-- yours Java version -->
+        </configuration>
+    </plugin>
+    </plugins>
+
