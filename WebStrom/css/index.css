@@ -1,5 +1,9 @@
 .index-body {
     background-color: bisque;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    min-width: 300px;
 }
 .navbar-default {
     background-color:#00A78D;
@@ -9,7 +13,23 @@
 }
 .navbar-default .navbar-brand {
     color: white;
-    padding-left: 100px;
+    padding-top: 6px;
+    padding-bottom: 0px;
+    margin-left: 20px;
+    margin-right: 50px;
+
+}
+.navbar-nav {
+    margin-bottom: 0;
+
+}
+
+.navbar-nav .open .dropdown-menu {
+    background-color: #fff;
+}
+.in .drop-divider {
+    height: 1px;
+    background-color: white;
 }
 
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {
@@ -19,23 +39,26 @@
     color: black;
     font-weight: bolder;
     font-size: large;
+
 }
-.nav>li {
+.collapse .nav>li {
    margin-left: 1px;
 }
-
+.in .nav>li {
+    margin-left: 0px;
+}
 .nav>li>a {
     text-align:center;
 }
 
 .navbar-default .navbar-nav>li>a {
-    color: #7a4624;
+    color: white;
     font-size: 16.5px;
-    background-color: #00A78D;
+    font-weight: bolder;
+    border-bottom: solid 5px #00A78D;
 
 }
 .navbar-default .navbar-nav>li>a:hover {
-
     color: black;
     font-weight: bolder;
     font-size: 16.5px;
@@ -43,10 +66,17 @@
     background-color: aliceblue;
 
 }
+.panel-body {
+    padding: 18px 20px;
+
+}
+.text-content {
+    text-indent:2rem;
+}
 .panel-primary {
     border-color: transparent;
-
     margin-top: 20px;
+
 }
 .panel-primary>.panel-heading {
     color: #fff;
@@ -54,5 +84,32 @@
     border-color: #00A78D;
 }
 .container {
-    margin-top: 10px;;
+    margin-top: 10px;
+    width: 100%;
+}
+
+@media screen and (min-width: 768px){
+    .panel-show, .head-nav {
+        width: 75%;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+@media screen and (min-width: 992px){
+    .panel-show, .head-nav {
+        width: 67%;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+@media screen and (min-width: 1200px) {
+    .panel-show , .head-nav {
+        width: 60%;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
 }
