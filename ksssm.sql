@@ -64,9 +64,11 @@ CREATE TABLE `article_info` (
   PRIMARY KEY (`id`),
   KEY `userid` (`userid`),
   FULLTEXT KEY `content` (`content`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 /*Data for the table `article_info` */
+
+insert  into `article_info`(`id`,`userid`,`pic`,`content`,`up`,`status`,`writetime`,`modifytime`,`publishtime`) values (1,1,'no','this is a test. 这就是个测试。。。',0,0,'0000-00-00 00:00:00','0000-00-00 00:00:00','0000-00-00 00:00:00');
 
 /*Table structure for table `comment_info` */
 
@@ -83,9 +85,11 @@ CREATE TABLE `comment_info` (
   PRIMARY KEY (`id`),
   KEY `articleid` (`articleid`),
   KEY `fromuserid` (`fromuserid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 /*Data for the table `comment_info` */
+
+insert  into `comment_info`(`id`,`articleid`,`fromuserid`,`content`,`commenttime`,`status`,`modifytime`) values (1,1,1,'this is a comment. 这就是个评论。。。','0000-00-00 00:00:00',1,'0000-00-00 00:00:00'),(2,1,2,'测试','0000-00-00 00:00:00',1,'0000-00-00 00:00:00');
 
 /*Table structure for table `user_info` */
 
@@ -114,25 +118,11 @@ CREATE TABLE `user_info` (
   `modifytime` datetime NOT NULL COMMENT '最后一次修改时间',
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 /*Data for the table `user_info` */
 
-/*Table structure for table `user_t` */
-
-DROP TABLE IF EXISTS `user_t`;
-
-CREATE TABLE `user_t` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_name` varchar(40) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `age` int(4) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-
-/*Data for the table `user_t` */
-
-insert  into `user_t`(`id`,`user_name`,`password`,`age`) values (1,'测试','sfasgfaf',24);
+insert  into `user_info`(`id`,`username`,`password`,`email`,`qq`,`phone`,`gender`,`birthday`,`city`,`mood`,`single`,`enrolltime`,`level`,`status`,`titlepic`,`job`,`logintime`,`loginip`,`token`,`modifytime`) values (1,'ks','ks','ks','sk',NULL,NULL,NULL,NULL,NULL,NULL,'0000-00-00 00:00:00',1,1,NULL,NULL,'0000-00-00 00:00:00',NULL,NULL,'0000-00-00 00:00:00'),(6,'ks1','ks','ks',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0000-00-00 00:00:00',1,1,NULL,NULL,'0000-00-00 00:00:00',NULL,NULL,'0000-00-00 00:00:00');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
