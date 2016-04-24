@@ -19,12 +19,15 @@ public class UserController {
   @RequestMapping("/showUser")
   public String toIndex(HttpServletRequest request,Model model){
 	  System.err.println("reauest is in");
-	  String id=request.getParameter("id");
-	  if(id!=null)
+	  //String id=request.getParameter("id");
+	  String name=request.getParameter("name");
+	  if( name!=null)
 	  {
-	    int userId = Integer.parseInt(id);
-	    User user = this.userService.getUserById(userId);
-	    model.addAttribute("user", user);
+	    //int userId = Integer.parseInt(id);
+	    //User user = this.userService.getUserById(userId);
+	    User user2 = this.userService.selectByUserName(name);
+	   // model.addAttribute("user", user);
+	    model.addAttribute("user", user2);
 	    return "showUser";
 	  }
 	  else
