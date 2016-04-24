@@ -33,6 +33,14 @@
     from admin_info
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <!-- add by ks -->
+    <select id="selectByAdminName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_info
+    where adminname = #{adminname,jdbcType=VARCHAR}
+   </select>
+   <!--end by ks  -->
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from admin_info
     where id = #{id,jdbcType=INTEGER}

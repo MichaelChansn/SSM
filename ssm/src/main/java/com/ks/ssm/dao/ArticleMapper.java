@@ -1,5 +1,7 @@
 package com.ks.ssm.dao;
 
+import java.util.List;
+
 import com.ks.ssm.domain.Article;
 
 public interface ArticleMapper {
@@ -10,6 +12,10 @@ public interface ArticleMapper {
     int insertSelective(Article record);
 
     Article selectByPrimaryKey(Long id);
+    
+    List<Article> selectByUserID(Long userid);
+    
+    List<Article> selectByStatus(Boolean status);
 
     int updateByPrimaryKeySelective(Article record);
 

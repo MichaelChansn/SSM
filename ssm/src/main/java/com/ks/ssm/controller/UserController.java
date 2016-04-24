@@ -28,6 +28,7 @@ public class UserController {
 	    //int userId = Integer.parseInt(id);
 	    //User user = this.userService.getUserById(userId);
 	    List<User> users = this.userService.selectByEmail(email);
+	    //User user=this.userService.selectByUserName("ks");
 	   // model.addAttribute("user", user);
 	    model.addAttribute("user", users);
 	    return "showUser";

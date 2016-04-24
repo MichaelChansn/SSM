@@ -1612,3 +1612,48 @@ Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No q
 [INFO] [2016-04-24 18:41:08][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
 [INFO] [2016-04-24 18:41:09][com.ks.ssm.test.TestMyBatis]{"email":"ks","id":1,"level":1,"password":"ks","qq":"sk","status":true,"username":"ks"}
 [INFO] [2016-04-24 18:41:09][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@5cb137: startup date [Sun Apr 24 18:41:08 CST 2016]; root of context hierarchy
+[INFO] [2016-04-24 21:54:49][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring-mybatis.xml]
+[INFO] [2016-04-24 21:54:50][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@2f32ff: startup date [Sun Apr 24 21:54:50 CST 2016]; root of context hierarchy
+[INFO] [2016-04-24 21:54:51][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+[INFO] [2016-04-24 21:54:51][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[INFO] [2016-04-24 21:54:53][com.ks.ssm.test.TestMyBatis]{"email":"ks","id":1,"level":1,"password":"ks","qq":"sk","status":true,"username":"ks"}
+[INFO] [2016-04-24 21:54:53][com.ks.ssm.test.TestMyBatis]{"email":"ks","id":1,"level":1,"password":"ks","qq":"sk","status":true,"username":"ks"}
+[INFO] [2016-04-24 21:54:53][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@2f32ff: startup date [Sun Apr 24 21:54:50 CST 2016]; root of context hierarchy
+[INFO] [2016-04-24 21:55:24][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring-mybatis.xml]
+[INFO] [2016-04-24 21:55:24][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@2f32ff: startup date [Sun Apr 24 21:55:24 CST 2016]; root of context hierarchy
+[INFO] [2016-04-24 21:55:24][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+[INFO] [2016-04-24 21:55:24][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[INFO] [2016-04-24 21:55:25][com.ks.ssm.test.TestMyBatis]{"email":"ks","id":1,"level":1,"password":"ks","qq":"sk","status":true,"username":"ks"}
+[INFO] [2016-04-24 21:55:25][com.ks.ssm.test.TestMyBatis]{"email":"ks","id":1,"level":1,"password":"ks","qq":"sk","status":true,"username":"ks"}
+[INFO] [2016-04-24 21:55:25][com.ks.ssm.test.TestMyBatis]{"email":"ks","id":6,"level":1,"password":"ks","status":true,"username":"ks1"}
+[INFO] [2016-04-24 21:55:25][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@2f32ff: startup date [Sun Apr 24 21:55:24 CST 2016]; root of context hierarchy
+[INFO] [2016-04-24 21:56:14][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring-mybatis.xml]
+[INFO] [2016-04-24 21:56:14][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@2f32ff: startup date [Sun Apr 24 21:56:14 CST 2016]; root of context hierarchy
+[INFO] [2016-04-24 21:56:14][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+[INFO] [2016-04-24 21:56:14][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[INFO] [2016-04-24 21:56:15][com.ks.ssm.test.TestMyBatis]user....
+[INFO] [2016-04-24 21:56:15][com.ks.ssm.test.TestMyBatis]{"email":"ks","id":1,"level":1,"password":"ks","qq":"sk","status":true,"username":"ks"}
+[INFO] [2016-04-24 21:56:15][com.ks.ssm.test.TestMyBatis]list....
+[INFO] [2016-04-24 21:56:15][com.ks.ssm.test.TestMyBatis]{"email":"ks","id":1,"level":1,"password":"ks","qq":"sk","status":true,"username":"ks"}
+[INFO] [2016-04-24 21:56:15][com.ks.ssm.test.TestMyBatis]{"email":"ks","id":6,"level":1,"password":"ks","status":true,"username":"ks1"}
+[INFO] [2016-04-24 21:56:15][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@2f32ff: startup date [Sun Apr 24 21:56:14 CST 2016]; root of context hierarchy
+[INFO] [2016-04-24 21:57:07][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring-mybatis.xml]
+[INFO] [2016-04-24 21:57:07][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@2f32ff: startup date [Sun Apr 24 21:57:07 CST 2016]; root of context hierarchy
+[INFO] [2016-04-24 21:57:07][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+[INFO] [2016-04-24 21:57:07][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[ERROR] [2016-04-24 21:57:07][com.ks.ssm.test.TestMyBatis]user.........................
+[ERROR] [2016-04-24 21:57:08][com.ks.ssm.test.TestMyBatis]{"email":"ks","id":1,"level":1,"password":"ks","qq":"sk","status":true,"username":"ks"}
+[ERROR] [2016-04-24 21:57:08][com.ks.ssm.test.TestMyBatis]list.........................
+[ERROR] [2016-04-24 21:57:08][com.ks.ssm.test.TestMyBatis]{"email":"ks","id":1,"level":1,"password":"ks","qq":"sk","status":true,"username":"ks"}
+[ERROR] [2016-04-24 21:57:08][com.ks.ssm.test.TestMyBatis]{"email":"ks","id":6,"level":1,"password":"ks","status":true,"username":"ks1"}
+[INFO] [2016-04-24 21:57:08][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@2f32ff: startup date [Sun Apr 24 21:57:07 CST 2016]; root of context hierarchy
+[INFO] [2016-04-24 22:00:40][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring-mybatis.xml]
+[INFO] [2016-04-24 22:00:40][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@2f32ff: startup date [Sun Apr 24 22:00:40 CST 2016]; root of context hierarchy
+[INFO] [2016-04-24 22:00:40][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+[INFO] [2016-04-24 22:00:40][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[INFO] [2016-04-24 22:00:40][com.ks.ssm.test.TestMyBatis]user一条记录.........................
+[INFO] [2016-04-24 22:00:41][com.ks.ssm.test.TestMyBatis]{"email":"ks","id":1,"level":1,"password":"ks","qq":"sk","status":true,"username":"ks"}
+[INFO] [2016-04-24 22:00:41][com.ks.ssm.test.TestMyBatis]list多条记录.........................
+[INFO] [2016-04-24 22:00:41][com.ks.ssm.test.TestMyBatis]{"email":"ks","id":1,"level":1,"password":"ks","qq":"sk","status":true,"username":"ks"}
+[INFO] [2016-04-24 22:00:41][com.ks.ssm.test.TestMyBatis]{"email":"ks","id":6,"level":1,"password":"ks","status":true,"username":"ks1"}
+[INFO] [2016-04-24 22:00:41][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@2f32ff: startup date [Sun Apr 24 22:00:40 CST 2016]; root of context hierarchy

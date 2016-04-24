@@ -28,6 +28,25 @@
     from article_info
     where id = #{id,jdbcType=BIGINT}
   </select>
+  <!-- add by ks -->
+    <select id="selectByUserID" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from article_info
+    where userid = #{userid,jdbcType=BIGINT}
+  </select>
+    <select id="selectByStatus" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Boolean" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from article_info
+    where status = #{status,jdbcType=BIGINT}
+  </select>
+  <!-- end by ks -->
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from article_info
     where id = #{id,jdbcType=BIGINT}

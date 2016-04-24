@@ -1,5 +1,7 @@
 package com.ks.ssm.test;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
@@ -9,6 +11,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.alibaba.fastjson.JSON;
+import com.ks.ssm.dao.UserMapper;
 import com.ks.ssm.domain.User;
 import com.ks.ssm.service.IUserService;
 
@@ -17,21 +20,25 @@ import com.ks.ssm.service.IUserService;
 
 public class TestMyBatis {
   private static Logger logger = Logger.getLogger(TestMyBatis.class);
-//	private ApplicationContext ac = null;
   @Resource
   private IUserService userService = null;
-
-//	@Before
-//	public void before() {
-//		ac = new ClassPathXmlApplicationContext("applicationContext.xml");
-//		userService = (IUserService) ac.getBean("userService");
-//	}
-
+  @Resource
+  private UserMapper userDao;
   @Test
   public void test1() {
     User user = userService.getUserById(1);
-    // System.out.println(user.getUserName());
-    // logger.info("值："+user.getUserName());
     logger.info(JSON.toJSONString(user));
+  }
+  @Test
+  public void testMybatis() {
+    User user = userDao.selectByUserName("ks");
+    logger.info("user一条记录.........................");
+    logger.info(JSON.toJSONString(user));
+    List<User> users=userDao.selectByEmail("ks");
+    logger.info("list多条记录.........................");
+    for(User userTemp : users)
+    {
+    	logger.info(JSON.toJSONString(userTemp));
+    }
   }
 }
