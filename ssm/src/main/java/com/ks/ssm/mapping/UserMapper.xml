@@ -33,14 +33,22 @@
     from user_info
     where id = #{id,jdbcType=BIGINT}
   </select>
-  
+  <!-- add by ks -->
     <select id="selectByUserName" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from user_info
     where username = #{username,jdbcType=VARCHAR}
    </select>
-  
+   <!-- mybatis 非常的智能，返回值统一使用 resultMap="BaseResultMap"，mybatis会根据查询到的条目数量自动进行判断，如果是一条就返回对象，如果是多条就返回List对象列表-->
+  <select id="selectByEmail" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_info
+    where email = #{email,jdbcType=VARCHAR}
+   </select>
+   <!-- end by ks -->
+   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from user_info
     where id = #{id,jdbcType=BIGINT}

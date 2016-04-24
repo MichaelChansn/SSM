@@ -1,5 +1,7 @@
 package com.ks.ssm.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -20,14 +22,14 @@ public class UserController {
   public String toIndex(HttpServletRequest request,Model model){
 	  System.err.println("reauest is in");
 	  //String id=request.getParameter("id");
-	  String name=request.getParameter("name");
-	  if( name!=null)
+	  String email=request.getParameter("email");
+	  if( email!=null)
 	  {
 	    //int userId = Integer.parseInt(id);
 	    //User user = this.userService.getUserById(userId);
-	    User user2 = this.userService.selectByUserName(name);
+	    List<User> users = this.userService.selectByEmail(email);
 	   // model.addAttribute("user", user);
-	    model.addAttribute("user", user2);
+	    model.addAttribute("user", users);
 	    return "showUser";
 	  }
 	  else

@@ -1,5 +1,7 @@
 package com.ks.ssm.dao;
 
+import java.util.List;
+
 import com.ks.ssm.domain.User;
 
 public interface UserMapper {
@@ -12,6 +14,8 @@ public interface UserMapper {
     User selectByPrimaryKey(Long id);
     
     User selectByUserName(String username );
+    
+    List<User> selectByEmail(String email );
 
     int updateByPrimaryKeySelective(User record);
 

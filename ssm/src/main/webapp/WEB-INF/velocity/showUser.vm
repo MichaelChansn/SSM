@@ -5,10 +5,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-${user.username}
-</br>
-${user.password}
-</br>
-${user.enrolltime}
+${user}
+
 </body>
 </html>

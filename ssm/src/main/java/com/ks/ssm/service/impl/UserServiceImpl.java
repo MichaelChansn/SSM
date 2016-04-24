@@ -2,6 +2,8 @@ package com.ks.ssm.service.impl;
 
 
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -26,6 +28,12 @@ public class UserServiceImpl implements IUserService {
 	public User selectByUserName(String username) {
 		// TODO Auto-generated method stub
 		return userDao.selectByUserName(username);
+	}
+
+	@Override
+	public  List<User> selectByEmail(String email ) {
+		// TODO Auto-generated method stub
+		return userDao.selectByEmail(email);
 	}
 
 
