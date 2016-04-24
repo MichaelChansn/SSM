@@ -1657,3 +1657,63 @@ Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No q
 [INFO] [2016-04-24 22:00:41][com.ks.ssm.test.TestMyBatis]{"email":"ks","id":1,"level":1,"password":"ks","qq":"sk","status":true,"username":"ks"}
 [INFO] [2016-04-24 22:00:41][com.ks.ssm.test.TestMyBatis]{"email":"ks","id":6,"level":1,"password":"ks","status":true,"username":"ks1"}
 [INFO] [2016-04-24 22:00:41][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@2f32ff: startup date [Sun Apr 24 22:00:40 CST 2016]; root of context hierarchy
+[INFO] [2016-04-24 22:35:24][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring-mybatis.xml]
+[INFO] [2016-04-24 22:35:24][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@2f32ff: startup date [Sun Apr 24 22:35:24 CST 2016]; root of context hierarchy
+[INFO] [2016-04-24 22:35:24][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+[INFO] [2016-04-24 22:35:24][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[INFO] [2016-04-24 22:35:25][com.ks.ssm.test.TestMyBatis]article一条记录.........................
+[INFO] [2016-04-24 22:35:25][com.ks.ssm.test.TestMyBatis]{"content":"this is a test. 这就是个测试。。。","id":1,"pic":"no","status":false,"up":0,"userid":1}
+[INFO] [2016-04-24 22:35:25][com.ks.ssm.test.TestMyBatis]list多条记录.........................
+[INFO] [2016-04-24 22:35:25][com.ks.ssm.test.TestMyBatis]{"content":"this is a test. 这就是个测试。。。","id":1,"pic":"no","status":false,"up":0,"userid":1}
+[INFO] [2016-04-24 22:35:25][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@2f32ff: startup date [Sun Apr 24 22:35:24 CST 2016]; root of context hierarchy
+[INFO] [2016-04-24 22:36:08][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring-mybatis.xml]
+[INFO] [2016-04-24 22:36:08][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@2f32ff: startup date [Sun Apr 24 22:36:08 CST 2016]; root of context hierarchy
+[INFO] [2016-04-24 22:36:08][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+[INFO] [2016-04-24 22:36:08][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[INFO] [2016-04-24 22:36:09][com.ks.ssm.test.TestMyBatis]article一条记录.........................
+[INFO] [2016-04-24 22:36:09][com.ks.ssm.test.TestMyBatis]{"content":"this is a test. 这就是个测试。。。","id":1,"pic":"no","status":false,"up":0,"userid":1}
+[INFO] [2016-04-24 22:36:09][com.ks.ssm.test.TestMyBatis]list多条记录.........................
+[INFO] [2016-04-24 22:36:09][com.ks.ssm.test.TestMyBatis]{"content":"this is a test. 这就是个测试。。。","id":1,"pic":"no","status":false,"up":0,"userid":1}
+[INFO] [2016-04-24 22:36:09][com.ks.ssm.test.TestMyBatis]list多条记录.........................
+[INFO] [2016-04-24 22:36:09][com.ks.ssm.test.TestMyBatis]{"content":"this is a test. 这就是个测试。。。","id":1,"pic":"no","status":false,"up":0,"userid":1}
+[INFO] [2016-04-24 22:36:09][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@2f32ff: startup date [Sun Apr 24 22:36:08 CST 2016]; root of context hierarchy
+[INFO] [2016-04-24 22:40:05][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring-mybatis.xml]
+[INFO] [2016-04-24 22:40:06][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@2f32ff: startup date [Sun Apr 24 22:40:06 CST 2016]; root of context hierarchy
+[INFO] [2016-04-24 22:40:06][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+[INFO] [2016-04-24 22:40:06][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[INFO] [2016-04-24 22:40:06][com.ks.ssm.test.TestMyBatis]comment一条记录.........................
+[INFO] [2016-04-24 22:40:06][com.ks.ssm.test.TestMyBatis]{"articleid":1,"content":"this is a comment. 这就是个评论。。。","fromuserid":1,"id":1,"status":true}
+[INFO] [2016-04-24 22:40:06][com.ks.ssm.test.TestMyBatis]list多条记录.........................
+[INFO] [2016-04-24 22:40:06][com.ks.ssm.test.TestMyBatis]{"articleid":1,"content":"this is a comment. 这就是个评论。。。","fromuserid":1,"id":1,"status":true}
+[INFO] [2016-04-24 22:40:06][com.ks.ssm.test.TestMyBatis]list多条记录.........................
+[INFO] [2016-04-24 22:40:06][com.ks.ssm.test.TestMyBatis]{"articleid":1,"content":"this is a comment. 这就是个评论。。。","fromuserid":1,"id":1,"status":true}
+[INFO] [2016-04-24 22:40:06][com.ks.ssm.test.TestMyBatis]list多条记录.........................
+[INFO] [2016-04-24 22:40:06][com.ks.ssm.test.TestMyBatis]{"articleid":1,"content":"this is a comment. 这就是个评论。。。","fromuserid":1,"id":1,"status":true}
+[INFO] [2016-04-24 22:40:06][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@2f32ff: startup date [Sun Apr 24 22:40:06 CST 2016]; root of context hierarchy
+[INFO] [2016-04-24 22:40:35][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring-mybatis.xml]
+[INFO] [2016-04-24 22:40:35][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@fbd816: startup date [Sun Apr 24 22:40:35 CST 2016]; root of context hierarchy
+[INFO] [2016-04-24 22:40:35][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+[INFO] [2016-04-24 22:40:35][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[INFO] [2016-04-24 22:40:35][com.ks.ssm.test.TestMyBatis]article一条记录.........................
+[INFO] [2016-04-24 22:40:36][com.ks.ssm.test.TestMyBatis]{"content":"this is a test. 这就是个测试。。。","id":1,"pic":"no","status":false,"up":0,"userid":1}
+[INFO] [2016-04-24 22:40:36][com.ks.ssm.test.TestMyBatis]list多条记录.........................
+[INFO] [2016-04-24 22:40:36][com.ks.ssm.test.TestMyBatis]{"content":"this is a test. 这就是个测试。。。","id":1,"pic":"no","status":false,"up":0,"userid":1}
+[INFO] [2016-04-24 22:40:36][com.ks.ssm.test.TestMyBatis]list多条记录.........................
+[INFO] [2016-04-24 22:40:36][com.ks.ssm.test.TestMyBatis]{"content":"this is a test. 这就是个测试。。。","id":1,"pic":"no","status":false,"up":0,"userid":1}
+[INFO] [2016-04-24 22:40:36][com.ks.ssm.test.TestMyBatis]{"email":"ks","id":1,"level":1,"password":"ks","qq":"sk","status":true,"username":"ks"}
+[INFO] [2016-04-24 22:40:36][com.ks.ssm.test.TestMyBatis]comment一条记录.........................
+[INFO] [2016-04-24 22:40:36][com.ks.ssm.test.TestMyBatis]{"articleid":1,"content":"this is a comment. 这就是个评论。。。","fromuserid":1,"id":1,"status":true}
+[INFO] [2016-04-24 22:40:36][com.ks.ssm.test.TestMyBatis]list多条记录.........................
+[INFO] [2016-04-24 22:40:36][com.ks.ssm.test.TestMyBatis]{"articleid":1,"content":"this is a comment. 这就是个评论。。。","fromuserid":1,"id":1,"status":true}
+[INFO] [2016-04-24 22:40:36][com.ks.ssm.test.TestMyBatis]{"articleid":1,"content":"测试","fromuserid":2,"id":2,"status":true}
+[INFO] [2016-04-24 22:40:36][com.ks.ssm.test.TestMyBatis]list多条记录.........................
+[INFO] [2016-04-24 22:40:36][com.ks.ssm.test.TestMyBatis]{"articleid":1,"content":"this is a comment. 这就是个评论。。。","fromuserid":1,"id":1,"status":true}
+[INFO] [2016-04-24 22:40:36][com.ks.ssm.test.TestMyBatis]list多条记录.........................
+[INFO] [2016-04-24 22:40:36][com.ks.ssm.test.TestMyBatis]{"articleid":1,"content":"this is a comment. 这就是个评论。。。","fromuserid":1,"id":1,"status":true}
+[INFO] [2016-04-24 22:40:36][com.ks.ssm.test.TestMyBatis]{"articleid":1,"content":"测试","fromuserid":2,"id":2,"status":true}
+[INFO] [2016-04-24 22:40:36][com.ks.ssm.test.TestMyBatis]user一条记录.........................
+[INFO] [2016-04-24 22:40:36][com.ks.ssm.test.TestMyBatis]{"email":"ks","id":1,"level":1,"password":"ks","qq":"sk","status":true,"username":"ks"}
+[INFO] [2016-04-24 22:40:36][com.ks.ssm.test.TestMyBatis]list多条记录.........................
+[INFO] [2016-04-24 22:40:36][com.ks.ssm.test.TestMyBatis]{"email":"ks","id":1,"level":1,"password":"ks","qq":"sk","status":true,"username":"ks"}
+[INFO] [2016-04-24 22:40:36][com.ks.ssm.test.TestMyBatis]{"email":"ks","id":6,"level":1,"password":"ks","status":true,"username":"ks1"}
+[INFO] [2016-04-24 22:40:36][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@fbd816: startup date [Sun Apr 24 22:40:35 CST 2016]; root of context hierarchy
