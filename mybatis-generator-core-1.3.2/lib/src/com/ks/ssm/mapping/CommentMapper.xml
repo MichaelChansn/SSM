@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ks.ssm.dao.CommentMapper" >
+  <resultMap id="BaseResultMap" type="com.ks.ssm.domain.Comment" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="articleid" property="articleid" jdbcType="BIGINT" />
+    <result column="fromuserid" property="fromuserid" jdbcType="BIGINT" />
+    <result column="commenttime" property="commenttime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="BIT" />
+    <result column="modifytime" property="modifytime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.ks.ssm.domain.Comment" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, articleid, fromuserid, commenttime, status, modifytime
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from comment_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from comment_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ks.ssm.domain.Comment" >
+    insert into comment_info (id, articleid, fromuserid, 
+      commenttime, status, modifytime, 
+      content)
+    values (#{id,jdbcType=BIGINT}, #{articleid,jdbcType=BIGINT}, #{fromuserid,jdbcType=BIGINT}, 
+      #{commenttime,jdbcType=TIMESTAMP}, #{status,jdbcType=BIT}, #{modifytime,jdbcType=TIMESTAMP}, 
+      #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ks.ssm.domain.Comment" >
+    insert into comment_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="articleid != null" >
+        articleid,
+      </if>
+      <if test="fromuserid != null" >
+        fromuserid,
+      </if>
+      <if test="commenttime != null" >
+        commenttime,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="modifytime != null" >
+        modifytime,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="articleid != null" >
+        #{articleid,jdbcType=BIGINT},
+      </if>
+      <if test="fromuserid != null" >
+        #{fromuserid,jdbcType=BIGINT},
+      </if>
+      <if test="commenttime != null" >
+        #{commenttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="modifytime != null" >
+        #{modifytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ks.ssm.domain.Comment" >
+    update comment_info
+    <set >
+      <if test="articleid != null" >
+        articleid = #{articleid,jdbcType=BIGINT},
+      </if>
+      <if test="fromuserid != null" >
+        fromuserid = #{fromuserid,jdbcType=BIGINT},
+      </if>
+      <if test="commenttime != null" >
+        commenttime = #{commenttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="modifytime != null" >
+        modifytime = #{modifytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ks.ssm.domain.Comment" >
+    update comment_info
+    set articleid = #{articleid,jdbcType=BIGINT},
+      fromuserid = #{fromuserid,jdbcType=BIGINT},
+      commenttime = #{commenttime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=BIT},
+      modifytime = #{modifytime,jdbcType=TIMESTAMP},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ks.ssm.domain.Comment" >
+    update comment_info
+    set articleid = #{articleid,jdbcType=BIGINT},
+      fromuserid = #{fromuserid,jdbcType=BIGINT},
+      commenttime = #{commenttime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=BIT},
+      modifytime = #{modifytime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
