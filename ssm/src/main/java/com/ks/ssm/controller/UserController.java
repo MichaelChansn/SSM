@@ -100,7 +100,7 @@ public class UserController {
   private File creatFolder(String userID,String articleImg,String fileName) {  
       File file = null;  
        
-      File firstFolder = new File("D:/" + userID);         //一级文件夹  
+      File firstFolder = new File("C:/" + userID);         //一级文件夹  
       if(firstFolder.exists()) {                             //如果一级文件夹存在，则检测二级文件夹  
           File secondFolder = new File(firstFolder,articleImg);  
           if(secondFolder.exists()) {                        //如果二级文件夹也存在，则创建文件  
