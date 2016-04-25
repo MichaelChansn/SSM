@@ -14,6 +14,8 @@ public class Comment {
     private Boolean status;
 
     private Date modifytime;
+    
+    private Boolean anonymous;
 
     private String content;
 
@@ -65,6 +67,14 @@ public class Comment {
         this.modifytime = modifytime;
     }
 
+    public Boolean getAnonymous() {
+        return anonymous;
+    }
+
+    public void setAnonymous(Boolean anonymous) {
+        this.anonymous = anonymous;
+    }
+    
     public String getContent() {
         return content;
     }

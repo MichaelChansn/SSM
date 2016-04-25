@@ -8,12 +8,13 @@
     <result column="commenttime" property="commenttime" jdbcType="TIMESTAMP" />
     <result column="status" property="status" jdbcType="BIT" />
     <result column="modifytime" property="modifytime" jdbcType="TIMESTAMP" />
+    <result column="anonymous" property="anonymous" jdbcType="BIT" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.ks.ssm.domain.Comment" extends="BaseResultMap" >
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, articleid, fromuserid, commenttime, status, modifytime
+    id, articleid, fromuserid, commenttime, status, modifytime, anonymous
   </sql>
   <sql id="Blob_Column_List" >
     content
@@ -62,11 +63,11 @@
   </delete>
   <insert id="insert" parameterType="com.ks.ssm.domain.Comment" >
     insert into comment_info (id, articleid, fromuserid, 
-      commenttime, status, modifytime, 
+      commenttime, status, modifytime, anonymous,
       content)
     values (#{id,jdbcType=BIGINT}, #{articleid,jdbcType=BIGINT}, #{fromuserid,jdbcType=BIGINT}, 
       #{commenttime,jdbcType=TIMESTAMP}, #{status,jdbcType=BIT}, #{modifytime,jdbcType=TIMESTAMP}, 
-      #{content,jdbcType=LONGVARCHAR})
+      #{anonymous,jdbcType=BIT}, #{content,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ks.ssm.domain.Comment" >
     insert into comment_info
@@ -88,6 +89,9 @@
       </if>
       <if test="modifytime != null" >
         modifytime,
+      </if>
+      <if test="anonymous != null" >
+        anonymous,
       </if>
       <if test="content != null" >
         content,
@@ -112,6 +116,9 @@
       <if test="modifytime != null" >
         #{modifytime,jdbcType=TIMESTAMP},
       </if>
+      <if test="anonymous != null" >
+        #{anonymous,jdbcType=BIT},
+      </if>
       <if test="content != null" >
         #{content,jdbcType=LONGVARCHAR},
       </if>
@@ -135,6 +142,9 @@
       <if test="modifytime != null" >
         modifytime = #{modifytime,jdbcType=TIMESTAMP},
       </if>
+      <if test="anonymous != null" >
+        anonymous = #{anonymous,jdbcType=BIT},
+      </if>
       <if test="content != null" >
         content = #{content,jdbcType=LONGVARCHAR},
       </if>
@@ -148,6 +158,7 @@
       commenttime = #{commenttime,jdbcType=TIMESTAMP},
       status = #{status,jdbcType=BIT},
       modifytime = #{modifytime,jdbcType=TIMESTAMP},
+      anonymous = #{anonymous,jdbcType=BIT},
       content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -157,7 +168,8 @@
       fromuserid = #{fromuserid,jdbcType=BIGINT},
       commenttime = #{commenttime,jdbcType=TIMESTAMP},
       status = #{status,jdbcType=BIT},
-      modifytime = #{modifytime,jdbcType=TIMESTAMP}
+      modifytime = #{modifytime,jdbcType=TIMESTAMP},
+      anonymous = #{anonymous,jdbcType=BIT},
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

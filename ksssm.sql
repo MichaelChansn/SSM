@@ -61,6 +61,7 @@ CREATE TABLE `article_info` (
   `writetime` datetime NOT NULL COMMENT '第一次写文章的时间',
   `modifytime` datetime NOT NULL COMMENT '修改时间',
   `publishtime` datetime NOT NULL COMMENT '通过审核时间',
+  `anonymous` tinyint(1) NOT NULL DEFAULT '0' COMMENT '匿名发表？',
   PRIMARY KEY (`id`),
   KEY `userid` (`userid`),
   FULLTEXT KEY `content` (`content`)
@@ -68,7 +69,7 @@ CREATE TABLE `article_info` (
 
 /*Data for the table `article_info` */
 
-insert  into `article_info`(`id`,`userid`,`pic`,`content`,`up`,`status`,`writetime`,`modifytime`,`publishtime`) values (1,1,'no','this is a test. 这就是个测试。。。',0,0,'0000-00-00 00:00:00','0000-00-00 00:00:00','0000-00-00 00:00:00');
+insert  into `article_info`(`id`,`userid`,`pic`,`content`,`up`,`status`,`writetime`,`modifytime`,`publishtime`,`anonymous`) values (1,1,'no','this is a test. 这就是个测试。。。',0,0,'0000-00-00 00:00:00','0000-00-00 00:00:00','0000-00-00 00:00:00',0);
 
 /*Table structure for table `comment_info` */
 
@@ -82,6 +83,7 @@ CREATE TABLE `comment_info` (
   `commenttime` datetime NOT NULL COMMENT '评论时间',
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '评论状态 通过or未通过，默认通过，举报后不通过',
   `modifytime` datetime NOT NULL COMMENT '评论修改时间（管理员修改）',
+  `anonymous` tinyint(1) NOT NULL DEFAULT '0' COMMENT '匿名评论？',
   PRIMARY KEY (`id`),
   KEY `articleid` (`articleid`),
   KEY `fromuserid` (`fromuserid`)
@@ -89,7 +91,7 @@ CREATE TABLE `comment_info` (
 
 /*Data for the table `comment_info` */
 
-insert  into `comment_info`(`id`,`articleid`,`fromuserid`,`content`,`commenttime`,`status`,`modifytime`) values (1,1,1,'this is a comment. 这就是个评论。。。','0000-00-00 00:00:00',1,'0000-00-00 00:00:00'),(2,1,2,'测试','0000-00-00 00:00:00',1,'0000-00-00 00:00:00');
+insert  into `comment_info`(`id`,`articleid`,`fromuserid`,`content`,`commenttime`,`status`,`modifytime`,`anonymous`) values (1,1,1,'this is a comment. 这就是个评论。。。','0000-00-00 00:00:00',1,'0000-00-00 00:00:00',0),(2,1,2,'测试','0000-00-00 00:00:00',1,'0000-00-00 00:00:00',0);
 
 /*Table structure for table `user_info` */
 

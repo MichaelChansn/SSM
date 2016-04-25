@@ -18,6 +18,8 @@ public class Article {
     private Date modifytime;
 
     private Date publishtime;
+    
+    private Boolean anonymous;
 
     private String content;
 
@@ -85,6 +87,14 @@ public class Article {
         this.publishtime = publishtime;
     }
 
+    public Boolean getAnonymous() {
+        return anonymous;
+    }
+
+    public void setAnonymous(Boolean anonymous) {
+        this.anonymous = anonymous;
+    }
+    
     public String getContent() {
         return content;
     }

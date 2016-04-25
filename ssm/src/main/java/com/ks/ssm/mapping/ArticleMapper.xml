@@ -10,12 +10,13 @@
     <result column="writetime" property="writetime" jdbcType="TIMESTAMP" />
     <result column="modifytime" property="modifytime" jdbcType="TIMESTAMP" />
     <result column="publishtime" property="publishtime" jdbcType="TIMESTAMP" />
+    <result column="anonymous" property="anonymous" jdbcType="BIT" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.ks.ssm.domain.Article" extends="BaseResultMap" >
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, userid, pic, up, status, writetime, modifytime, publishtime
+    id, userid, pic, up, status, writetime, modifytime, publishtime, anonymous
   </sql>
   <sql id="Blob_Column_List" >
     content
@@ -54,11 +55,11 @@
   <insert id="insert" parameterType="com.ks.ssm.domain.Article" >
     insert into article_info (id, userid, pic, 
       up, status, writetime, 
-      modifytime, publishtime, content
+      modifytime, publishtime, anonymous, content
       )
     values (#{id,jdbcType=BIGINT}, #{userid,jdbcType=BIGINT}, #{pic,jdbcType=VARCHAR}, 
       #{up,jdbcType=INTEGER}, #{status,jdbcType=BIT}, #{writetime,jdbcType=TIMESTAMP}, 
-      #{modifytime,jdbcType=TIMESTAMP}, #{publishtime,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR}
+      #{modifytime,jdbcType=TIMESTAMP}, #{publishtime,jdbcType=TIMESTAMP}, #{anonymous,jdbcType=BIT}, #{content,jdbcType=LONGVARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.ks.ssm.domain.Article" >
@@ -87,6 +88,9 @@
       </if>
       <if test="publishtime != null" >
         publishtime,
+      </if>
+      <if test="anonymous != null" >
+        anonymous,
       </if>
       <if test="content != null" >
         content,
@@ -117,6 +121,9 @@
       <if test="publishtime != null" >
         #{publishtime,jdbcType=TIMESTAMP},
       </if>
+      <if test="anonymous != null" >
+        #{anonymous,jdbcType=BIT},
+      </if>
       <if test="content != null" >
         #{content,jdbcType=LONGVARCHAR},
       </if>
@@ -146,6 +153,9 @@
       <if test="publishtime != null" >
         publishtime = #{publishtime,jdbcType=TIMESTAMP},
       </if>
+      <if test="anonymous != null" >
+        publishtime = #{anonymous,jdbcType=BIT},
+      </if>
       <if test="content != null" >
         content = #{content,jdbcType=LONGVARCHAR},
       </if>
@@ -161,6 +171,7 @@
       writetime = #{writetime,jdbcType=TIMESTAMP},
       modifytime = #{modifytime,jdbcType=TIMESTAMP},
       publishtime = #{publishtime,jdbcType=TIMESTAMP},
+      anonymous = #{anonymous,jdbcType=BIT},
       content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -172,7 +183,8 @@
       status = #{status,jdbcType=BIT},
       writetime = #{writetime,jdbcType=TIMESTAMP},
       modifytime = #{modifytime,jdbcType=TIMESTAMP},
-      publishtime = #{publishtime,jdbcType=TIMESTAMP}
+      publishtime = #{publishtime,jdbcType=TIMESTAMP},
+      anonymous = #{anonymous,jdbcType=BIT}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>
