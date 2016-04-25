@@ -1717,3 +1717,30 @@ Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No q
 [INFO] [2016-04-24 22:40:36][com.ks.ssm.test.TestMyBatis]{"email":"ks","id":1,"level":1,"password":"ks","qq":"sk","status":true,"username":"ks"}
 [INFO] [2016-04-24 22:40:36][com.ks.ssm.test.TestMyBatis]{"email":"ks","id":6,"level":1,"password":"ks","status":true,"username":"ks1"}
 [INFO] [2016-04-24 22:40:36][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@fbd816: startup date [Sun Apr 24 22:40:35 CST 2016]; root of context hierarchy
+[INFO] [2016-04-25 20:33:47][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring-mybatis.xml]
+[INFO] [2016-04-25 20:33:48][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@5cb137: startup date [Mon Apr 25 20:33:48 CST 2016]; root of context hierarchy
+[INFO] [2016-04-25 20:33:48][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+[INFO] [2016-04-25 20:33:48][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[INFO] [2016-04-25 20:33:48][com.ks.ssm.test.TestMyBatis]article一条记录.........................
+[INFO] [2016-04-25 20:33:48][com.ks.ssm.test.TestMyBatis]{"content":"this is a test. 这就是个测试。。。","id":1,"pic":"no","status":false,"up":0,"userid":1}
+[INFO] [2016-04-25 20:33:48][com.ks.ssm.test.TestMyBatis]list多条记录.........................
+[INFO] [2016-04-25 20:33:48][com.ks.ssm.test.TestMyBatis]{"content":"this is a test. 这就是个测试。。。","id":1,"pic":"no","status":false,"up":0,"userid":1}
+[INFO] [2016-04-25 20:33:48][com.ks.ssm.test.TestMyBatis]list多条记录.........................
+[INFO] [2016-04-25 20:33:48][com.ks.ssm.test.TestMyBatis]{"content":"this is a test. 这就是个测试。。。","id":1,"pic":"no","status":false,"up":0,"userid":1}
+[INFO] [2016-04-25 20:33:48][com.ks.ssm.test.TestMyBatis]{"email":"ks","id":1,"level":1,"password":"ks","qq":"sk","status":true,"username":"ks"}
+[INFO] [2016-04-25 20:33:48][com.ks.ssm.test.TestMyBatis]comment一条记录.........................
+[INFO] [2016-04-25 20:33:48][com.ks.ssm.test.TestMyBatis]{"articleid":1,"content":"this is a comment. 这就是个评论。。。","fromuserid":1,"id":1,"status":true}
+[INFO] [2016-04-25 20:33:48][com.ks.ssm.test.TestMyBatis]list多条记录.........................
+[INFO] [2016-04-25 20:33:48][com.ks.ssm.test.TestMyBatis]{"articleid":1,"content":"this is a comment. 这就是个评论。。。","fromuserid":1,"id":1,"status":true}
+[INFO] [2016-04-25 20:33:48][com.ks.ssm.test.TestMyBatis]{"articleid":1,"content":"测试","fromuserid":2,"id":2,"status":true}
+[INFO] [2016-04-25 20:33:48][com.ks.ssm.test.TestMyBatis]list多条记录.........................
+[INFO] [2016-04-25 20:33:48][com.ks.ssm.test.TestMyBatis]{"articleid":1,"content":"this is a comment. 这就是个评论。。。","fromuserid":1,"id":1,"status":true}
+[INFO] [2016-04-25 20:33:48][com.ks.ssm.test.TestMyBatis]list多条记录.........................
+[INFO] [2016-04-25 20:33:48][com.ks.ssm.test.TestMyBatis]{"articleid":1,"content":"this is a comment. 这就是个评论。。。","fromuserid":1,"id":1,"status":true}
+[INFO] [2016-04-25 20:33:48][com.ks.ssm.test.TestMyBatis]{"articleid":1,"content":"测试","fromuserid":2,"id":2,"status":true}
+[INFO] [2016-04-25 20:33:48][com.ks.ssm.test.TestMyBatis]user一条记录.........................
+[INFO] [2016-04-25 20:33:48][com.ks.ssm.test.TestMyBatis]{"email":"ks","id":1,"level":1,"password":"ks","qq":"sk","status":true,"username":"ks"}
+[INFO] [2016-04-25 20:33:48][com.ks.ssm.test.TestMyBatis]list多条记录.........................
+[INFO] [2016-04-25 20:33:48][com.ks.ssm.test.TestMyBatis]{"email":"ks","id":1,"level":1,"password":"ks","qq":"sk","status":true,"username":"ks"}
+[INFO] [2016-04-25 20:33:48][com.ks.ssm.test.TestMyBatis]{"email":"ks","id":6,"level":1,"password":"ks","status":true,"username":"ks1"}
+[INFO] [2016-04-25 20:33:48][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@5cb137: startup date [Mon Apr 25 20:33:48 CST 2016]; root of context hierarchy
