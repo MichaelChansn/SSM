@@ -29,7 +29,7 @@ public class UserController {
   
   private String[] imgs={"jpg","jpeg","bmp","gif","png"};
   private List<String> imgsList=Arrays.asList(imgs);
-  private SimpleDateFormat df = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");//设置日期格式
+  private SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");//设置日期格式
   
   private final String userID="1";
   private final String headImg="headerImg";
@@ -69,7 +69,7 @@ public class UserController {
 	 if((null!=textContent && !"".equals(textContent.trim())) || file!=null)
 	 {
 		 if(file!=null)
-		 model.addAttribute("img", file.getPath());
+		 model.addAttribute("img", request.getSession().getServletContext().getContextPath()+"/user"+"/"+"img/"+userID+"/"+articleImg+"/"+file.getName());
 		 model.addAttribute("text", textContent);
 		 retWeb="showUser";
 	 }

@@ -15,7 +15,7 @@ hs_err_pid*
 .metadata/
 .recommenders/
 RemoteSystemsTempFiles/
-Servers/
+
 
 target/
 pom.xml.tag
