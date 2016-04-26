@@ -110,7 +110,7 @@
 
 @media screen and (min-width: 768px){
     .panel-show, .head-nav {
-        width: 75%;
+        width: 90%;
         max-width: 100%;
         margin-left: auto;
         margin-right: auto;
@@ -118,7 +118,7 @@
 }
 @media screen and (min-width: 992px){
     .panel-show, .head-nav {
-        width: 67%;
+        width: 80%;
         max-width: 100%;
         margin-left: auto;
         margin-right: auto;
@@ -126,7 +126,7 @@
 }
 @media screen and (min-width: 1200px) {
     .panel-show , .head-nav {
-        width: 60%;
+        width: 70%;
         max-width: 100%;
         margin-left: auto;
         margin-right: auto;
@@ -173,11 +173,19 @@ border: none;
     border-radius: 0;
 }
 .login-form-div {
-    margin-top: 20px;
-    border-bottom: 1px solid #ddd;
+    padding-bottom: 100px;
 }
 .login-form-div .form-group {
     max-width: 500px;
     margin-left: auto;
     margin-right: auto;
+}
+.login-foot a {
+    color: #7a4624;
+}
+.register-login {
+    margin-top: -10px;
+}
+.register-login a {
+    color: #7a4624;
 }
