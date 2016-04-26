@@ -5,11 +5,25 @@
     box-sizing: border-box;
     min-width: 350px;
 }
+.content-block {
+    position:relative;
+}
 .login {
     position: absolute;
-    margin-top: 0px;
-    margin-right: 0px;
+    top: 5px;
+    right: 10px;
     float: right;
+    color: #7a4624;
+}
+.login a:hover {
+    cursor: pointer;
+    color: red;
+    font-weight: bolder;
+
+}
+.login a {
+    text-decoration: none;
+    color: #7a4624;
 }
 .navbar-default {
     background-color:#00A78D;
@@ -141,4 +155,27 @@ input[type="file"] {
 }
 .list-group .list-group-item {
     border: none;
+}
+.changeModel {
+    position: fixed;
+    margin:auto;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    height: 258px;
+    width: 540px;
+}
+.modal-header {
+border: none;
+}
+.changeModel-content {
+    border-radius: 0;
+}
+.login-form-div {
+    margin-top: 20px;
+    border-bottom: 1px solid #ddd;
+}
+.login-form-div .form-group {
+    width: auto;
 }
