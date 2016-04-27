@@ -61,6 +61,6 @@ public class UserRegister {
 
 	public boolean isSamePassword()
 	{
-		return this.password==this.passwordConfirm;
+		return this.password.equals(this.passwordConfirm);
 	}
 }

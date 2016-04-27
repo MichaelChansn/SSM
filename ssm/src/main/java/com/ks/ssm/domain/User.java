@@ -27,9 +27,9 @@ public class User {
 
     private Date enrolltime;
 
-    private Byte level;
+    private Byte level=(byte)0x01;
 
-    private Boolean status;
+    private Boolean status=true;
 
     private String titlepic;
 

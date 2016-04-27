@@ -130,10 +130,16 @@ public class UserController {
   public String userRegister(HttpServletRequest request,Model model,@Valid UserRegister user,BindingResult result){
 	 String retWeb="error";
 	 
+	 System.err.println(user.getUserNickName());
+	 System.err.println(user.getEmail());
+	 System.err.println(user.getPassword());
+	 System.err.println(user.getPasswordConfirm());
+	 
 	 if(!result.hasErrors())
 	 {
 		 if(!user.isSamePassword())
 		 {
+			 
 			 model.addAttribute(RetInfos.REGISTER_ERROR, RetInfos.PASSWORD_NOT_SAME);
 				return "userRegister";
 		 }
