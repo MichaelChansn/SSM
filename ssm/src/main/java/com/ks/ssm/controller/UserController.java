@@ -10,15 +10,19 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.ks.ssm.constant.RetInfos;
 import com.ks.ssm.domain.User;
+import com.ks.ssm.form.domain.UserRegister;
 import com.ks.ssm.service.IUserService;
 
 @Controller
@@ -45,7 +49,7 @@ public class UserController {
 	  {
 	    //int userId = Integer.parseInt(id);
 	    //User user = this.userService.getUserById(userId);
-	    List<User> users = this.userService.selectByEmail(email);
+	    User users = this.userService.selectByEmail(email);
 	    //User user=this.userService.selectByUserName("ks");
 	   // model.addAttribute("user", user);
 	    model.addAttribute("user", users);
@@ -122,6 +126,45 @@ public class UserController {
       return file;  
  }
   
+  @RequestMapping(value="/userRegister",method =RequestMethod.POST)
+  public String userRegister(HttpServletRequest request,Model model,@Valid UserRegister user,BindingResult result){
+	 String retWeb="error";
+	 
+	 if(!result.hasErrors())
+	 {
+		 if(!user.isSamePassword())
+		 {
+			 model.addAttribute(RetInfos.REGISTER_ERROR, RetInfos.PASSWORD_NOT_SAME);
+				return "userRegister";
+		 }
+		User user1=userService.selectByUserName(user.getUserNickName());
+		User user2=userService.selectByEmail(user.getEmail());
+		if(user1!=null)
+		{
+			model.addAttribute(RetInfos.REGISTER_ERROR, RetInfos.USER_EXIST);
+			return "userRegister";
+		}
+		if(user2!=null)
+		{
+			model.addAttribute(RetInfos.REGISTER_ERROR, RetInfos.EMAIL_EXIST);
+			return "userRegister";
+		}
+		
+		 User userStroage=new User();
+		 userStroage.setUsername(user.getUserNickName());
+		 userStroage.setPassword(user.getPassword());
+		 userStroage.setEmail(user.getEmail());
+		 userStroage.setEnrolltime(new Date());
+		 userStroage.setLoginip(request.getRemoteAddr());
+		 userStroage.setLogintime(new Date());
+		 userStroage.setModifytime(new Date());
+		 userStroage.setMood("用户未设置心情");
+		 userService.insertSelective(userStroage);
+		 retWeb="userRegister";
+	 }
+	 
+	 return retWeb; 
+  }
   
   
 }

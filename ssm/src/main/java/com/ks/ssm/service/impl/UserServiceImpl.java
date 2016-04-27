@@ -2,8 +2,6 @@ package com.ks.ssm.service.impl;
 
 
 
-import java.util.List;
-
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -31,9 +29,15 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public  List<User> selectByEmail(String email ) {
+	public  User selectByEmail(String email ) {
 		// TODO Auto-generated method stub
 		return userDao.selectByEmail(email);
+	}
+
+	@Override
+	public int insertSelective(User record) {
+		// TODO Auto-generated method stub
+		return userDao.insert(record);
 	}
 
 

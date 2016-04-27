@@ -37,6 +37,7 @@ public class TestMyBatis {
     User user = userService.getUserById(1);
     logger.info(JSON.toJSONString(user));
   }
+  /*
   @Test
   public void testMybatis() {
     User user = userDao.selectByUserName("ks");
@@ -48,7 +49,7 @@ public class TestMyBatis {
     {
     	logger.info(JSON.toJSONString(userTemp));
     }
-  }
+  }*/
   
   @Test
   public void testArticle() {
