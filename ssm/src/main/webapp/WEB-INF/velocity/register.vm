@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>树洞</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/index.css" rel="stylesheet">
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+</head>
+<body class="index-body">
+
+<div class="head-nav ">
+    <div class="head">
+        <div class="content-block" >
+            <img class="img-responsive " src="../img/web_logo.png">
+        </div>
+    </div>
+    <nav class="navbar navbar-default " role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#example-navbar-collapse">
+                <span class="sr-only">切换导航</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class=" navbar-brand " href="#"><img class="img-responsive center-block" src="../img/logo.png"></a>
+        </div>
+        <div class="collapse navbar-collapse navbar-centre" id="example-navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class=""><a href="../index">最新</a></li>
+                <li><a href="user/addStory">发帖</a></li>
+                <li class="drop-divider"></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        Java <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">jmeter</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">EJB</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Jasper Report</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">分离的链接</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">另一个分离的链接</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<div class="panel-show ">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">账号注册！</h3>
+        </div>
+		#if($!{REGISTER_SUCCESS})
+                <h2><label  class="col-sm-offset-1 col-sm-7 control-label " style="color:red">注册成功<a href="../index">返回首页</a></label></h2>
+			#else
+        <div class="login-form-div">
+            <form class="form-horizontal" role="form" action="register" method="post">
+                <div class="form-group ">
+                #if($!{REGISTER_ERROR})
+				<h2><label  class="col-sm-offset-1 col-sm-7 control-label " style="color:red">$!{REGISTER_ERROR}</label></h2>
+				#else
+                    <h2><label  class="col-sm-offset-1 col-sm-7 control-label ">会员注册</label></h2>
+				#end
+                </div>
+                <div class="form-group ">
+                    <label for="userNickName" class="col-sm-3 control-label">用户名</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="userNickName" name="userNickName"  placeholder="请输入用户名" value=$!{userNickName}>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label for="email" class="col-sm-3 control-label">邮箱</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="email" name="email"  placeholder="请输入邮箱" value=$!{email}>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="col-sm-3 control-label">密码</label>
+                    <div class="col-sm-8">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="请输入密码">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="passwordConfirm" class="col-sm-3 control-label">重复密码</label>
+                    <div class="col-sm-8">
+                        <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm" placeholder="再次确认密码">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-8 ">
+                        <button type="submit" class="btn btn-success form-control">注 册</button>
+                    </div>
+                </div>
+                <div class="form-group register-login">
+                    <div class="col-sm-offset-3 col-sm-8 control-label" style="display: inline-block">
+                        <label><a href="user/login">已有账号？登录</a></label>
+                    </div>
+                </div>
+            </form>
+        </div>
+		#end
+
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,192 @@
+.index-body {
+    background-color: bisque;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    min-width: 350px;
+}
+.content-block {
+    position:relative;
+}
+.login {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    float: right;
+    color: #7a4624;
+}
+.login a:hover {
+    cursor: pointer;
+    color: red;
+    font-weight: bolder;
+
+}
+.login a {
+    text-decoration: none;
+    color: #7a4624;
+}
+.navbar-default {
+    background-color:#00A78D;
+    color: aliceblue;
+    border: none;
+
+}
+.navbar-default .navbar-brand {
+    color: white;
+    padding-top: 6px;
+    padding-bottom: 0px;
+    margin-left: 20px;
+    margin-right: 50px;
+
+}
+.navbar-nav {
+    margin-bottom: 0;
+
+}
+
+.navbar-nav .open .dropdown-menu {
+    background-color: #fff;
+}
+.in .drop-divider {
+    height: 1px;
+    background-color: white;
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {
+    vertical-align: middle;
+    background-color: aliceblue;
+    border-bottom: solid 5px #7a4624;
+    color: black;
+    font-weight: bolder;
+    font-size: large;
+
+}
+.collapse .nav>li {
+   margin-left: 1px;
+}
+.in .nav>li {
+    margin-left: 0px;
+}
+.nav>li>a {
+    text-align:center;
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: white;
+    font-size: 16.5px;
+    font-weight: bolder;
+    border-bottom: solid 5px #00A78D;
+
+}
+.navbar-default .navbar-nav>li>a:hover {
+    color: black;
+    font-weight: bolder;
+    font-size: 16.5px;
+    border-bottom: solid 5px #7a4624;
+    background-color: aliceblue;
+
+}
+.panel-body {
+    padding: 18px 20px;
+
+}
+.text-content {
+    text-indent:2rem;
+}
+.panel-primary {
+    border-color: transparent;
+    margin-top: 20px;
+
+}
+.panel-primary>.panel-heading {
+    color: #fff;
+    background-color: #00A78D;
+    border-color: #00A78D;
+}
+.container {
+    margin-top: 10px;
+    width: 100%;
+}
+
+@media screen and (min-width: 768px){
+    .panel-show, .head-nav {
+        width: 90%;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+@media screen and (min-width: 992px){
+    .panel-show, .head-nav {
+        width: 80%;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+@media screen and (min-width: 1200px) {
+    .panel-show , .head-nav {
+        width: 70%;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+}
+.form-control {
+    min-width: 100%;
+    max-width: 100%;
+}
+input[type="file"] {
+     display: inline;
+}
+.form-select {
+    margin-left: 10px;
+}
+.check {
+    margin-top: 0px;
+    padding-top: 0px;
+    float: right;
+    margin-right: 10px;
+    color: #7a4624;
+}
+.file-select {
+    max-width: 180px;
+}
+.list-group .list-group-item {
+    border: none;
+}
+.changeModel {
+    position: fixed;
+    margin:auto;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    height: 258px;
+    width: 540px;
+}
+.modal-header {
+border: none;
+}
+.changeModel-content {
+    border-radius: 0;
+}
+.login-form-div {
+    padding-bottom: 100px;
+}
+.login-form-div .form-group {
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.login-foot a {
+    color: #7a4624;
+}
+.register-login {
+    margin-top: -10px;
+}
+.register-login a {
+    color: #7a4624;
+    opacity: 0.7;
+}

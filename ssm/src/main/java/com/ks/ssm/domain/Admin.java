@@ -29,13 +29,13 @@ public class Admin {
 
     private Date enrolltime;
 
-    private Boolean status;
+    private Boolean status=true;
 
     private String titlepic;
 
     private String job;
 
-    private Date logintime;
+    private Date logintime=new Date();
 
     private String loginip;
 

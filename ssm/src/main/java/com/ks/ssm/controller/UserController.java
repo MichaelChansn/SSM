@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springmodules.validation.bean.conf.loader.annotation.Validatable;
 
 import com.ks.ssm.constant.RetInfos;
 import com.ks.ssm.domain.User;
@@ -126,34 +127,38 @@ public class UserController {
       return file;  
  }
   
-  @RequestMapping(value="/userRegister",method =RequestMethod.POST)
+  @RequestMapping(value="/register",method =RequestMethod.GET)
+  public String userRegister(HttpServletRequest request,Model model)
+  {
+	  return "register";
+  }
+  @RequestMapping(value="/register",method =RequestMethod.POST)
   public String userRegister(HttpServletRequest request,Model model,@Valid UserRegister user,BindingResult result){
 	 String retWeb="error";
-	 
-	 System.err.println(user.getUserNickName());
-	 System.err.println(user.getEmail());
-	 System.err.println(user.getPassword());
-	 System.err.println(user.getPasswordConfirm());
-	 
 	 if(!result.hasErrors())
 	 {
+		 
+		 model.addAttribute("userNickName", user.getUserNickName());
+		 model.addAttribute("email", user.getEmail());
+		 
 		 if(!user.isSamePassword())
 		 {
 			 
 			 model.addAttribute(RetInfos.REGISTER_ERROR, RetInfos.PASSWORD_NOT_SAME);
-				return "userRegister";
+			 
+				return "register";
 		 }
 		User user1=userService.selectByUserName(user.getUserNickName());
 		User user2=userService.selectByEmail(user.getEmail());
 		if(user1!=null)
 		{
 			model.addAttribute(RetInfos.REGISTER_ERROR, RetInfos.USER_EXIST);
-			return "userRegister";
+			return "register";
 		}
 		if(user2!=null)
 		{
 			model.addAttribute(RetInfos.REGISTER_ERROR, RetInfos.EMAIL_EXIST);
-			return "userRegister";
+			return "register";
 		}
 		
 		 User userStroage=new User();
@@ -166,7 +171,12 @@ public class UserController {
 		 userStroage.setModifytime(new Date());
 		 userStroage.setMood("用户未设置心情");
 		 userService.insertSelective(userStroage);
-		 retWeb="userRegister";
+		 model.addAttribute(RetInfos.REGISTER_SUCCESS, RetInfos.REGISTER_SUCCESS_INFO);
+		 retWeb="register";
+	 }
+	 else
+	 {
+		 model.addAttribute(RetInfos.REGISTER_ERROR, result.getAllErrors());
 	 }
 	 
 	 return retWeb; 

@@ -17,30 +17,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
     <meta http-equiv="description" content="This is my page">
     <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
-    <script type="text/javascript">
-        var path="<%=path%>";
-        $( document ).ready(function() {
-            $("#codeImg").on("click",function(){
-                $('#codeImg').prop('src',path+'/jcaptcha.jpg?nocache='+new Date().getTime());
-            });
-        });
-    </script>
   </head>
 <body style="text-align: center;">
 <h2>Hello World!</h2>
 <script type="text/javascript"> 
-$(function(){  //生成验证码         
-    $('#kaptchaImage').click(function () {  
-    $(this).hide().attr('src', '/ssm/code/captcha-image?' + Math.floor(Math.random()*100) ).fadeIn(); });      
-});   
- 
-window.onbeforeunload = function(){  
-    //关闭窗口时自动退出  
-    if(event.clientX>360&&event.clientY<0||event.altKey){     
-        alert(parent.document.location);  
-    }  
-};  
-             
 function changeCode() {  //刷新
     $('#kaptchaImage').hide().attr('src', '/ssm/code/captcha-image?' + Math.floor(Math.random()*100) ).fadeIn();  
     event.cancelBubble=true;  

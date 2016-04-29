@@ -9,9 +9,9 @@ public class Article {
 
     private String pic;
 
-    private Integer up;
+    private Integer up=0;
 
-    private Boolean status;
+    private Boolean status=false;
 
     private Date writetime;
 
@@ -19,7 +19,7 @@ public class Article {
 
     private Date publishtime;
     
-    private Boolean anonymous;
+    private Boolean anonymous=false;
 
     private String content;
 

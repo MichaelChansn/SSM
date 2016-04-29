@@ -35,7 +35,7 @@ public class User {
 
     private String job;
 
-    private Date logintime;
+    private Date logintime=new Date();
 
     private String loginip;
 

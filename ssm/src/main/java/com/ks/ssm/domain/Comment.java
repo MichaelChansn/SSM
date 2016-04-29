@@ -9,13 +9,13 @@ public class Comment {
 
     private Long fromuserid;
 
-    private Date commenttime;
+    private Date commenttime=new Date();
 
-    private Boolean status;
+    private Boolean status=true;
 
     private Date modifytime;
     
-    private Boolean anonymous;
+    private Boolean anonymous=false;
 
     private String content;
 
