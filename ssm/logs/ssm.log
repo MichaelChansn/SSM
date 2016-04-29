@@ -4086,3 +4086,566 @@ Caused by: java.lang.NoClassDefFoundError: Could not initialize class org.spring
 [INFO] [2016-04-28 00:55:08][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"articleid":1,"content":"this is a comment. 这就是个评论。。。","fromuserid":1,"id":1,"status":true}
 [INFO] [2016-04-28 00:55:08][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"articleid":1,"content":"测试","fromuserid":2,"id":2,"status":true}
 [INFO] [2016-04-28 00:55:08][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@19c0f4a: startup date [Thu Apr 28 00:55:06 GMT+08:00 2016]; root of context hierarchy
+[INFO] [2016-04-29 23:56:55][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring-mybatis.xml]
+[INFO] [2016-04-29 23:56:55][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@19c0f4a: startup date [Fri Apr 29 23:56:55 GMT+08:00 2016]; root of context hierarchy
+[INFO] [2016-04-29 23:56:55][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+[INFO] [2016-04-29 23:56:55][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[ERROR] [2016-04-29 23:56:56][org.springframework.test.context.TestContextManager]Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@1065d67] to prepare test instance [com.ks.ssm.test.TestMyBatis@12625fd]
+java.lang.IllegalStateException: Failed to load ApplicationContext
+	at org.springframework.test.context.CacheAwareContextLoaderDelegate.loadContext(CacheAwareContextLoaderDelegate.java:99)
+	at org.springframework.test.context.DefaultTestContext.getApplicationContext(DefaultTestContext.java:101)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:109)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:75)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:319)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:212)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:289)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:291)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:232)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:89)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:71)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:175)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'configurationLoader' defined in class path resource [spring-mybatis.xml]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Could not instantiate bean class [org.springmodules.validation.bean.conf.loader.annotation.AnnotationBeanValidationConfigurationLoader]: Constructor threw exception; nested exception is java.lang.NoSuchMethodError: org.springframework.util.ClassUtils.forName(Ljava/lang/String;)Ljava/lang/Class;
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1076)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1021)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:504)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:475)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:304)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:300)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:195)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:700)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:760)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:482)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:121)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:60)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.delegateLoading(AbstractDelegatingSmartContextLoader.java:100)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.loadContext(AbstractDelegatingSmartContextLoader.java:250)
+	at org.springframework.test.context.CacheAwareContextLoaderDelegate.loadContextInternal(CacheAwareContextLoaderDelegate.java:64)
+	at org.springframework.test.context.CacheAwareContextLoaderDelegate.loadContext(CacheAwareContextLoaderDelegate.java:91)
+	... 31 more
+Caused by: org.springframework.beans.BeanInstantiationException: Could not instantiate bean class [org.springmodules.validation.bean.conf.loader.annotation.AnnotationBeanValidationConfigurationLoader]: Constructor threw exception; nested exception is java.lang.NoSuchMethodError: org.springframework.util.ClassUtils.forName(Ljava/lang/String;)Ljava/lang/Class;
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:164)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:89)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1069)
+	... 47 more
+Caused by: java.lang.NoSuchMethodError: org.springframework.util.ClassUtils.forName(Ljava/lang/String;)Ljava/lang/Class;
+	at org.springmodules.validation.util.LibraryUtils.isClassInClasspath(LibraryUtils.java:50)
+	at org.springmodules.validation.util.LibraryUtils.<clinit>(LibraryUtils.java:30)
+	at org.springmodules.validation.bean.conf.loader.annotation.DefaultValidationAnnotationHandlerRegistry.<init>(DefaultValidationAnnotationHandlerRegistry.java:91)
+	at org.springmodules.validation.bean.conf.loader.annotation.AnnotationBeanValidationConfigurationLoader.<init>(AnnotationBeanValidationConfigurationLoader.java:82)
+	at org.springmodules.validation.bean.conf.loader.annotation.AnnotationBeanValidationConfigurationLoader.<init>(AnnotationBeanValidationConfigurationLoader.java:69)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:148)
+	... 49 more
+[INFO] [2016-04-29 23:56:56][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring-mybatis.xml]
+[INFO] [2016-04-29 23:56:56][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@1191845: startup date [Fri Apr 29 23:56:56 GMT+08:00 2016]; root of context hierarchy
+[INFO] [2016-04-29 23:56:56][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+[INFO] [2016-04-29 23:56:56][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[ERROR] [2016-04-29 23:56:56][org.springframework.test.context.TestContextManager]Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@1065d67] to prepare test instance [com.ks.ssm.test.TestMyBatis@5ed836]
+java.lang.IllegalStateException: Failed to load ApplicationContext
+	at org.springframework.test.context.CacheAwareContextLoaderDelegate.loadContext(CacheAwareContextLoaderDelegate.java:99)
+	at org.springframework.test.context.DefaultTestContext.getApplicationContext(DefaultTestContext.java:101)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:109)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:75)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:319)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:212)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:289)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:291)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:232)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:89)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:71)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:175)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'configurationLoader' defined in class path resource [spring-mybatis.xml]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Could not instantiate bean class [org.springmodules.validation.bean.conf.loader.annotation.AnnotationBeanValidationConfigurationLoader]: Constructor threw exception; nested exception is java.lang.NoClassDefFoundError: Could not initialize class org.springmodules.validation.util.LibraryUtils
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1076)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1021)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:504)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:475)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:304)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:300)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:195)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:700)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:760)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:482)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:121)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:60)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.delegateLoading(AbstractDelegatingSmartContextLoader.java:100)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.loadContext(AbstractDelegatingSmartContextLoader.java:250)
+	at org.springframework.test.context.CacheAwareContextLoaderDelegate.loadContextInternal(CacheAwareContextLoaderDelegate.java:64)
+	at org.springframework.test.context.CacheAwareContextLoaderDelegate.loadContext(CacheAwareContextLoaderDelegate.java:91)
+	... 31 more
+Caused by: org.springframework.beans.BeanInstantiationException: Could not instantiate bean class [org.springmodules.validation.bean.conf.loader.annotation.AnnotationBeanValidationConfigurationLoader]: Constructor threw exception; nested exception is java.lang.NoClassDefFoundError: Could not initialize class org.springmodules.validation.util.LibraryUtils
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:164)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:89)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1069)
+	... 47 more
+Caused by: java.lang.NoClassDefFoundError: Could not initialize class org.springmodules.validation.util.LibraryUtils
+	at org.springmodules.validation.bean.conf.loader.annotation.DefaultValidationAnnotationHandlerRegistry.<init>(DefaultValidationAnnotationHandlerRegistry.java:91)
+	at org.springmodules.validation.bean.conf.loader.annotation.AnnotationBeanValidationConfigurationLoader.<init>(AnnotationBeanValidationConfigurationLoader.java:82)
+	at org.springmodules.validation.bean.conf.loader.annotation.AnnotationBeanValidationConfigurationLoader.<init>(AnnotationBeanValidationConfigurationLoader.java:69)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:148)
+	... 49 more
+[INFO] [2016-04-29 23:56:56][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring-mybatis.xml]
+[INFO] [2016-04-29 23:56:56][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@19a307b: startup date [Fri Apr 29 23:56:56 GMT+08:00 2016]; root of context hierarchy
+[INFO] [2016-04-29 23:56:56][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+[INFO] [2016-04-29 23:56:56][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[ERROR] [2016-04-29 23:56:56][org.springframework.test.context.TestContextManager]Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@1065d67] to prepare test instance [com.ks.ssm.test.TestMyBatis@c1b2d2]
+java.lang.IllegalStateException: Failed to load ApplicationContext
+	at org.springframework.test.context.CacheAwareContextLoaderDelegate.loadContext(CacheAwareContextLoaderDelegate.java:99)
+	at org.springframework.test.context.DefaultTestContext.getApplicationContext(DefaultTestContext.java:101)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:109)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:75)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:319)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:212)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:289)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:291)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:232)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:89)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:71)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:175)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'configurationLoader' defined in class path resource [spring-mybatis.xml]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Could not instantiate bean class [org.springmodules.validation.bean.conf.loader.annotation.AnnotationBeanValidationConfigurationLoader]: Constructor threw exception; nested exception is java.lang.NoClassDefFoundError: Could not initialize class org.springmodules.validation.util.LibraryUtils
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1076)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1021)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:504)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:475)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:304)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:300)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:195)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:700)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:760)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:482)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:121)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:60)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.delegateLoading(AbstractDelegatingSmartContextLoader.java:100)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.loadContext(AbstractDelegatingSmartContextLoader.java:250)
+	at org.springframework.test.context.CacheAwareContextLoaderDelegate.loadContextInternal(CacheAwareContextLoaderDelegate.java:64)
+	at org.springframework.test.context.CacheAwareContextLoaderDelegate.loadContext(CacheAwareContextLoaderDelegate.java:91)
+	... 31 more
+Caused by: org.springframework.beans.BeanInstantiationException: Could not instantiate bean class [org.springmodules.validation.bean.conf.loader.annotation.AnnotationBeanValidationConfigurationLoader]: Constructor threw exception; nested exception is java.lang.NoClassDefFoundError: Could not initialize class org.springmodules.validation.util.LibraryUtils
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:164)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:89)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1069)
+	... 47 more
+Caused by: java.lang.NoClassDefFoundError: Could not initialize class org.springmodules.validation.util.LibraryUtils
+	at org.springmodules.validation.bean.conf.loader.annotation.DefaultValidationAnnotationHandlerRegistry.<init>(DefaultValidationAnnotationHandlerRegistry.java:91)
+	at org.springmodules.validation.bean.conf.loader.annotation.AnnotationBeanValidationConfigurationLoader.<init>(AnnotationBeanValidationConfigurationLoader.java:82)
+	at org.springmodules.validation.bean.conf.loader.annotation.AnnotationBeanValidationConfigurationLoader.<init>(AnnotationBeanValidationConfigurationLoader.java:69)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:148)
+	... 49 more
+[INFO] [2016-04-29 23:58:26][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring-mybatis.xml]
+[INFO] [2016-04-29 23:58:26][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@19c0f4a: startup date [Fri Apr 29 23:58:26 GMT+08:00 2016]; root of context hierarchy
+[INFO] [2016-04-29 23:58:26][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+[INFO] [2016-04-29 23:58:26][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[ERROR] [2016-04-29 23:58:27][org.springframework.test.context.TestContextManager]Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@1065d67] to prepare test instance [com.ks.ssm.test.TestMyBatis@12625fd]
+java.lang.IllegalStateException: Failed to load ApplicationContext
+	at org.springframework.test.context.CacheAwareContextLoaderDelegate.loadContext(CacheAwareContextLoaderDelegate.java:99)
+	at org.springframework.test.context.DefaultTestContext.getApplicationContext(DefaultTestContext.java:101)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:109)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:75)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:319)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:212)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:289)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:291)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:232)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:89)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:71)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:175)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'configurationLoader' defined in class path resource [spring-mybatis.xml]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Could not instantiate bean class [org.springmodules.validation.bean.conf.loader.annotation.AnnotationBeanValidationConfigurationLoader]: Constructor threw exception; nested exception is java.lang.NoSuchMethodError: org.springframework.util.ClassUtils.forName(Ljava/lang/String;)Ljava/lang/Class;
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1076)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1021)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:504)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:475)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:304)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:300)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:195)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:700)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:760)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:482)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:121)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:60)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.delegateLoading(AbstractDelegatingSmartContextLoader.java:100)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.loadContext(AbstractDelegatingSmartContextLoader.java:250)
+	at org.springframework.test.context.CacheAwareContextLoaderDelegate.loadContextInternal(CacheAwareContextLoaderDelegate.java:64)
+	at org.springframework.test.context.CacheAwareContextLoaderDelegate.loadContext(CacheAwareContextLoaderDelegate.java:91)
+	... 31 more
+Caused by: org.springframework.beans.BeanInstantiationException: Could not instantiate bean class [org.springmodules.validation.bean.conf.loader.annotation.AnnotationBeanValidationConfigurationLoader]: Constructor threw exception; nested exception is java.lang.NoSuchMethodError: org.springframework.util.ClassUtils.forName(Ljava/lang/String;)Ljava/lang/Class;
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:164)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:89)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1069)
+	... 47 more
+Caused by: java.lang.NoSuchMethodError: org.springframework.util.ClassUtils.forName(Ljava/lang/String;)Ljava/lang/Class;
+	at org.springmodules.validation.util.LibraryUtils.isClassInClasspath(LibraryUtils.java:50)
+	at org.springmodules.validation.util.LibraryUtils.<clinit>(LibraryUtils.java:30)
+	at org.springmodules.validation.bean.conf.loader.annotation.DefaultValidationAnnotationHandlerRegistry.<init>(DefaultValidationAnnotationHandlerRegistry.java:91)
+	at org.springmodules.validation.bean.conf.loader.annotation.AnnotationBeanValidationConfigurationLoader.<init>(AnnotationBeanValidationConfigurationLoader.java:82)
+	at org.springmodules.validation.bean.conf.loader.annotation.AnnotationBeanValidationConfigurationLoader.<init>(AnnotationBeanValidationConfigurationLoader.java:69)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:148)
+	... 49 more
+[INFO] [2016-04-29 23:58:27][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring-mybatis.xml]
+[INFO] [2016-04-29 23:58:27][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@1191845: startup date [Fri Apr 29 23:58:27 GMT+08:00 2016]; root of context hierarchy
+[INFO] [2016-04-29 23:58:27][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+[INFO] [2016-04-29 23:58:27][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[ERROR] [2016-04-29 23:58:27][org.springframework.test.context.TestContextManager]Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@1065d67] to prepare test instance [com.ks.ssm.test.TestMyBatis@5ed836]
+java.lang.IllegalStateException: Failed to load ApplicationContext
+	at org.springframework.test.context.CacheAwareContextLoaderDelegate.loadContext(CacheAwareContextLoaderDelegate.java:99)
+	at org.springframework.test.context.DefaultTestContext.getApplicationContext(DefaultTestContext.java:101)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:109)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:75)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:319)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:212)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:289)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:291)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:232)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:89)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:71)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:175)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'configurationLoader' defined in class path resource [spring-mybatis.xml]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Could not instantiate bean class [org.springmodules.validation.bean.conf.loader.annotation.AnnotationBeanValidationConfigurationLoader]: Constructor threw exception; nested exception is java.lang.NoClassDefFoundError: Could not initialize class org.springmodules.validation.util.LibraryUtils
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1076)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1021)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:504)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:475)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:304)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:300)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:195)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:700)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:760)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:482)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:121)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:60)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.delegateLoading(AbstractDelegatingSmartContextLoader.java:100)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.loadContext(AbstractDelegatingSmartContextLoader.java:250)
+	at org.springframework.test.context.CacheAwareContextLoaderDelegate.loadContextInternal(CacheAwareContextLoaderDelegate.java:64)
+	at org.springframework.test.context.CacheAwareContextLoaderDelegate.loadContext(CacheAwareContextLoaderDelegate.java:91)
+	... 31 more
+Caused by: org.springframework.beans.BeanInstantiationException: Could not instantiate bean class [org.springmodules.validation.bean.conf.loader.annotation.AnnotationBeanValidationConfigurationLoader]: Constructor threw exception; nested exception is java.lang.NoClassDefFoundError: Could not initialize class org.springmodules.validation.util.LibraryUtils
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:164)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:89)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1069)
+	... 47 more
+Caused by: java.lang.NoClassDefFoundError: Could not initialize class org.springmodules.validation.util.LibraryUtils
+	at org.springmodules.validation.bean.conf.loader.annotation.DefaultValidationAnnotationHandlerRegistry.<init>(DefaultValidationAnnotationHandlerRegistry.java:91)
+	at org.springmodules.validation.bean.conf.loader.annotation.AnnotationBeanValidationConfigurationLoader.<init>(AnnotationBeanValidationConfigurationLoader.java:82)
+	at org.springmodules.validation.bean.conf.loader.annotation.AnnotationBeanValidationConfigurationLoader.<init>(AnnotationBeanValidationConfigurationLoader.java:69)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:148)
+	... 49 more
+[INFO] [2016-04-29 23:58:27][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring-mybatis.xml]
+[INFO] [2016-04-29 23:58:27][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@19a307b: startup date [Fri Apr 29 23:58:27 GMT+08:00 2016]; root of context hierarchy
+[INFO] [2016-04-29 23:58:27][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+[INFO] [2016-04-29 23:58:27][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[ERROR] [2016-04-29 23:58:27][org.springframework.test.context.TestContextManager]Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@1065d67] to prepare test instance [com.ks.ssm.test.TestMyBatis@c1b2d2]
+java.lang.IllegalStateException: Failed to load ApplicationContext
+	at org.springframework.test.context.CacheAwareContextLoaderDelegate.loadContext(CacheAwareContextLoaderDelegate.java:99)
+	at org.springframework.test.context.DefaultTestContext.getApplicationContext(DefaultTestContext.java:101)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:109)
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:75)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:319)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:212)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:289)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:291)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:232)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:89)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:71)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:175)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'configurationLoader' defined in class path resource [spring-mybatis.xml]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Could not instantiate bean class [org.springmodules.validation.bean.conf.loader.annotation.AnnotationBeanValidationConfigurationLoader]: Constructor threw exception; nested exception is java.lang.NoClassDefFoundError: Could not initialize class org.springmodules.validation.util.LibraryUtils
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1076)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1021)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:504)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:475)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:304)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:300)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:195)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:700)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:760)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:482)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:121)
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:60)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.delegateLoading(AbstractDelegatingSmartContextLoader.java:100)
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.loadContext(AbstractDelegatingSmartContextLoader.java:250)
+	at org.springframework.test.context.CacheAwareContextLoaderDelegate.loadContextInternal(CacheAwareContextLoaderDelegate.java:64)
+	at org.springframework.test.context.CacheAwareContextLoaderDelegate.loadContext(CacheAwareContextLoaderDelegate.java:91)
+	... 31 more
+Caused by: org.springframework.beans.BeanInstantiationException: Could not instantiate bean class [org.springmodules.validation.bean.conf.loader.annotation.AnnotationBeanValidationConfigurationLoader]: Constructor threw exception; nested exception is java.lang.NoClassDefFoundError: Could not initialize class org.springmodules.validation.util.LibraryUtils
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:164)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:89)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1069)
+	... 47 more
+Caused by: java.lang.NoClassDefFoundError: Could not initialize class org.springmodules.validation.util.LibraryUtils
+	at org.springmodules.validation.bean.conf.loader.annotation.DefaultValidationAnnotationHandlerRegistry.<init>(DefaultValidationAnnotationHandlerRegistry.java:91)
+	at org.springmodules.validation.bean.conf.loader.annotation.AnnotationBeanValidationConfigurationLoader.<init>(AnnotationBeanValidationConfigurationLoader.java:82)
+	at org.springmodules.validation.bean.conf.loader.annotation.AnnotationBeanValidationConfigurationLoader.<init>(AnnotationBeanValidationConfigurationLoader.java:69)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:148)
+	... 49 more
+[INFO] [2016-04-29 23:59:24][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring-mybatis.xml]
+[INFO] [2016-04-29 23:59:25][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@19c0f4a: startup date [Fri Apr 29 23:59:25 GMT+08:00 2016]; root of context hierarchy
+[INFO] [2016-04-29 23:59:25][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+[INFO] [2016-04-29 23:59:25][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[INFO] [2016-04-29 23:59:28][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@19c0f4a: startup date [Fri Apr 29 23:59:25 GMT+08:00 2016]; root of context hierarchy
+[INFO] [2016-04-30 00:00:02][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring-mybatis.xml]
+[INFO] [2016-04-30 00:00:02][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@19c0f4a: startup date [Sat Apr 30 00:00:02 GMT+08:00 2016]; root of context hierarchy
+[INFO] [2016-04-30 00:00:02][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+[INFO] [2016-04-30 00:00:02][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[INFO] [2016-04-30 00:00:03][com.ks.ssm.test.TestMyBatis]article一条记录.........................
+[INFO] [2016-04-30 00:00:03][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"content":"this is a test. 这就是个测试。。。","id":1,"pic":"no","status":false,"up":0,"userid":1}
+[INFO] [2016-04-30 00:00:03][com.ks.ssm.test.TestMyBatis]list多条记录.........................
+[INFO] [2016-04-30 00:00:03][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"content":"this is a test. 这就是个测试。。。","id":1,"pic":"no","status":false,"up":0,"userid":1}
+[INFO] [2016-04-30 00:00:03][com.ks.ssm.test.TestMyBatis]list多条记录.........................
+[INFO] [2016-04-30 00:00:03][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"content":"this is a test. 这就是个测试。。。","id":1,"pic":"no","status":false,"up":0,"userid":1}
+[INFO] [2016-04-30 00:00:03][com.ks.ssm.test.TestMyBatis]{"email":"ks","id":1,"level":1,"logintime":1461945603949,"password":"ks","qq":"sk","status":true,"username":"ks"}
+[INFO] [2016-04-30 00:00:03][com.ks.ssm.test.TestMyBatis]comment一条记录.........................
+[INFO] [2016-04-30 00:00:03][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"articleid":1,"commenttime":1461945603974,"content":"this is a comment. 这就是个评论。。。","fromuserid":1,"id":1,"status":true}
+[INFO] [2016-04-30 00:00:03][com.ks.ssm.test.TestMyBatis]list多条记录.........................
+[INFO] [2016-04-30 00:00:03][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"articleid":1,"commenttime":1461945603979,"content":"this is a comment. 这就是个评论。。。","fromuserid":1,"id":1,"status":true}
+[INFO] [2016-04-30 00:00:03][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"articleid":1,"commenttime":1461945603980,"content":"测试","fromuserid":2,"id":2,"status":true}
+[INFO] [2016-04-30 00:00:03][com.ks.ssm.test.TestMyBatis]list多条记录.........................
+[INFO] [2016-04-30 00:00:03][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"articleid":1,"commenttime":1461945603982,"content":"this is a comment. 这就是个评论。。。","fromuserid":1,"id":1,"status":true}
+[INFO] [2016-04-30 00:00:03][com.ks.ssm.test.TestMyBatis]list多条记录.........................
+[INFO] [2016-04-30 00:00:03][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"articleid":1,"commenttime":1461945603984,"content":"this is a comment. 这就是个评论。。。","fromuserid":1,"id":1,"status":true}
+[INFO] [2016-04-30 00:00:03][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"articleid":1,"commenttime":1461945603984,"content":"测试","fromuserid":2,"id":2,"status":true}
+[INFO] [2016-04-30 00:00:03][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@19c0f4a: startup date [Sat Apr 30 00:00:02 GMT+08:00 2016]; root of context hierarchy
+[INFO] [2016-04-30 00:07:01][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring-mybatis.xml]
+[INFO] [2016-04-30 00:07:01][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@19c0f4a: startup date [Sat Apr 30 00:07:01 GMT+08:00 2016]; root of context hierarchy
+[INFO] [2016-04-30 00:07:01][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+[INFO] [2016-04-30 00:07:01][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[INFO] [2016-04-30 00:07:02][com.ks.ssm.test.TestMyBatis]article一条记录.........................
+[INFO] [2016-04-30 00:07:02][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"content":"this is a test. 这就是个测试。。。","id":1,"pic":"no","status":false,"up":0,"userid":1}
+[INFO] [2016-04-30 00:07:02][com.ks.ssm.test.TestMyBatis]list多条记录.........................
+[INFO] [2016-04-30 00:07:02][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"content":"this is a test. 这就是个测试。。。","id":1,"pic":"no","status":false,"up":0,"userid":1}
+[INFO] [2016-04-30 00:07:02][com.ks.ssm.test.TestMyBatis]list多条记录.........................
+[INFO] [2016-04-30 00:07:02][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"content":"this is a test. 这就是个测试。。。","id":1,"pic":"no","status":false,"up":0,"userid":1}
+[INFO] [2016-04-30 00:07:02][com.ks.ssm.test.TestMyBatis]{"email":"ks","id":1,"level":1,"logintime":1461946022799,"password":"ks","qq":"sk","status":true,"username":"ks"}
+[INFO] [2016-04-30 00:07:02][com.ks.ssm.test.TestMyBatis]comment一条记录.........................
+[INFO] [2016-04-30 00:07:02][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"articleid":1,"commenttime":1461946022813,"content":"this is a comment. 这就是个评论。。。","fromuserid":1,"id":1,"status":true}
+[INFO] [2016-04-30 00:07:02][com.ks.ssm.test.TestMyBatis]list多条记录.........................
+[INFO] [2016-04-30 00:07:02][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"articleid":1,"commenttime":1461946022821,"content":"this is a comment. 这就是个评论。。。","fromuserid":1,"id":1,"status":true}
+[INFO] [2016-04-30 00:07:02][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"articleid":1,"commenttime":1461946022821,"content":"测试","fromuserid":2,"id":2,"status":true}
+[INFO] [2016-04-30 00:07:02][com.ks.ssm.test.TestMyBatis]list多条记录.........................
+[INFO] [2016-04-30 00:07:02][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"articleid":1,"commenttime":1461946022823,"content":"this is a comment. 这就是个评论。。。","fromuserid":1,"id":1,"status":true}
+[INFO] [2016-04-30 00:07:02][com.ks.ssm.test.TestMyBatis]list多条记录.........................
+[INFO] [2016-04-30 00:07:02][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"articleid":1,"commenttime":1461946022826,"content":"this is a comment. 这就是个评论。。。","fromuserid":1,"id":1,"status":true}
+[INFO] [2016-04-30 00:07:02][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"articleid":1,"commenttime":1461946022826,"content":"测试","fromuserid":2,"id":2,"status":true}
+[INFO] [2016-04-30 00:07:02][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@19c0f4a: startup date [Sat Apr 30 00:07:01 GMT+08:00 2016]; root of context hierarchy
+[INFO] [2016-04-30 00:19:12][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring-mybatis.xml]
+[INFO] [2016-04-30 00:19:13][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@e26948: startup date [Sat Apr 30 00:19:13 GMT+08:00 2016]; root of context hierarchy
+[INFO] [2016-04-30 00:19:13][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+[INFO] [2016-04-30 00:19:13][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[INFO] [2016-04-30 00:19:13][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring-mybatis.xml]
+[INFO] [2016-04-30 00:19:13][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@572421: startup date [Sat Apr 30 00:19:13 GMT+08:00 2016]; root of context hierarchy
+[INFO] [2016-04-30 00:19:13][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+[INFO] [2016-04-30 00:19:13][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[INFO] [2016-04-30 00:19:13][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring-mybatis.xml]
+[INFO] [2016-04-30 00:19:13][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@1a1e9a9: startup date [Sat Apr 30 00:19:13 GMT+08:00 2016]; root of context hierarchy
+[INFO] [2016-04-30 00:19:13][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+[INFO] [2016-04-30 00:19:13][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[INFO] [2016-04-30 00:21:08][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring-mybatis.xml]
+[INFO] [2016-04-30 00:21:09][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@19c0f4a: startup date [Sat Apr 30 00:21:09 GMT+08:00 2016]; root of context hierarchy
+[INFO] [2016-04-30 00:21:09][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+[INFO] [2016-04-30 00:21:09][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[INFO] [2016-04-30 00:21:10][com.ks.ssm.test.TestMyBatis]article一条记录.........................
+[INFO] [2016-04-30 00:21:10][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"content":"this is a test. 这就是个测试。。。","id":1,"pic":"no","status":false,"up":0,"userid":1}
+[INFO] [2016-04-30 00:21:10][com.ks.ssm.test.TestMyBatis]list多条记录.........................
+[INFO] [2016-04-30 00:21:10][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"content":"this is a test. 这就是个测试。。。","id":1,"pic":"no","status":false,"up":0,"userid":1}
+[INFO] [2016-04-30 00:21:10][com.ks.ssm.test.TestMyBatis]list多条记录.........................
+[INFO] [2016-04-30 00:21:10][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"content":"this is a test. 这就是个测试。。。","id":1,"pic":"no","status":false,"up":0,"userid":1}
+[INFO] [2016-04-30 00:21:10][com.ks.ssm.test.TestMyBatis]{"email":"ks","id":1,"level":1,"logintime":1461946870339,"password":"ks","qq":"sk","status":true,"username":"ks"}
+[INFO] [2016-04-30 00:21:10][com.ks.ssm.test.TestMyBatis]comment一条记录.........................
+[INFO] [2016-04-30 00:21:10][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"articleid":1,"commenttime":1461946870354,"content":"this is a comment. 这就是个评论。。。","fromuserid":1,"id":1,"status":true}
+[INFO] [2016-04-30 00:21:10][com.ks.ssm.test.TestMyBatis]list多条记录.........................
+[INFO] [2016-04-30 00:21:10][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"articleid":1,"commenttime":1461946870360,"content":"this is a comment. 这就是个评论。。。","fromuserid":1,"id":1,"status":true}
+[INFO] [2016-04-30 00:21:10][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"articleid":1,"commenttime":1461946870360,"content":"测试","fromuserid":2,"id":2,"status":true}
+[INFO] [2016-04-30 00:21:10][com.ks.ssm.test.TestMyBatis]list多条记录.........................
+[INFO] [2016-04-30 00:21:10][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"articleid":1,"commenttime":1461946870362,"content":"this is a comment. 这就是个评论。。。","fromuserid":1,"id":1,"status":true}
+[INFO] [2016-04-30 00:21:10][com.ks.ssm.test.TestMyBatis]list多条记录.........................
+[INFO] [2016-04-30 00:21:10][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"articleid":1,"commenttime":1461946870364,"content":"this is a comment. 这就是个评论。。。","fromuserid":1,"id":1,"status":true}
+[INFO] [2016-04-30 00:21:10][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"articleid":1,"commenttime":1461946870365,"content":"测试","fromuserid":2,"id":2,"status":true}
+[INFO] [2016-04-30 00:21:10][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@19c0f4a: startup date [Sat Apr 30 00:21:09 GMT+08:00 2016]; root of context hierarchy
+[INFO] [2016-04-30 00:33:18][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring-mybatis.xml]
+[INFO] [2016-04-30 00:33:18][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@e26948: startup date [Sat Apr 30 00:33:18 GMT+08:00 2016]; root of context hierarchy
+[INFO] [2016-04-30 00:33:18][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+[INFO] [2016-04-30 00:33:18][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[INFO] [2016-04-30 00:33:19][com.ks.ssm.test.TestMyBatis]article一条记录.........................
+[INFO] [2016-04-30 00:33:19][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"content":"this is a test. 这就是个测试。。。","id":1,"pic":"no","status":false,"up":0,"userid":1}
+[INFO] [2016-04-30 00:33:19][com.ks.ssm.test.TestMyBatis]list多条记录.........................
+[INFO] [2016-04-30 00:33:19][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"content":"this is a test. 这就是个测试。。。","id":1,"pic":"no","status":false,"up":0,"userid":1}
+[INFO] [2016-04-30 00:33:19][com.ks.ssm.test.TestMyBatis]list多条记录.........................
+[INFO] [2016-04-30 00:33:19][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"content":"this is a test. 这就是个测试。。。","id":1,"pic":"no","status":false,"up":0,"userid":1}
+[INFO] [2016-04-30 00:33:19][com.ks.ssm.test.TestMyBatis]{"email":"ks","id":1,"level":1,"logintime":1461947599694,"password":"ks","qq":"sk","status":true,"username":"ks"}
+[INFO] [2016-04-30 00:33:19][com.ks.ssm.test.TestMyBatis]comment一条记录.........................
+[INFO] [2016-04-30 00:33:19][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"articleid":1,"commenttime":1461947599710,"content":"this is a comment. 这就是个评论。。。","fromuserid":1,"id":1,"status":true}
+[INFO] [2016-04-30 00:33:19][com.ks.ssm.test.TestMyBatis]list多条记录.........................
+[INFO] [2016-04-30 00:33:19][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"articleid":1,"commenttime":1461947599717,"content":"this is a comment. 这就是个评论。。。","fromuserid":1,"id":1,"status":true}
+[INFO] [2016-04-30 00:33:19][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"articleid":1,"commenttime":1461947599719,"content":"测试","fromuserid":2,"id":2,"status":true}
+[INFO] [2016-04-30 00:33:19][com.ks.ssm.test.TestMyBatis]list多条记录.........................
+[INFO] [2016-04-30 00:33:19][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"articleid":1,"commenttime":1461947599721,"content":"this is a comment. 这就是个评论。。。","fromuserid":1,"id":1,"status":true}
+[INFO] [2016-04-30 00:33:19][com.ks.ssm.test.TestMyBatis]list多条记录.........................
+[INFO] [2016-04-30 00:33:19][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"articleid":1,"commenttime":1461947599724,"content":"this is a comment. 这就是个评论。。。","fromuserid":1,"id":1,"status":true}
+[INFO] [2016-04-30 00:33:19][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"articleid":1,"commenttime":1461947599724,"content":"测试","fromuserid":2,"id":2,"status":true}
+[INFO] [2016-04-30 00:33:19][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@e26948: startup date [Sat Apr 30 00:33:18 GMT+08:00 2016]; root of context hierarchy
+[INFO] [2016-04-30 00:39:50][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring-mybatis.xml]
+[INFO] [2016-04-30 00:39:50][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@e26948: startup date [Sat Apr 30 00:39:50 GMT+08:00 2016]; root of context hierarchy
+[INFO] [2016-04-30 00:39:50][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+[INFO] [2016-04-30 00:39:50][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[INFO] [2016-04-30 00:39:51][com.ks.ssm.test.TestMyBatis]article一条记录.........................
+[INFO] [2016-04-30 00:39:51][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"content":"this is a test. 这就是个测试。。。","id":1,"pic":"no","status":false,"up":0,"userid":1}
+[INFO] [2016-04-30 00:39:51][com.ks.ssm.test.TestMyBatis]list多条记录.........................
+[INFO] [2016-04-30 00:39:51][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"content":"this is a test. 这就是个测试。。。","id":1,"pic":"no","status":false,"up":0,"userid":1}
+[INFO] [2016-04-30 00:39:51][com.ks.ssm.test.TestMyBatis]list多条记录.........................
+[INFO] [2016-04-30 00:39:51][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"content":"this is a test. 这就是个测试。。。","id":1,"pic":"no","status":false,"up":0,"userid":1}
+[INFO] [2016-04-30 00:39:51][com.ks.ssm.test.TestMyBatis]{"email":"ks","id":1,"level":1,"logintime":1461947991975,"password":"ks","qq":"sk","status":true,"username":"ks"}
+[INFO] [2016-04-30 00:39:51][com.ks.ssm.test.TestMyBatis]comment一条记录.........................
+[INFO] [2016-04-30 00:39:51][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"articleid":1,"commenttime":1461947991989,"content":"this is a comment. 这就是个评论。。。","fromuserid":1,"id":1,"status":true}
+[INFO] [2016-04-30 00:39:51][com.ks.ssm.test.TestMyBatis]list多条记录.........................
+[INFO] [2016-04-30 00:39:51][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"articleid":1,"commenttime":1461947991996,"content":"this is a comment. 这就是个评论。。。","fromuserid":1,"id":1,"status":true}
+[INFO] [2016-04-30 00:39:51][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"articleid":1,"commenttime":1461947991996,"content":"测试","fromuserid":2,"id":2,"status":true}
+[INFO] [2016-04-30 00:39:51][com.ks.ssm.test.TestMyBatis]list多条记录.........................
+[INFO] [2016-04-30 00:39:51][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"articleid":1,"commenttime":1461947991998,"content":"this is a comment. 这就是个评论。。。","fromuserid":1,"id":1,"status":true}
+[INFO] [2016-04-30 00:39:52][com.ks.ssm.test.TestMyBatis]list多条记录.........................
+[INFO] [2016-04-30 00:39:52][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"articleid":1,"commenttime":1461947992000,"content":"this is a comment. 这就是个评论。。。","fromuserid":1,"id":1,"status":true}
+[INFO] [2016-04-30 00:39:52][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"articleid":1,"commenttime":1461947992000,"content":"测试","fromuserid":2,"id":2,"status":true}
+[INFO] [2016-04-30 00:39:52][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@e26948: startup date [Sat Apr 30 00:39:50 GMT+08:00 2016]; root of context hierarchy

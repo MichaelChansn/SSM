@@ -7,6 +7,10 @@
 <body>
 <br>
 		this is an error page.
+		$!{REGISTER_ERROR}
+		#foreach($sal in ${REGISTER_ERROR})  
+			$sal.name  
+		#end 
 </br>
 </body>
 </html>

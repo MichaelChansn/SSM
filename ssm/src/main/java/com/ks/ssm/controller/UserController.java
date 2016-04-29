@@ -15,23 +15,33 @@ import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springmodules.validation.bean.conf.loader.annotation.Validatable;
 
 import com.ks.ssm.constant.RetInfos;
 import com.ks.ssm.domain.User;
 import com.ks.ssm.form.domain.UserRegister;
 import com.ks.ssm.service.IUserService;
 
+
+
 @Controller
 @RequestMapping("/user")
 public class UserController {
   @Resource
   private IUserService userService;
-  
+  /*域模型的校验，框架提供，自动对网页提交的参数检验*/
+  private Validator validator;
+  public Validator getValidator() {
+      return validator;
+  }
+
+  public void setValidator(Validator validator) {
+      this.validator = validator;
+  }
   private String[] imgs={"jpg","jpeg","bmp","gif","png"};
   private List<String> imgsList=Arrays.asList(imgs);
   private SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");//设置日期格式
@@ -140,7 +150,7 @@ public class UserController {
 		 
 		 model.addAttribute("userNickName", user.getUserNickName());
 		 model.addAttribute("email", user.getEmail());
-		 
+		 validator.validate(user, result);
 		 if(!user.isSamePassword())
 		 {
 			 
