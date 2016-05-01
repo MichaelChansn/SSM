@@ -11,5 +11,9 @@ public class RetInfos {
 	public static final String EMAIL_EXIST="email已被注册";
 	public static final String PASSWORD_NOT_SAME="两次密码不一致";
 	
+	
+	public static final String LOGIN_ERROR="LOGIN_ERROR";
+	public static final String LOGIN_FAIL_MSG="用户名或密码错误";
+	
 
 }

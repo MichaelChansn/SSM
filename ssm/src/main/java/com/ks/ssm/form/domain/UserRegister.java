@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class UserRegister {
 	
 	@NotBlank(message="昵称不能为空")
-	@Length(min=3,max=50,message="必须在3到50个字符")
+	@Length(min=2,max=50,message="必须在2到50个字符")
 	private String userNickName;
 	
 	@NotBlank(message="email不能为空")

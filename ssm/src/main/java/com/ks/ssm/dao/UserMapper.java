@@ -2,6 +2,7 @@ package com.ks.ssm.dao;
 
 import com.ks.ssm.domain.User;
 
+/**在mybatis中增刪改查都是有返回值的，返回值是影响的行数*/
 public interface UserMapper {
 	
     int deleteByPrimaryKey(Long id);

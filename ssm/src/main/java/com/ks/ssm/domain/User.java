@@ -21,7 +21,7 @@ public class User {
 
     private String city;
 
-    private String mood;
+    private String mood="用户未设置心情";
 
     private Boolean single;
 

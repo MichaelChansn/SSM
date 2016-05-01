@@ -52,7 +52,7 @@
     delete from article_info
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.ks.ssm.domain.Article" >
+  <insert id="insert" parameterType="com.ks.ssm.domain.Article" useGeneratedKeys="true" keyProperty="id">
     insert into article_info (id, userid, pic, 
       up, status, writetime, 
       modifytime, publishtime, anonymous, content
@@ -62,7 +62,7 @@
       #{modifytime,jdbcType=TIMESTAMP}, #{publishtime,jdbcType=TIMESTAMP}, #{anonymous,jdbcType=BIT}, #{content,jdbcType=LONGVARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.ks.ssm.domain.Article" >
+  <insert id="insertSelective" parameterType="com.ks.ssm.domain.Article" useGeneratedKeys="true" keyProperty="id" >
     insert into article_info
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

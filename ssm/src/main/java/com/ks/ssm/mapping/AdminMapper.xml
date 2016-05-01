@@ -45,7 +45,7 @@
     delete from admin_info
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.ks.ssm.domain.Admin" >
+  <insert id="insert" parameterType="com.ks.ssm.domain.Admin" useGeneratedKeys="true" keyProperty="id">
     insert into admin_info (id, adminname, password, 
       realname, email, qq, 
       phone, gender, birthday, 
@@ -61,7 +61,7 @@
       #{logintime,jdbcType=TIMESTAMP}, #{loginip,jdbcType=VARCHAR}, #{token,jdbcType=VARCHAR}, 
       #{modifytime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.ks.ssm.domain.Admin" >
+  <insert id="insertSelective" parameterType="com.ks.ssm.domain.Admin" useGeneratedKeys="true" keyProperty="id">
     insert into admin_info
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
