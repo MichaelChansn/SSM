@@ -4649,3 +4649,30 @@ Caused by: java.lang.NoClassDefFoundError: Could not initialize class org.spring
 [INFO] [2016-04-30 00:39:52][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"articleid":1,"commenttime":1461947992000,"content":"this is a comment. 这就是个评论。。。","fromuserid":1,"id":1,"status":true}
 [INFO] [2016-04-30 00:39:52][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"articleid":1,"commenttime":1461947992000,"content":"测试","fromuserid":2,"id":2,"status":true}
 [INFO] [2016-04-30 00:39:52][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@e26948: startup date [Sat Apr 30 00:39:50 GMT+08:00 2016]; root of context hierarchy
+[INFO] [2016-05-01 00:40:40][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring-mybatis.xml]
+[INFO] [2016-05-01 00:40:40][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@e26948: startup date [Sun May 01 00:40:40 GMT+08:00 2016]; root of context hierarchy
+[INFO] [2016-05-01 00:40:40][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+[INFO] [2016-05-01 00:40:40][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[INFO] [2016-05-01 00:40:44][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@e26948: startup date [Sun May 01 00:40:40 GMT+08:00 2016]; root of context hierarchy
+[INFO] [2016-05-01 00:46:06][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from class path resource [spring-mybatis.xml]
+[INFO] [2016-05-01 00:46:06][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@e26948: startup date [Sun May 01 00:46:06 GMT+08:00 2016]; root of context hierarchy
+[INFO] [2016-05-01 00:46:07][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+[INFO] [2016-05-01 00:46:07][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[INFO] [2016-05-01 00:46:07][com.ks.ssm.test.TestMyBatis]article一条记录.........................
+[INFO] [2016-05-01 00:46:08][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"content":"this is a test. 这就是个测试。。。","id":1,"pic":"no","status":false,"up":0,"userid":1}
+[INFO] [2016-05-01 00:46:08][com.ks.ssm.test.TestMyBatis]list多条记录.........................
+[INFO] [2016-05-01 00:46:08][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"content":"this is a test. 这就是个测试。。。","id":1,"pic":"no","status":false,"up":0,"userid":1}
+[INFO] [2016-05-01 00:46:08][com.ks.ssm.test.TestMyBatis]list多条记录.........................
+[INFO] [2016-05-01 00:46:08][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"content":"this is a test. 这就是个测试。。。","id":1,"pic":"no","status":false,"up":0,"userid":1}
+[INFO] [2016-05-01 00:46:08][com.ks.ssm.test.TestMyBatis]{"email":"ks","id":1,"level":1,"logintime":1462034768069,"password":"ks","qq":"sk","status":true,"username":"ks"}
+[INFO] [2016-05-01 00:46:08][com.ks.ssm.test.TestMyBatis]comment一条记录.........................
+[INFO] [2016-05-01 00:46:08][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"articleid":1,"commenttime":1462034768090,"content":"this is a comment. 这就是个评论。。。","fromuserid":1,"id":1,"status":true}
+[INFO] [2016-05-01 00:46:08][com.ks.ssm.test.TestMyBatis]list多条记录.........................
+[INFO] [2016-05-01 00:46:08][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"articleid":1,"commenttime":1462034768096,"content":"this is a comment. 这就是个评论。。。","fromuserid":1,"id":1,"status":true}
+[INFO] [2016-05-01 00:46:08][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"articleid":1,"commenttime":1462034768097,"content":"测试","fromuserid":2,"id":2,"status":true}
+[INFO] [2016-05-01 00:46:08][com.ks.ssm.test.TestMyBatis]list多条记录.........................
+[INFO] [2016-05-01 00:46:08][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"articleid":1,"commenttime":1462034768098,"content":"this is a comment. 这就是个评论。。。","fromuserid":1,"id":1,"status":true}
+[INFO] [2016-05-01 00:46:08][com.ks.ssm.test.TestMyBatis]list多条记录.........................
+[INFO] [2016-05-01 00:46:08][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"articleid":1,"commenttime":1462034768100,"content":"this is a comment. 这就是个评论。。。","fromuserid":1,"id":1,"status":true}
+[INFO] [2016-05-01 00:46:08][com.ks.ssm.test.TestMyBatis]{"anonymous":false,"articleid":1,"commenttime":1462034768101,"content":"测试","fromuserid":2,"id":2,"status":true}
+[INFO] [2016-05-01 00:46:08][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@e26948: startup date [Sun May 01 00:46:06 GMT+08:00 2016]; root of context hierarchy

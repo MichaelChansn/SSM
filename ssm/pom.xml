@@ -7,14 +7,6 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>ssm Maven Webapp</name>
   <url>http://maven.apache.org</url>
-<!--   <repositories>
-   <repository>  
-         <id>atlassian</id>  
-         <name>atlassian</name>  
-         <url>http://maven.jahia.org/maven2/</url>  
-    </repository>  
-  </repositories> -->
-  
  <properties>
     <!-- spring版本号 -->
     <spring.version>4.0.2.RELEASE</spring.version>
@@ -197,26 +189,11 @@
 	    <artifactId>kaptcha</artifactId>  
 	    <version>2.3.2</version>  
 	</dependency>
-   <!-- <dependency>
-	    <groupId>org.springmodules</groupId>
-	    <artifactId>spring-modules-validation</artifactId>
-	    <version>0.8</version>
-	    <exclusions>
-	        <exclusion>
-	            <groupId>org.springframework</groupId>
-	            <artifactId>spring</artifactId>
-	        </exclusion>
-	        <exclusion>
-	            <groupId>org.springframework</groupId>
-	            <artifactId>spring-mock</artifactId>
-	        </exclusion>
-	    </exclusions>
-	</dependency>
-	  -->
-	  <dependency>  
-       <groupId>org.hibernate</groupId>  
-       <artifactId>hibernate-validator</artifactId>  
-       <version>5.0.2.Final</version>  
+	<!-- add by ks 表单验证框架，spring-modules-validator已经过时，采用hibernate-validator代替 -->
+  <dependency>  
+      <groupId>org.hibernate</groupId>  
+      <artifactId>hibernate-validator</artifactId>  
+      <version>5.0.2.Final</version>  
  </dependency>
   </dependencies>
   <build>

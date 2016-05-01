@@ -7,9 +7,9 @@
 <body>
 <br>
 		this is an error page.
-		$!{REGISTER_ERROR}
+		##$!{REGISTER_ERROR}
 		#foreach($sal in ${REGISTER_ERROR})  
-			$sal.name  
+			$sal.getDefaultMessage()  
 		#end 
 </br>
 </body>

@@ -3,6 +3,7 @@ package com.ks.ssm.constant;
 public class RetInfos {
 	
 	public static final String REGISTER_ERROR="REGISTER_ERROR";
+	public static final String VALIDATOR_ERROR="VALIDATOR_ERROR";
 	public static final String REGISTER_SUCCESS="REGISTER_SUCCESS";
 	public static final String REGISTER_SUCCESS_INFO="注册成功";
 	

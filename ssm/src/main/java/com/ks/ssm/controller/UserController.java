@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -33,15 +34,15 @@ import com.ks.ssm.service.IUserService;
 public class UserController {
   @Resource
   private IUserService userService;
-  /*域模型的校验，框架提供，自动对网页提交的参数检验*/
-  private Validator validator;
+  /*域模型的校验，框架提供，自动对网页提交的参数检验 validator和@Valid标注只要使用一个就可以*/
+  /*private Validator validator;
   public Validator getValidator() {
       return validator;
   }
 
   public void setValidator(Validator validator) {
       this.validator = validator;
-  }
+  }*/
   private String[] imgs={"jpg","jpeg","bmp","gif","png"};
   private List<String> imgsList=Arrays.asList(imgs);
   private SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");//设置日期格式
@@ -51,26 +52,6 @@ public class UserController {
   private final String articleImg="articleImg";
   
   
-  @RequestMapping("/showUser")
-  public String toIndex(HttpServletRequest request,Model model){
-	  System.err.println("reauest is in");
-	  //String id=request.getParameter("id");
-	  String email=request.getParameter("email");
-	  if( email!=null)
-	  {
-	    //int userId = Integer.parseInt(id);
-	    //User user = this.userService.getUserById(userId);
-	    User users = this.userService.selectByEmail(email);
-	    //User user=this.userService.selectByUserName("ks");
-	   // model.addAttribute("user", user);
-	    model.addAttribute("user", users);
-	    return "showUser";
-	  }
-	  else
-	  {
-		  return "error";
-	  }
-  }
   @RequestMapping(value="/addArticle",method =RequestMethod.POST)
   public String addArticle(HttpServletRequest request,Model model){
 	 String retWeb="error";
@@ -143,53 +124,56 @@ public class UserController {
 	  return "register";
   }
   @RequestMapping(value="/register",method =RequestMethod.POST)
-  public String userRegister(HttpServletRequest request,Model model,@Valid UserRegister user,BindingResult result){
-	 String retWeb="error";
-	 if(!result.hasErrors())
-	 {
-		 
-		 model.addAttribute("userNickName", user.getUserNickName());
-		 model.addAttribute("email", user.getEmail());
-		 validator.validate(user, result);
-		 if(!user.isSamePassword())
-		 {
+  public String userRegister(HttpServletRequest request,Model model,@ModelAttribute("user") @Valid UserRegister user,BindingResult result){
+	  String retWeb="register";
+	  do
+	  {
+		  model.addAttribute("userNickName", user.getUserNickName());
+		  model.addAttribute("email", user.getEmail());
+		  if(!result.hasErrors())
+			 {
+				 //validator.validate(user, result);
+				 if(!user.isSamePassword())
+				 {
+					 model.addAttribute(RetInfos.REGISTER_ERROR, RetInfos.PASSWORD_NOT_SAME);
+					 break;
+				 }
+				User user1=userService.selectByUserName(user.getUserNickName());
+				User user2=userService.selectByEmail(user.getEmail());
+				if(user1!=null)
+				{
+					model.addAttribute(RetInfos.REGISTER_ERROR, RetInfos.USER_EXIST);
+					break;
+				}
+				if(user2!=null)
+				{
+					model.addAttribute(RetInfos.REGISTER_ERROR, RetInfos.EMAIL_EXIST);
+					break;
+				}
+				
+				 User userStroage=new User();
+				 userStroage.setUsername(user.getUserNickName());
+				 userStroage.setPassword(user.getPassword());
+				 userStroage.setEmail(user.getEmail());
+				 userStroage.setEnrolltime(new Date());
+				 userStroage.setLoginip(request.getRemoteAddr());
+				 userStroage.setLogintime(new Date());
+				 userStroage.setModifytime(new Date());
+				 userStroage.setMood("用户未设置心情");
+				 userService.insertSelective(userStroage);
+				 model.addAttribute(RetInfos.REGISTER_SUCCESS, RetInfos.REGISTER_SUCCESS_INFO);
+				 break;
+			 }
+			 else
+			 {
+				 model.addAttribute(RetInfos.VALIDATOR_ERROR, result.getAllErrors());
+				 break;
+			 }
 			 
-			 model.addAttribute(RetInfos.REGISTER_ERROR, RetInfos.PASSWORD_NOT_SAME);
-			 
-				return "register";
-		 }
-		User user1=userService.selectByUserName(user.getUserNickName());
-		User user2=userService.selectByEmail(user.getEmail());
-		if(user1!=null)
-		{
-			model.addAttribute(RetInfos.REGISTER_ERROR, RetInfos.USER_EXIST);
-			return "register";
-		}
-		if(user2!=null)
-		{
-			model.addAttribute(RetInfos.REGISTER_ERROR, RetInfos.EMAIL_EXIST);
-			return "register";
-		}
-		
-		 User userStroage=new User();
-		 userStroage.setUsername(user.getUserNickName());
-		 userStroage.setPassword(user.getPassword());
-		 userStroage.setEmail(user.getEmail());
-		 userStroage.setEnrolltime(new Date());
-		 userStroage.setLoginip(request.getRemoteAddr());
-		 userStroage.setLogintime(new Date());
-		 userStroage.setModifytime(new Date());
-		 userStroage.setMood("用户未设置心情");
-		 userService.insertSelective(userStroage);
-		 model.addAttribute(RetInfos.REGISTER_SUCCESS, RetInfos.REGISTER_SUCCESS_INFO);
-		 retWeb="register";
-	 }
-	 else
-	 {
-		 model.addAttribute(RetInfos.REGISTER_ERROR, result.getAllErrors());
-	 }
-	 
-	 return retWeb; 
+			
+		  
+	  }while(false);
+	  return retWeb; 
   }
   
   

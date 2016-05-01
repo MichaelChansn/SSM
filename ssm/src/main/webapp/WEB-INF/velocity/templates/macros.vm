@@ -104,4 +104,14 @@
 	#end
 #end
 
-
+#macro( getErrorMessages $objectName $field)
+#set($errors = $springMacroRequestContext.getErrors($objectName))
+    #if($errors && $errors.fieldErrors && $errors.fieldErrors.size()>0)
+    	#foreach($e in $errors.fieldErrors)
+    		#if("$!field"=="$e.field")
+				<span class="fm-error">$!{e.getDefaultMessage()}</span>
+    		#end
+    	#end
+    #end
+#end
+ 

@@ -4,27 +4,24 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.stereotype.Component;
 
 public class UserRegister {
 	
-	@NotEmpty
-	@NotBlank
-	@Length(min=3,max=50)
+	@NotBlank(message="昵称不能为空")
+	@Length(min=3,max=50,message="必须在3到50个字符")
 	private String userNickName;
 	
-	@NotEmpty
-	@NotBlank
-	@Email
+	@NotBlank(message="email不能为空")
+	@Email(message="email格式不正确")
 	private String email;
 	
-	@NotBlank
-	@NotEmpty
-	@Length(min=6,max=50)
+	@NotBlank(message="密码不能为空")
+	@Length(min=6,max=50,message="密码长度在6到50个字符之间")
 	private String password;
 	
-	@NotBlank
-	@NotEmpty
-	@Length(min=6,max=50)
+	@NotBlank(message="密码确认不能为空")
+	@Length(min=6,max=50,message="密码长度在6到50个字符之间")
 	private String passwordConfirm;
 
 	public String getPasswordConfirm() {

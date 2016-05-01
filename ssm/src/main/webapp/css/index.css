@@ -190,3 +190,7 @@ border: none;
     color: #7a4624;
     opacity: 0.7;
 }
+.fm-error {
+	color: red;
+	font-weight: bolder;
+}

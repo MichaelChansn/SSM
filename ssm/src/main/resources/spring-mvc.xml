@@ -93,21 +93,10 @@
     </bean>  
     
    
-	<!-- Enable annotation-based validation using Bean Validation Framework -->
-	<!-- Using these instead of vld namespace to prevent Eclipse from complaining -->
-	<!-- <bean id="configurationLoader"
-		class="org.springmodules.validation.bean.conf.loader.annotation.AnnotationBeanValidationConfigurationLoader"/>
-	<bean id="validator" class="org.springmodules.validation.bean.BeanValidator"
-		p:configurationLoader-ref="configurationLoader"/>
-	
-	<bean id="messageSource"
-		class="org.springframework.context.support.ResourceBundleMessageSource"
-		p:basenames="errors"/>
-    -->
         <!-- 国际化配置 -->  
     <bean id="localeResolver"  
         class="org.springframework.web.servlet.i18n.CookieLocaleResolver" />  
-    <bean id="messageSource"  
+   <!--  <bean id="messageSource"  
         class="org.springframework.context.support.ReloadableResourceBundleMessageSource">  
         <property name="basenames">  
             <list>  
@@ -116,13 +105,13 @@
             </list>  
         </property>  
         <property name="useCodeAsDefaultMessage" value="true" />  
-    </bean>  
+    </bean>   -->
     <!-- 注册验证器 -->  
     <mvc:annotation-driven validator="validator" />    
       
     <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">    
           <property name="providerClass" value="org.hibernate.validator.HibernateValidator"/>    
           <!-- 这里配置将使用上面国际化配置的messageSource -->  
-          <property name="validationMessageSource" ref="messageSource"/>    
+          <!-- <property name="validationMessageSource" ref="messageSource"/>  -->   
       </bean>  
 </beans>
