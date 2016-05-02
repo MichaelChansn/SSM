@@ -94,6 +94,11 @@ public class SSMUtils {
 		Object auth = session.getAttribute(CommonConstants.SESSION_AUTH);
 		return auth == null ? CommonConstants.USER_AUTH_ERROR : (int) auth;
 	}
+	
+	public static long getUserId(HttpSession session) {
+		Object userId = session.getAttribute(CommonConstants.SESSION_USERID);
+		return userId == null ? CommonConstants.USER_AUTH_ERROR : (long) userId;
+	}
 
 	/**
 	 * 退出逻辑

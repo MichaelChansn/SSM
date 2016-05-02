@@ -65,22 +65,22 @@ public class ForgetPasswordController {
 				String captchaInSession = (String)session.getAttribute(Constants.KAPTCHA_SESSION_KEY); 
 				if(forgetPassword.getCaptcha()==null || !forgetPassword.getCaptcha().equals(captchaInSession))
 				{
-					model.addAttribute(RetInfos.FORGET_PASSWORD_ERROR, RetInfos.FORGET_PASSWORD_ERROR_MSG2);
+					model.addAttribute(RetInfos.ERROR, RetInfos.FORGET_PASSWORD_ERROR_MSG2);
 					break;
 				}
 				
 				User user=userService.selectByEmail(email);
 				if(user==null){
-					model.addAttribute(RetInfos.FORGET_PASSWORD_ERROR, RetInfos.FORGET_PASSWORD_ERROR_MSG);
+					model.addAttribute(RetInfos.ERROR, RetInfos.FORGET_PASSWORD_ERROR_MSG);
 				}
 				else
 				{
 					SSMUtils.generateForgetPasswordToken(request,session, userService, sendEmailService, user);
-					model.addAttribute(RetInfos.FORGET_PASSWORD_SUCCESS, RetInfos.FORGET_PASSWORD_SUCCESS_MSG);
+					model.addAttribute(RetInfos.SUCCESS, RetInfos.FORGET_PASSWORD_SUCCESS_MSG);
 				}
 					break;
 			} else {
-				model.addAttribute(RetInfos.VALIDATOR_ERROR, result.getAllErrors());
+				model.addAttribute(RetInfos.ERROR, result.getAllErrors());
 				break;
 			}
 
@@ -102,24 +102,24 @@ public class ForgetPasswordController {
 				String captchaInSession = (String)session.getAttribute(Constants.KAPTCHA_SESSION_KEY); 
 				if(setNewPassword.getCaptcha()==null || !setNewPassword.getCaptcha().equals(captchaInSession))
 				{
-					model.addAttribute(RetInfos.SET_NEW_PASSWORD_ERROR, RetInfos.FORGET_PASSWORD_ERROR_MSG2);
+					model.addAttribute(RetInfos.ERROR, RetInfos.FORGET_PASSWORD_ERROR_MSG2);
 					break;
 				}
 				if(!setNewPassword.isSamePassword())
 				{
-					model.addAttribute(RetInfos.SET_NEW_PASSWORD_ERROR,RetInfos.PASSWORD_NOT_SAME);	
+					model.addAttribute(RetInfos.ERROR,RetInfos.PASSWORD_NOT_SAME);	
 					break;
 				}
 				if(SSMUtils.verifyTokenAndSaveNewPassword(setNewPassword.getToken(), userService,setNewPassword.getNewPassword()))
 				{
 					
-					model.addAttribute(RetInfos.SET_NEW_PASSWORD_SUCCESS,RetInfos.SET_NEW_PASSWORD_SUCCESS_MSG);
+					model.addAttribute(RetInfos.SUCCESS,RetInfos.SET_NEW_PASSWORD_SUCCESS_MSG);
 					break;
 				}
 			}
 			else
 			{
-				model.addAttribute(RetInfos.VALIDATOR_ERROR, result.getAllErrors());
+				model.addAttribute(RetInfos.ERROR, result.getAllErrors());
 				break;
 			}
 			

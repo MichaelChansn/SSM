@@ -18,6 +18,11 @@
          <mvc:mapping path = "/**" />
          <bean class = "com.ks.ssm.interceptors.LoginInterceptor" />
      </mvc:interceptor >
+      <!-- 配置token拦截器，防止表单重复提交 -->
+     <mvc:interceptor >
+         <mvc:mapping path = "/**" />
+         <bean class = "com.ks.ssm.interceptors.TokenInterceptor" />
+     </mvc:interceptor >
 	</mvc:interceptors >
    
   <!--避免IE执行AJAX时，返回JSON出现下载文件 -->

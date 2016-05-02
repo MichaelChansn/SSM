@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,19 +25,29 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.ks.ssm.constant.CommonConstants;
 import com.ks.ssm.constant.RetInfos;
+import com.ks.ssm.domain.Article;
 import com.ks.ssm.domain.User;
+import com.ks.ssm.form.domain.ArticlePublish;
 import com.ks.ssm.form.domain.UserLogin;
 import com.ks.ssm.form.domain.UserRegister;
 import com.ks.ssm.interceptors.LoginCheck;
+import com.ks.ssm.interceptors.TokenCheck;
+import com.ks.ssm.service.IArticleService;
 import com.ks.ssm.service.IUserService;
+import com.ks.ssm.utils.CommonUtils;
 import com.ks.ssm.utils.MD5Encoding;
 import com.ks.ssm.utils.SSMUtils;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
+	
+	private static Logger log4j = Logger.getLogger(UserController.class);
 	@Resource
 	private IUserService userService;
+	
+	@Resource
+	private IArticleService articleService;
 	/* 域模型的校验，框架提供，自动对网页提交的参数检验 validator和@Valid标注只要使用一个就可以 */
 	/*
 	 * private Validator validator; public Validator getValidator() { return
@@ -47,36 +58,70 @@ public class UserController {
 	 */
 	
 
-	private final String userID = "1";
-	private final String headImg = "headerImg";
-	private final String articleImg = "articleImg";
+
 
 	@RequestMapping(value = "/addArticle", method = RequestMethod.GET)
 	@LoginCheck(check=true,autoLogin=true)
-	public String userAddArticle(HttpServletRequest request,HttpSession session, Model model) {
-		if(!SSMUtils.isLogin(session))
-		return "login";
-		else
+	@TokenCheck(generateToken=true)
+	public String userAddArticle(HttpServletRequest request, Model model) {
 			return "addArticle";
 	}
 	@RequestMapping(value = "/addArticle", method = RequestMethod.POST)
 	@LoginCheck(check=true,autoLogin=true)
-	public String userAddArticle(HttpServletRequest request, Model model) {
-		String retWeb = "error";
-		File file = null;
-		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
-		MultipartFile imgFile = multipartRequest.getFile("articleImg");
-		if (!(imgFile.getOriginalFilename() == null || "".equals(imgFile.getOriginalFilename()))) {
-			file = SSMUtils.getFile(imgFile, userID, articleImg);
-		}
-		String textContent = request.getParameter("articleContent");
-		if ((null != textContent && !"".equals(textContent.trim())) || file != null) {
-			if (file != null)
-				model.addAttribute("img", request.getSession().getServletContext().getContextPath() + "/user" + "/"
-						+ "img/" + userID + "/" + articleImg + "/" + file.getName());
-			model.addAttribute("text", textContent);
-			retWeb = "showUser";
-		}
+	@TokenCheck(check=true)
+	public String userAddArticle(HttpServletRequest request,HttpSession session,  Model model,
+			@ModelAttribute("articlePublish") @Valid ArticlePublish articlePublish, BindingResult result) {
+		String retWeb = "addArticle";
+		do{
+			try{
+				
+			if (!result.hasErrors()) {
+				File file = null;
+				String fileName="";
+				MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+				MultipartFile imgFile = multipartRequest.getFile("articleImg");
+				if (!CommonUtils.isBlank(imgFile.getOriginalFilename())) {
+					file = SSMUtils.getFile(imgFile, SSMUtils.getUserId(session)+"", CommonConstants.articleImg);
+					if(file!=null){
+					fileName=file.getName();
+					}
+					else
+					{
+						model.addAttribute(RetInfos.ERROR, RetInfos.UPLOAD_PIC_ERROR_MSG);
+						model.addAttribute("articleContent", articlePublish.getArticleContent());
+						model.addAttribute("articleAnonymous", articlePublish.isArticleAnonymous());
+						break;
+					}
+				}
+				Article article=new Article();
+				article.setUserid(SSMUtils.getUserId(session));
+				article.setAnonymous(articlePublish.isArticleAnonymous());
+				article.setContent(articlePublish.getArticleContent());
+				article.setPic(fileName);
+				article.setWritetime(new Date());
+				article.setModifytime(new Date());
+				article.setPublishtime(new Date());
+				articleService.insertSelective(article);
+				model.addAttribute(RetInfos.SUCCESS, RetInfos.ARTICLE_PUBLISH_SUCCESS_MSG);
+				break;
+			
+			}
+			else
+			{
+				model.addAttribute(RetInfos.ERROR, result.getAllErrors());
+				model.addAttribute("articleContent", articlePublish.getArticleContent());
+				model.addAttribute("articleAnonymous", articlePublish.isArticleAnonymous());
+				
+				break;
+			}
+			}
+			catch(Exception e)
+			{
+				log4j.error(SSMUtils.getUserId(session)+":pubic article error", e);
+			}
+			
+		}while(false);
+		
 		return retWeb;
 	}
 
@@ -96,17 +141,17 @@ public class UserController {
 			if (!result.hasErrors()) {
 				// validator.validate(user, result);
 				if (!user.isSamePassword()) {
-					model.addAttribute(RetInfos.REGISTER_ERROR, RetInfos.PASSWORD_NOT_SAME);
+					model.addAttribute(RetInfos.ERROR, RetInfos.PASSWORD_NOT_SAME);
 					break;
 				}
 				User user1 = userService.selectByUserName(user.getUserNickName());
 				User user2 = userService.selectByEmail(user.getEmail());
 				if (user1 != null) {
-					model.addAttribute(RetInfos.REGISTER_ERROR, RetInfos.USER_EXIST);
+					model.addAttribute(RetInfos.ERROR, RetInfos.USER_EXIST);
 					break;
 				}
 				if (user2 != null) {
-					model.addAttribute(RetInfos.REGISTER_ERROR, RetInfos.EMAIL_EXIST);
+					model.addAttribute(RetInfos.ERROR, RetInfos.EMAIL_EXIST);
 					break;
 				}
 
@@ -121,12 +166,12 @@ public class UserController {
 				userStroage.setModifytime(new Date());
 				userService.insertSelective(userStroage);// 返回影响的行数，会自动的把id返回到user的id参数中
 				// System.err.println(userStroage.getId());
-				model.addAttribute(RetInfos.REGISTER_SUCCESS, RetInfos.REGISTER_SUCCESS_INFO);
+				model.addAttribute(RetInfos.SUCCESS, RetInfos.REGISTER_SUCCESS_INFO);
 				SSMUtils.storeSession(session, userStroage);
 
 				break;
 			} else {
-				model.addAttribute(RetInfos.VALIDATOR_ERROR, result.getAllErrors());
+				model.addAttribute(RetInfos.ERROR, result.getAllErrors());
 				break;
 			}
 
@@ -153,7 +198,7 @@ public class UserController {
 				User userLogin = userService.selectByUserName(user.getUserName());
 				if (userLogin == null ||!userLogin.getPassword()
 						.equals(MD5Encoding.MD5Encode(user.getPassword() + CommonConstants.SALT))) {
-					model.addAttribute(RetInfos.LOGIN_ERROR, RetInfos.LOGIN_FAIL_MSG);
+					model.addAttribute(RetInfos.ERROR, RetInfos.LOGIN_FAIL_MSG);
 					break;
 				} else {
 					SSMUtils.storeSession(session, userLogin);
@@ -164,7 +209,7 @@ public class UserController {
 					break;
 				}
 			} else {
-				model.addAttribute(RetInfos.VALIDATOR_ERROR, result.getAllErrors());
+				model.addAttribute(RetInfos.ERROR, result.getAllErrors());
 				break;
 			}
 

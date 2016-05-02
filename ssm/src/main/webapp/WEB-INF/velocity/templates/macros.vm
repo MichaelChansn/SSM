@@ -115,3 +115,7 @@
     #end
 #end
  
+##添加form token
+#macro ( addToken $token)
+	<input type="hidden" name="SSM_TOKEN" value=${token} />
+#end

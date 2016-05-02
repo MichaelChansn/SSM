@@ -1,9 +1,18 @@
 package com.ks.ssm.constant;
 
+import org.springframework.web.context.ContextLoader;
+
 public class CommonConstants {
 	
 	public final static String SALT="copy right by ks";
-
+	
+	public static final String headImg = "headerImg";
+	public static final String articleImg = "articleImg";
+	public static final String USER_IMG_ROOT_PATH=ContextLoader.getCurrentWebApplicationContext().getServletContext().getContextPath()+ "/user/" + "img/";
+/*
+ * request.getSession().getServletContext().getContextPath() + "/user" + "/"
+						+ "img/" + userID + "/" + articleImg + "/" + file.getName()
+ * */
 	/**
      * session中存储的信息
      */
@@ -31,4 +40,5 @@ public class CommonConstants {
     public static final String REMEMBER_ME_USERID="userID";
     public static final String REMEMBER_ME_TOKEN="token";
     
+    public static final String SSM_TOKEN="SSM_TOKEN";
 }

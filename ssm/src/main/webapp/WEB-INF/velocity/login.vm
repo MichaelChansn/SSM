@@ -61,8 +61,8 @@
         <div class="login-form-div">
             <form class="form-horizontal" role="form" action="login" method="post">
                 <div class="form-group ">
-					#if($!{LOGIN_ERROR})
-						<h2><label  class="col-sm-offset-2 col-sm-7 control-label " style="color:red">$!{LOGIN_ERROR}</label></h2>
+					#if($!{ERROR})
+						<h2><label  class="col-sm-offset-2 col-sm-7 control-label " style="color:red">$!{ERROR}</label></h2>
 					#else
 						<h2><label for="userName" class="col-sm-8 control-label ">会员登录</label></h2>
 					#end
