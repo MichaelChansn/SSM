@@ -13,7 +13,7 @@ import com.ks.ssm.interceptors.LoginCheck;
 public class UserCenterController {
 	
 	@RequestMapping(value = "/userManager")
-	@LoginCheck(check=true)
+	@LoginCheck(check=true,autoLogin=true)
 	public String userManager(HttpServletRequest request, Model model) {
 		return "userManager";
 	}

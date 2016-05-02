@@ -7,5 +7,6 @@ public interface IUserService {
 	public User selectByUserName(String username );
 	public User selectByEmail(String email );
 	public int insertSelective(User record);
+	public int updateByPrimaryKeySelective(User record);
 
 }

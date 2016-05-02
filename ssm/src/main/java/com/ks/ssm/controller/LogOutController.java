@@ -1,6 +1,7 @@
 package com.ks.ssm.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -14,9 +15,9 @@ import com.ks.ssm.utils.SSMUtils;
 public class LogOutController {
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String doGet(HttpSession session, HttpServletRequest request) {
+	public String doGet(HttpSession session, HttpServletRequest request,HttpServletResponse response) {
 		String web = "index";
-		SSMUtils.logOut(session, request);
+		SSMUtils.logOut(session, request,response);
 		return CommonConstants.WEB_REDIRECT_ABS + web;
 	}
 

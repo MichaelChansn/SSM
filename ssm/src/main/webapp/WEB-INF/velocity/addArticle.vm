@@ -15,7 +15,7 @@
     <div class="head">
         <div class="content-block  " >
             #if($!{SESSION_USER_NAME})
-				<div class="login" ><a href="userManager" style=" text-decoration: underline;color:red">$!{SESSION_USER_NAME}的个人中心</a>|<a href="../ logout">退出</a></div>
+				<div class="login" ><a href="userManager" style=" text-decoration: underline;color:red">[$!{SESSION_USER_NAME}]的个人中心</a>|<a href="../ logout">退出</a></div>
 			#else
 				<div class="login"><a href="user/login">登录</a> | <a href="user/register">注册</a></div>
 			#end

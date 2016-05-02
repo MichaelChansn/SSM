@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -51,7 +52,7 @@ public class UserController {
 	private final String articleImg = "articleImg";
 
 	@RequestMapping(value = "/addArticle", method = RequestMethod.GET)
-	@LoginCheck(check=true)
+	@LoginCheck(check=true,autoLogin=true)
 	public String userAddArticle(HttpServletRequest request,HttpSession session, Model model) {
 		if(!SSMUtils.isLogin(session))
 		return "login";
@@ -59,7 +60,7 @@ public class UserController {
 			return "addArticle";
 	}
 	@RequestMapping(value = "/addArticle", method = RequestMethod.POST)
-	@LoginCheck(check=true)
+	@LoginCheck(check=true,autoLogin=true)
 	public String userAddArticle(HttpServletRequest request, Model model) {
 		String retWeb = "error";
 		File file = null;
@@ -134,12 +135,15 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String userLogin(HttpServletRequest request, Model model) {
+	@LoginCheck(autoLogin=true)
+	public String userLogin(HttpServletRequest request,HttpSession session, Model model) {
+		if(SSMUtils.isLogin(session))
+			return CommonConstants.WEB_REDIRECT_ABS+"index";
 		return "login";
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String userLogin(HttpServletRequest request, HttpSession session, Model model,
+	public String userLogin(HttpServletRequest request,HttpServletResponse response, HttpSession session, Model model,
 			@ModelAttribute("user") @Valid UserLogin user, BindingResult result) {
 		String retWeb = "login";
 		do {
@@ -154,6 +158,8 @@ public class UserController {
 				} else {
 					SSMUtils.storeSession(session, userLogin);
 					model.addAttribute("userName", null);//去掉url显示的参数
+					//记住密码
+					SSMUtils.rememberMe(userService, user.isRememberMe(), response,request, userLogin);
 					retWeb = CommonConstants.WEB_REDIRECT_ABS + "index";
 					break;
 				}

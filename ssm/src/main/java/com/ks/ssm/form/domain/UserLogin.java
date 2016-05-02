@@ -10,6 +10,8 @@ public class UserLogin {
 	@NotBlank(message="密码不能为空")
 	private String password;	
 	
+	private boolean rememberMe;
+	
 	public String getUserName() {
 		return userName;
 	}
@@ -24,6 +26,14 @@ public class UserLogin {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public boolean isRememberMe() {
+		return rememberMe;
+	}
+
+	public void setRememberMe(boolean rememberMe) {
+		this.rememberMe = rememberMe;
 	}
 
 	

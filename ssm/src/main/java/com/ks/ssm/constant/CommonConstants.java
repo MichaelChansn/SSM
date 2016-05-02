@@ -27,4 +27,8 @@ public class CommonConstants {
     public static final String WEB_REDIRECT_ABS="redirect:/";
     public static final String WEB_REDIRECT_REL="redirect:";
     
+    /**记住密码存放在cookie中的键值*/
+    public static final String REMEMBER_ME_USERID="userID";
+    public static final String REMEMBER_ME_TOKEN="token";
+    
 }
