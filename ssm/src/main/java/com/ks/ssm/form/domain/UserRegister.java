@@ -3,13 +3,13 @@ package com.ks.ssm.form.domain;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.stereotype.Component;
+
+import com.ks.ssm.utils.EscapeUtils;
 
 public class UserRegister {
 	
 	@NotBlank(message="昵称不能为空")
-	@Length(min=2,max=50,message="必须在2到50个字符")
+	@Length(min=2,max=15,message="必须在2到15个字符")
 	private String userNickName;
 	
 	@NotBlank(message="email不能为空")
@@ -37,7 +37,7 @@ public class UserRegister {
 	}
 
 	public void setUserNickName(String userNickName) {
-		this.userNickName = userNickName;
+		this.userNickName = EscapeUtils.escapeString(userNickName);
 	}
 
 	public String getEmail() {

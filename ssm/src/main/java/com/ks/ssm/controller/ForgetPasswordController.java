@@ -18,9 +18,9 @@ import com.ks.ssm.domain.User;
 import com.ks.ssm.form.domain.ForgetPassword;
 import com.ks.ssm.form.domain.SetNewPassword;
 import com.ks.ssm.interceptors.LoginCheck;
+import com.ks.ssm.interceptors.TokenCheck;
 import com.ks.ssm.service.IUserService;
 import com.ks.ssm.service.SendEmailService;
-import com.ks.ssm.service.impl.SendEmailServiceImpl;
 import com.ks.ssm.utils.CommonUtils;
 import com.ks.ssm.utils.SSMUtils;
 
@@ -37,6 +37,7 @@ public class ForgetPasswordController {
 	
 	@RequestMapping(value = "/forgetPassword", method = RequestMethod.GET)
 	@LoginCheck(saveInfo=true,autoLogin = true)
+	@TokenCheck(generateToken=true)
 	public String forgetPasswordGet(HttpServletRequest request, HttpSession session, Model model) {
 		String token=request.getParameter("token");
 		if(!CommonUtils.isBlank(token))
@@ -53,6 +54,7 @@ public class ForgetPasswordController {
 
 	@RequestMapping(value = "/forgetPassword", method = RequestMethod.POST)
 	@LoginCheck(saveInfo=true,autoLogin = true)
+	@TokenCheck(check=true)
 	public String forgetPasswordPost(HttpServletRequest request, HttpSession session, Model model,
 			@ModelAttribute("forgetPassword") @Valid ForgetPassword forgetPassword, BindingResult result) {
 		
@@ -80,7 +82,7 @@ public class ForgetPasswordController {
 				}
 					break;
 			} else {
-				model.addAttribute(RetInfos.ERROR, result.getAllErrors());
+				//model.addAttribute(RetInfos.ERROR, result.getAllErrors());
 				break;
 			}
 
@@ -91,6 +93,7 @@ public class ForgetPasswordController {
 
 	@RequestMapping(value = "/setNewPassword", method = RequestMethod.POST)
 	@LoginCheck(autoLogin = true)
+	@TokenCheck(check=true)
 	public String setNewPasswordPost(HttpServletRequest request, HttpSession session, Model model,
 			@ModelAttribute("setNewPassword") @Valid SetNewPassword setNewPassword, BindingResult result) {
 		
@@ -119,7 +122,7 @@ public class ForgetPasswordController {
 			}
 			else
 			{
-				model.addAttribute(RetInfos.ERROR, result.getAllErrors());
+				//model.addAttribute(RetInfos.ERROR, result.getAllErrors());
 				break;
 			}
 			

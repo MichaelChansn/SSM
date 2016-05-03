@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.ks.ssm.dao.ArticleMapper;
 import com.ks.ssm.domain.Article;
+import com.ks.ssm.domain.PageQuery;
 import com.ks.ssm.service.IArticleService;
 
 @Service("articleService")
@@ -67,6 +68,18 @@ public class ArticleServiceImpl implements IArticleService {
 	public int updateByPrimaryKey(Article record) {
 		// TODO Auto-generated method stub
 		return articleDao.updateByPrimaryKey(record);
+	}
+
+	@Override
+	public List<Article> selectByPageWithPublish(PageQuery pageQuery) {
+		// TODO Auto-generated method stub
+		return articleDao.selectByPageWithPublish(pageQuery);
+	}
+
+	@Override
+	public List<Article> selectByPageWithNotPublish(PageQuery pageQuery) {
+		// TODO Auto-generated method stub
+		return articleDao.selectByPageWithNotPublish(pageQuery);
 	}
 
 }

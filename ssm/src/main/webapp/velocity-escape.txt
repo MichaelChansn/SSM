@@ -1,0 +1,30 @@
+velocity配置文件中的编码配置类:
+
+注意：velocity会把中文全部转成unicode，而且不能转译回车换行符，在源代码里看到的都是unicode
+本系统采用自定义的转译函数在用户提交数据之后就进行转译存储到数据库
+//对html文件编码的配置
+org.apache.velocity.app.event.implement.EscapeHtmlReference
+//对JavaScript文件编码的配置
+org.apache.velocity.app.event.implement.EscapeJavascriptReference
+//对sql文件编码的配置
+org.apache.velocity.app.event.implement.EscapeSqlReference
+//对xml文件编码的配置
+org.apache.velocity.app.event.implement.EscapeXmlReference
+
+
+在velocity.properties中配置变量转义：
+
+default.contentType=text/html; charset=UTF-8
+input.encoding=UTF-8
+output.encoding=UTF-8
+eventhandler.referenceinsertion.class = org.apache.velocity.app.event.implement.EscapeHtmlReference
+eventhandler.referenceinsertion.class = org.apache.velocity.app.event.implement.EscapeSqlReference
+eventhandler.escape.html.match = /_html_*/
+eventhandler.escape.sql.match = /_sql_*/
+
+前台数据显示时 要转义的数据变量名定义需遵循:
+
+
+格式:_html_自定义名字
+
+例如：_html_title、_html_userName等等

@@ -2,6 +2,8 @@ package com.ks.ssm.form.domain;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+import com.ks.ssm.utils.EscapeUtils;
+
 public class UserLogin {
 	
 	@NotBlank(message="用户名不能为空")
@@ -17,7 +19,7 @@ public class UserLogin {
 	}
 
 	public void setUserName(String userName) {
-		this.userName = userName;
+		this.userName = EscapeUtils.escapeString(userName);
 	}
 
 	public String getPassword() {

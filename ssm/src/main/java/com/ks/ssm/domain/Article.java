@@ -2,6 +2,8 @@ package com.ks.ssm.domain;
 
 import java.util.Date;
 
+import com.ks.ssm.constant.CommonConstants;
+
 public class Article {
     private Long id;
 
@@ -11,7 +13,7 @@ public class Article {
 
     private Integer up=0;
 
-    private Boolean status=false;
+    private Boolean status=CommonConstants.ISPASS;
 
     private Date writetime;
 

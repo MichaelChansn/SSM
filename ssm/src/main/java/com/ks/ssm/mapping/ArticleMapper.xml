@@ -46,6 +46,23 @@
     from article_info
     where status = #{status,jdbcType=BIGINT}
   </select>
+  <!-- <![CDATA[<=]]>表示原样输出不用转译 -->
+   <select id="selectByPageWithPublish" resultMap="ResultMapWithBLOBs" parameterType="com.ks.ssm.domain.PageQuery" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from article_info
+    WHERE id<![CDATA[<=]]> (SELECT id FROM article_info WHERE status=1 ORDER BY id DESC LIMIT #{offset,jdbcType=BIGINT}, 1) AND status=1 ORDER BY id DESC LIMIT #{pageSize,jdbcType=BIGINT}
+  </select> 
+  <select id="selectByPageWithNotPublish" resultMap="ResultMapWithBLOBs" parameterType="com.ks.ssm.domain.PageQuery" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from article_info
+    WHERE id<![CDATA[<=]]> (SELECT id FROM article_info WHERE status=0 ORDER BY id DESC LIMIT #{offset,jdbcType=BIGINT}, 1) AND status=0 ORDER BY id DESC LIMIT #{pageSize,jdbcType=BIGINT}
+  </select> 
   <!-- end by ks -->
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >

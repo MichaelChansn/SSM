@@ -1,28 +1,21 @@
 package com.ks.ssm.interceptors;
 
 import java.lang.reflect.Method;
-import java.util.Date;
 import java.util.Map;
 import java.util.UUID;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.ui.Model;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.ks.ssm.constant.CommonConstants;
 import com.ks.ssm.constant.RetInfos;
-import com.ks.ssm.domain.User;
-import com.ks.ssm.service.IUserService;
-import com.ks.ssm.utils.CommonUtils;
-import com.ks.ssm.utils.SSMUtils;
 
 public class TokenInterceptor extends HandlerInterceptorAdapter {
 	

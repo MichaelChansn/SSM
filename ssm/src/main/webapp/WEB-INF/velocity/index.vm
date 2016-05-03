@@ -8,8 +8,45 @@
     <link href="css/index.css" rel="stylesheet">
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.infinitescroll.min.js" type="text/javascript"></script>
 </head>
 <body class="index-body">
+	
+	<script type="text/javascript">
+$(document).ready(function() {
+
+            $('.panel-show').infinitescroll({
+                navSelector: "#navigation", //导航的选择器，会被隐藏
+                nextSelector: "#navigation a", //包含下一页链接的选择器
+                itemSelector: ".panel", //你将要取回的选项(内容块)
+                debug: true, //启用调试信息
+                animate: false, //当有新数据加载进来的时候，页面是否有动画效果，默认没有
+                extraScrollPx: 150, //滚动条距离底部多少像素的时候开始加载，默认150
+                bufferPx: 40, //载入信息的显示时间，时间越大，载入信息显示时间越短
+                errorCallback: function() {
+                    $(".loading").html("<span>没有数据了。。。</span>");
+                }, //当出错的时候，比如404页面的时候执行的函数
+                localMode: true, //是否允许载入具有相同函数的页面，默认为false
+                dataType: 'html',//可以是json
+//                template: function(data) {
+//                    //data表示服务端返回的json格式数据，这里需要把data转换成瀑布流块的html格式，然后返回给回到函数
+//                    return '';
+//                },
+                loading: {
+                    msgText: "加载中...",
+                    finishedMsg: '没有新数据了...',
+                    selector: '.loading' // 显示loading信息的div
+                }
+            }, function(newElems) {
+                //程序执行完的回调函数
+                var $newElems = $(newElems);
+                //$('.panel-show').masonry('appended', $newElems);
+                $('.panel-show').append($newElems);
+            });
+
+        });
+
+    </script>
 
 <div class="head-nav ">
     <div class="head">
@@ -60,48 +97,43 @@
     </nav>
 </div>
 <div class="panel-show ">
+   #foreach(${article} in ${articleList})  
     <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h3 class="panel-title">面板标题</h3>
-        </div>
-        <div class="container text-center">
-            <img src="http://pic.qiushibaike.com/system/pictures/11608/116080556/medium/app116080556.jpg" class="img-responsive center-block" alt="Cinque Terre" width="304"  >
-        </div>
-        <div class="panel-body ">
-            <p class="text-content">
-            本人女，昨晚跟几个朋友去ktv唱歌，我3个朋友男的，点了几个陪酒的美女，其中有一个过来敬我酒的时候看她长得还可以，就喝了，后来和公主聊天的时候才知道那个敬我酒的女孩子才16岁，2000年的，关键是人家靠自己在市区里买了一套房子，一辆车子，现在准备买第二套房，天了，我的内心是崩溃的，让我这个90后情何以堪
-            </p>
-        </div>
-        <div class="panel-footer text-center">
-            <div class="btn-group">
-                <button type="button" class="btn btn-default">按钮 1</button>
-                <button type="button" class="btn btn-default">按钮 2</button>
-                <button type="button" class="btn btn-default">按钮 3</button>
+		
+            <div class="panel-heading">
+                <h3 class="panel-title">$!{article.publishtime}</h3>
             </div>
-        </div>
-    </div>
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h3 class="panel-title">面板标题</h3>
-        </div>
-        <div class="container text-center">
-            <img src="http://pic.qiushibaike.com/system/pictures/11608/116080556/medium/app116080556.jpg" class="img-responsive center-block" alt="Cinque Terre" width="304" >
-        </div>
-        <div class="panel-body ">
-            <p class="text-content">
-                本人女，昨晚跟几个朋友去ktv唱歌，我3个朋友男的，点了几个陪酒的美女，其中有一个过来敬我酒的时候看她长得还可以，就喝了，后来和公主聊天的时候才知道那个敬我酒的女孩子才16岁，2000年的，关键是人家靠自己在市区里买了一套房子，一辆车子，现在准备买第二套房，天了，我的内心是崩溃的，让我这个90后情何以堪
-            </p>
-        </div>
-        <div class="panel-footer text-center">
-            <div class="btn-group">
-                <button type="button" class="btn btn-default">按钮 1</button>
-                <button type="button" class="btn btn-default">按钮 2</button>
-                <button type="button" class="btn btn-default">按钮 3</button>
+			
+            #if($article.pic.length()>0)
+            <div class="container text-center">
+                <img src="http://localhost:8080/ssm/user/img/$article.userid/articleImg/$article.pic" class="img-responsive center-block" alt="Cinque Terre" width="304"  >
             </div>
-        </div>
-    </div>
-
+			#end
+            <div class="panel-body ">
+                <p class="text-content">
+					$!{article.content}
+                </p>
+            </div>
+            <div class="panel-footer text-center">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default">按钮 1</button>
+                    <button type="button" class="btn btn-default">按钮 2</button>
+                    <button type="button" class="btn btn-default">按钮 3</button>
+                </div>
+            </div>
+        </div> 
+#end  	
 </div>
+<div class="panel-loading ">
+    <div class="panel panel-primary">
+        <div class="panel-body text-center">
+    			<div class="loading">
+    				<img src="img/loading.gif"><span>正在加载...</span>
+    			</div>	
+        </div>
+    </div>
+</div>
+<div id="navigation"><a href="getPages?page=1"></a></div>
 
 </body>
 </html>

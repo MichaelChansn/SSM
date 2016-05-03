@@ -3,6 +3,7 @@ package com.ks.ssm.service;
 import java.util.List;
 
 import com.ks.ssm.domain.Article;
+import com.ks.ssm.domain.PageQuery;
 
 public interface IArticleService {
 	int deleteByPrimaryKey(Long id);
@@ -16,6 +17,10 @@ public interface IArticleService {
     List<Article> selectByUserID(Long userid);
     
     List<Article> selectByStatus(Boolean status);
+    
+    List<Article> selectByPageWithPublish(PageQuery pageQuery);
+    
+    List<Article> selectByPageWithNotPublish(PageQuery pageQuery);
 
     int updateByPrimaryKeySelective(Article record);
 

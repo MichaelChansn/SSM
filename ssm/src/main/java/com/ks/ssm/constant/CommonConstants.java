@@ -41,4 +41,8 @@ public class CommonConstants {
     public static final String REMEMBER_ME_TOKEN="token";
     
     public static final String SSM_TOKEN="SSM_TOKEN";
+    
+    /**分页大小*/
+    public static final int PAGE_SIZE=10;
+    public static final boolean ISPASS=true;
 }

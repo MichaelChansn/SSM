@@ -5,7 +5,6 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.apache.velocity.app.VelocityEngine;
-import org.springframework.context.annotation.Bean;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;

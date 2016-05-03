@@ -4,7 +4,6 @@
     margin-right: auto;
     box-sizing: border-box;
     min-width: 350px;
-
 }
 .content-block {
     position:relative;
@@ -63,7 +62,7 @@
 
 }
 .collapse .nav>li {
-   margin-left: 1px;
+    margin-left: 1px;
 }
 .in .nav>li {
     margin-left: 0px;
@@ -93,6 +92,10 @@
 }
 .text-content {
     text-indent:2rem;
+    margin-bottom: 10px;
+    font-size: 16px;
+    line-height: 1.8;
+    word-wrap: break-word;
 }
 .panel-primary {
     border-color: transparent;
@@ -110,7 +113,7 @@
 }
 
 @media screen and (min-width: 768px){
-    .panel-show, .head-nav {
+    .panel-show, .head-nav, .panel-loading  {
         width: 90%;
         max-width: 100%;
         margin-left: auto;
@@ -118,7 +121,7 @@
     }
 }
 @media screen and (min-width: 992px){
-    .panel-show, .head-nav {
+    .panel-show, .head-nav, .panel-loading {
         width: 80%;
         max-width: 100%;
         margin-left: auto;
@@ -126,7 +129,7 @@
     }
 }
 @media screen and (min-width: 1200px) {
-    .panel-show , .head-nav {
+    .panel-show , .head-nav, .panel-loading {
         width: 70%;
         max-width: 100%;
         margin-left: auto;
@@ -139,7 +142,7 @@
     max-width: 100%;
 }
 input[type="file"] {
-     display: inline;
+    display: inline;
 }
 .form-select {
     margin-left: 10px;
@@ -168,7 +171,7 @@ input[type="file"] {
     width: 540px;
 }
 .modal-header {
-border: none;
+    border: none;
 }
 .changeModel-content {
     border-radius: 0;
@@ -190,4 +193,8 @@ border: none;
 .register-login a {
     color: #7a4624;
     opacity: 0.7;
+}
+.fm-error {
+    color: red;
+    font-weight: bolder;
 }

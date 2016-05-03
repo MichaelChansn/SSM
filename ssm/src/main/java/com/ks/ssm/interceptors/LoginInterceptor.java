@@ -65,9 +65,9 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 					if (SSMUtils.isLogin(session)) {
 						session.setAttribute(CommonConstants.SESSION_ISLOGIN, true);
 						String userName = (String) session.getAttribute(CommonConstants.SESSION_USER_NAME);
-						if (userName.length() > 5) {
-							userName = userName.substring(0, 5) + "...";
-						}
+						/*if (userName.length() > 10) {
+							userName = userName.substring(0, 10)+"..";
+						}*/
 						session.setAttribute(CommonConstants.SESSION_USER_NAME, userName);
 					} else {
 						String rootPath = session.getServletContext().getContextPath();
@@ -81,9 +81,9 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 				if (needSaveInfo && SSMUtils.isLogin(session)) {
 					session.setAttribute(CommonConstants.SESSION_ISLOGIN, true);
 					String userName = (String) session.getAttribute(CommonConstants.SESSION_USER_NAME);
-					if (userName.length() > 5) {
-						userName = userName.substring(0, 5) + "...";
-					}
+					/*if (userName.length() > 10) {
+						userName = userName.substring(0, 10)+"..";
+					}*/
 					session.setAttribute(CommonConstants.SESSION_USER_NAME, userName);
 				}
 

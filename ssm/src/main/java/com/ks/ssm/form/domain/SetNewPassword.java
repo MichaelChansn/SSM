@@ -5,12 +5,12 @@ import org.hibernate.validator.constraints.NotBlank;
 
 public class SetNewPassword {
 	
-	@NotBlank(message="密码不能为空")
-	@Length(min=6,max=50)
+	@NotBlank(message="密码不能为空6到15字符")
+	@Length(min=6,max=15)
 	private String newPassword;
 	
 	@NotBlank(message="重复密码不能为空")
-	@Length(min=6,max=50)
+	@Length(min=6,max=15)
 	private String newPasswordConfirm;
 
 	@NotBlank(message="请填写验证码")

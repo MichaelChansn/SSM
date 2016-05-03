@@ -16,6 +16,7 @@ import com.ks.ssm.dao.CommentMapper;
 import com.ks.ssm.dao.UserMapper;
 import com.ks.ssm.domain.Article;
 import com.ks.ssm.domain.Comment;
+import com.ks.ssm.domain.PageQuery;
 import com.ks.ssm.domain.User;
 import com.ks.ssm.service.IUserService;
 
@@ -25,18 +26,11 @@ import com.ks.ssm.service.IUserService;
 public class TestMyBatis {
   private static Logger logger = Logger.getLogger(TestMyBatis.class);
   @Resource
-  private IUserService userService = null;
-  @Resource
   private UserMapper userDao;
   @Resource
   private ArticleMapper articleDao;
   @Resource
   private CommentMapper commentDao;
-  @Test
-  public void test1() {
-    User user = userService.getUserById(1);
-    logger.info(JSON.toJSONString(user));
-  }
   /*
   @Test
   public void testMybatis() {
@@ -54,7 +48,7 @@ public class TestMyBatis {
   @Test
   public void testArticle() {
     Article article = articleDao.selectByPrimaryKey((long)1);
-    logger.info("article一条记录.........................");
+    /*logger.info("article一条记录.........................");
     logger.info(JSON.toJSONString(article));
     List<Article> articles=articleDao.selectByUserID((long) 1);
     logger.info("list多条记录.........................");
@@ -67,7 +61,15 @@ public class TestMyBatis {
     for(Article articleTemp : articles2)
     {
     	logger.info(JSON.toJSONString(articleTemp));
+    }*/
+    PageQuery pageQuery=new PageQuery(10, 1);
+    List<Article> articleWithNotPublish=articleDao.selectByPageWithNotPublish(pageQuery);
+    logger.info("list多条记录....articleWithNotPublish.....................");
+    for(Article articleTemp : articleWithNotPublish)
+    {
+    	logger.info(JSON.toJSONString(articleTemp));
     }
+    
   }
   
   @Test

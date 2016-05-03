@@ -2,6 +2,8 @@ package com.ks.ssm.form.domain;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.ks.ssm.utils.EscapeUtils;
+
 public class ArticlePublish {
 	
 	@Length(min=15,message="至少十五个字。。。")
@@ -12,7 +14,7 @@ public class ArticlePublish {
 	}
 
 	public void setArticleContent(String articleContent) {
-		this.articleContent = articleContent;
+		this.articleContent = EscapeUtils.escapeString(articleContent);
 	}
 
 	public boolean isArticleAnonymous() {

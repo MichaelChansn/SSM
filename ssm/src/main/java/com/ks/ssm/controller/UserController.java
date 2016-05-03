@@ -1,11 +1,7 @@
 package com.ks.ssm.controller;
 
 import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -96,6 +92,9 @@ public class UserController {
 				Article article=new Article();
 				article.setUserid(SSMUtils.getUserId(session));
 				article.setAnonymous(articlePublish.isArticleAnonymous());
+				/*保存的时候不能转译，否则无法搜索*/
+				//String escapeHtml=StringEscapeUtils.escapeHtml(articlePublish.getArticleContent());
+				//String escapeJavaScript=StringEscapeUtils.escapeJavaScript(escapeHtml);
 				article.setContent(articlePublish.getArticleContent());
 				article.setPic(fileName);
 				article.setWritetime(new Date());
@@ -108,7 +107,7 @@ public class UserController {
 			}
 			else
 			{
-				model.addAttribute(RetInfos.ERROR, result.getAllErrors());
+				//model.addAttribute(RetInfos.ERROR, result.getAllErrors());
 				model.addAttribute("articleContent", articlePublish.getArticleContent());
 				model.addAttribute("articleAnonymous", articlePublish.isArticleAnonymous());
 				
@@ -127,11 +126,13 @@ public class UserController {
 
 	
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
+	@TokenCheck(generateToken=true)
 	public String userRegister(HttpServletRequest request, Model model) {
 		return "register";
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	@TokenCheck(check=true)
 	public String userRegister(HttpServletRequest request, HttpSession session, Model model,
 			@ModelAttribute("user") @Valid UserRegister user, BindingResult result) {
 		String retWeb = "register";
@@ -171,7 +172,7 @@ public class UserController {
 
 				break;
 			} else {
-				model.addAttribute(RetInfos.ERROR, result.getAllErrors());
+				//model.addAttribute(RetInfos.ERROR, result.getAllErrors());
 				break;
 			}
 
@@ -209,7 +210,7 @@ public class UserController {
 					break;
 				}
 			} else {
-				model.addAttribute(RetInfos.ERROR, result.getAllErrors());
+				//model.addAttribute(RetInfos.ERROR, result.getAllErrors());
 				break;
 			}
 

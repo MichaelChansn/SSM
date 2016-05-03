@@ -1,0 +1,33 @@
+<html>
+	<HEAD>
+    </HEAD>
+	<BODY>
+		
+    </BODY>
+</html>
+	#foreach(${article} in ${articleList}) 
+		#if(${article})
+    <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">$!{article.publishtime}</h3>
+            </div>
+			#if($article.pic.length()>0)
+            <div class="container text-center">
+                <img src="http://localhost:8080/ssm/user/img/$article.userid/articleImg/$article.pic" class="img-responsive center-block" alt="Cinque Terre" width="304"  >
+            </div>
+			#end
+            <div class="panel-body ">
+                <p class="text-content">
+					$!{article.content}
+                </p>
+            </div>
+            <div class="panel-footer text-center">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default">按钮 1</button>
+                    <button type="button" class="btn btn-default">按钮 2</button>
+                    <button type="button" class="btn btn-default">按钮 3</button>
+                </div>
+            </div>
+        </div> 
+		#end
+#end  	

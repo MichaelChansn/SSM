@@ -1,5 +1,8 @@
 package com.ks.ssm.controller;
 
+import java.util.List;
+
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -10,8 +13,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ks.ssm.constant.CommonConstants;
+import com.ks.ssm.domain.Article;
+import com.ks.ssm.domain.PageQuery;
 import com.ks.ssm.interceptors.LoginCheck;
-import com.ks.ssm.test.TestMyBatis;
+import com.ks.ssm.service.IArticleService;
 import com.ks.ssm.utils.SSMUtils;
 
 /**
@@ -22,6 +27,9 @@ import com.ks.ssm.utils.SSMUtils;
 public class IndexController {
 	
 	private static Logger logger = Logger.getLogger(IndexController.class);
+	
+	@Resource
+	private IArticleService articleService;
 
 	@RequestMapping({ "/", "/index" })
 	@LoginCheck(saveInfo=true,autoLogin=true)
@@ -42,6 +50,7 @@ public class IndexController {
 					userName = userName.substring(0, 5) + "...";
 				}
 				model.addAttribute(CommonConstants.SESSION_USER_NAME, userName);*/
+				
 				break;
 			default:
 				SSMUtils.logOut(session, request,response);
@@ -49,7 +58,32 @@ public class IndexController {
 			}
 
 		}
+		PageQuery pageQuery=new PageQuery(CommonConstants.PAGE_SIZE, 1);
+		List<Article> articleList=articleService.selectByPageWithPublish(pageQuery);
+		model.addAttribute("articleList", articleList);
 		return retWeb;
 	}
+	
+	
+	/**无限滚动加载的controller，使用velocity模板技术返回html内容*/
+	@RequestMapping(value="/getPages")
+	@LoginCheck(saveInfo=true,autoLogin=true)
+	public String getPages(HttpServletRequest request,HttpServletResponse response, HttpSession session, Model model) {
+		String retWeb = "scrollPageTemplate";
+		try{
+		int pageNum=Integer.parseInt(request.getParameter("page"));
+		System.err.println(pageNum);
+		PageQuery pageQuery=new PageQuery(CommonConstants.PAGE_SIZE, pageNum);
+		List<Article> articleList=articleService.selectByPageWithPublish(pageQuery);
+		model.addAttribute("articleList", articleList);
+		}
+		catch(Exception e)
+		{
+			logger.error("getpageError", e);
+		}
+		return retWeb;
+	}
+	
+	
 
 }
