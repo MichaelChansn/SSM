@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.ks.ssm.constant.CommonConstants;
 import com.ks.ssm.domain.Article;
 import com.ks.ssm.domain.PageQuery;
+import com.ks.ssm.domain.UserAndArticle;
 import com.ks.ssm.interceptors.LoginCheck;
 import com.ks.ssm.service.IArticleService;
+import com.ks.ssm.service.IUserAndArticleService;
 import com.ks.ssm.utils.SSMUtils;
 
 /**
@@ -30,6 +32,9 @@ public class IndexController {
 	
 	@Resource
 	private IArticleService articleService;
+	
+	@Resource
+	private IUserAndArticleService userAndArticleService;
 
 	@RequestMapping({ "/", "/index" })
 	@LoginCheck(saveInfo=true,autoLogin=true)
@@ -60,7 +65,8 @@ public class IndexController {
 		}
 		PageQuery pageQuery=new PageQuery(CommonConstants.PAGE_SIZE, 1);
 		List<Article> articleList=articleService.selectByPageWithPublish(pageQuery);
-		model.addAttribute("articleList", articleList);
+		List<UserAndArticle> userAndarticleList=userAndArticleService.getUserAndArticleByArticle(articleList);
+		model.addAttribute("userAndarticleList", userAndarticleList);
 		return retWeb;
 	}
 	
@@ -75,7 +81,8 @@ public class IndexController {
 		System.err.println(pageNum);
 		PageQuery pageQuery=new PageQuery(CommonConstants.PAGE_SIZE, pageNum);
 		List<Article> articleList=articleService.selectByPageWithPublish(pageQuery);
-		model.addAttribute("articleList", articleList);
+		List<UserAndArticle> userAndarticleList=userAndArticleService.getUserAndArticleByArticle(articleList);
+		model.addAttribute("userAndarticleList", userAndarticleList);
 		}
 		catch(Exception e)
 		{

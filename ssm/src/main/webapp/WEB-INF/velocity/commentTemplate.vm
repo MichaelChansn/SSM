@@ -1,0 +1,20 @@
+
+#if($!{NOT_LOGIN})
+	<div class="input-block">
+		<div class="logout login-block">
+			<a href="user/login">登录</a>后才能发表评论
+		</div>
+	</div>
+	#else
+<div class="input-block">
+	<form method="post">
+		<textarea class="comment_input original" id="arcontent-32942" name="arcontent">请不要发表与本内容无关的评论，您有了账号就是有身份的人了，我们可认识您。</textarea>
+		<div class="row">
+			<input type="hidden" name="hidden-32942">
+				<button type="button" id="reply_submit" onclick="checkReply2(32942)">发表</button>
+				<label for="comment_anonymous">
+					<input id="anonymous-32942" type="checkbox" value="1" name="anonymous"> 匿名评论</label>
+		</div>
+	</form>
+</div>
+#end

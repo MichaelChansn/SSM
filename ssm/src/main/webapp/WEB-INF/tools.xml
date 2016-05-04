@@ -39,4 +39,9 @@
     <toolbox scope="session" createSession="false">
         <tool class="org.apache.velocity.tools.view.BrowserTool"/>
     </toolbox>
+    <tool>
+   <key>date</key>
+   <scope>application</scope>
+   <class>org.apache.velocity.tools.generic.DateTool</class>
+</tool>
 </tools>

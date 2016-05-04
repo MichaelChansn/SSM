@@ -2,6 +2,7 @@ package com.ks.ssm.controller;
 
 import java.io.File;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +23,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.ks.ssm.constant.CommonConstants;
 import com.ks.ssm.constant.RetInfos;
 import com.ks.ssm.domain.Article;
+import com.ks.ssm.domain.Comment;
 import com.ks.ssm.domain.User;
 import com.ks.ssm.form.domain.ArticlePublish;
 import com.ks.ssm.form.domain.UserLogin;
@@ -29,6 +31,7 @@ import com.ks.ssm.form.domain.UserRegister;
 import com.ks.ssm.interceptors.LoginCheck;
 import com.ks.ssm.interceptors.TokenCheck;
 import com.ks.ssm.service.IArticleService;
+import com.ks.ssm.service.ICommentService;
 import com.ks.ssm.service.IUserService;
 import com.ks.ssm.utils.CommonUtils;
 import com.ks.ssm.utils.MD5Encoding;
@@ -44,6 +47,9 @@ public class UserController {
 	
 	@Resource
 	private IArticleService articleService;
+	
+	@Resource
+	private ICommentService commentService;
 	/* 域模型的校验，框架提供，自动对网页提交的参数检验 validator和@Valid标注只要使用一个就可以 */
 	/*
 	 * private Validator validator; public Validator getValidator() { return
@@ -187,6 +193,51 @@ public class UserController {
 			return CommonConstants.WEB_REDIRECT_ABS+"index";
 		return "login";
 	}
+	
+	@RequestMapping(value = "/upArticle", method = RequestMethod.POST)
+	@LoginCheck(autoLogin=true)
+	public String upArticle(HttpServletRequest request,HttpSession session, Model model) {
+		try
+		{
+			long articleId=Long.parseLong(request.getParameter("upArticle"));
+			Article article=articleService.selectByPrimaryKey(articleId);
+			int upNum=article.getUp()+1;
+			article.setUp(upNum);
+			articleService.updateByPrimaryKey(article);
+			model.addAttribute(RetInfos.AJAX_RESULT, upNum);
+		}
+		catch(Exception e)
+		{
+			log4j.error("up article error", e);
+		}
+		return "ajaxResultTemplate";
+	}
+	
+	@RequestMapping(value = "/articleComment", method = RequestMethod.POST)
+	@LoginCheck(autoLogin=true)
+	public String articleComment(HttpServletRequest request,HttpSession session, Model model) {
+		do{
+			if(!SSMUtils.isLogin(session))
+			{
+				model.addAttribute(RetInfos.NOT_LOGIN, true);
+				break;
+			}
+			try
+			{
+				long articleId=Long.parseLong(request.getParameter("articleComment"));
+				List<Comment> commentList=commentService.selectByArticleID(articleId);
+				model.addAttribute("commentList", commentList);
+			}
+			catch(Exception e)
+			{
+				log4j.error("comment article error", e);
+			}
+		}
+		while(false);
+		
+		return "commentTemplate";
+	}
+
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String userLogin(HttpServletRequest request,HttpServletResponse response, HttpSession session, Model model,

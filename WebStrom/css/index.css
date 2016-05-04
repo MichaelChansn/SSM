@@ -86,6 +86,21 @@
     background-color: aliceblue;
 
 }
+.panel-heading {
+    padding: 5px 15px;
+   /* border-bottom: 1px solid transparent;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;*/
+}
+.user-info>a {
+    text-decoration: none;
+}
+.user-info>a:hover {
+    font-weight: bolder;
+}
+.user-info>a:visited{
+    color: #a94442;
+}
 .panel-body {
     padding: 18px 20px;
 
