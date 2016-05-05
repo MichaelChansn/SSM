@@ -26,6 +26,7 @@ import com.ks.ssm.domain.Article;
 import com.ks.ssm.domain.Comment;
 import com.ks.ssm.domain.User;
 import com.ks.ssm.domain.UserAndComment;
+import com.ks.ssm.form.domain.ArticleComment;
 import com.ks.ssm.form.domain.ArticlePublish;
 import com.ks.ssm.form.domain.UserLogin;
 import com.ks.ssm.form.domain.UserRegister;
@@ -66,6 +67,42 @@ public class UserController {
 	 */
 	
 
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	@LoginCheck(autoLogin=true)
+	public String userLogin(HttpServletRequest request,HttpSession session, Model model) {
+		if(SSMUtils.isLogin(session))
+			return CommonConstants.WEB_REDIRECT_ABS+"index";
+		return "login";
+	}
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String userLogin(HttpServletRequest request,HttpServletResponse response, HttpSession session, Model model,
+			@ModelAttribute("user") @Valid UserLogin user, BindingResult result) {
+		String retWeb = "login";
+		do {
+			model.addAttribute("userName", user.getUserName());
+			if (!result.hasErrors()) {
+				// validator.validate(user, result);
+				User userLogin = userService.selectByUserName(user.getUserName());
+				if (userLogin == null ||!userLogin.getPassword()
+						.equals(MD5Encoding.MD5Encode(user.getPassword() + CommonConstants.SALT))) {
+					model.addAttribute(RetInfos.ERROR, RetInfos.LOGIN_FAIL_MSG);
+					break;
+				} else {
+					SSMUtils.storeSession(session, userLogin);
+					model.addAttribute("userName", null);//去掉url显示的参数
+					//记住密码
+					SSMUtils.rememberMe(userService, user.isRememberMe(), response,request, userLogin);
+					retWeb = CommonConstants.WEB_REDIRECT_ABS + "index";
+					break;
+				}
+			} else {
+				//model.addAttribute(RetInfos.ERROR, result.getAllErrors());
+				break;
+			}
+
+		} while (false);
+		return retWeb;
+	}
 
 
 	@RequestMapping(value = "/addArticle", method = RequestMethod.GET)
@@ -192,13 +229,7 @@ public class UserController {
 		return retWeb;
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	@LoginCheck(autoLogin=true)
-	public String userLogin(HttpServletRequest request,HttpSession session, Model model) {
-		if(SSMUtils.isLogin(session))
-			return CommonConstants.WEB_REDIRECT_ABS+"index";
-		return "login";
-	}
+	
 	
 	@RequestMapping(value = "/upArticle", method = RequestMethod.POST)
 	@LoginCheck(autoLogin=true)
@@ -226,7 +257,7 @@ public class UserController {
 			if(!SSMUtils.isLogin(session))
 			{
 				model.addAttribute(RetInfos.NOT_LOGIN, true);
-				break;
+				//break;
 			}
 			try
 			{
@@ -234,6 +265,7 @@ public class UserController {
 				List<Comment> commentList=commentService.selectByArticleID(articleId);
 				List<UserAndComment> userAndcommentList=userAndCommentService.getUserAndCommentByComment(commentList);
 				model.addAttribute("userAndcommentList", userAndcommentList);
+				model.addAttribute("articleId", articleId);
 			}
 			catch(Exception e)
 			{
@@ -245,35 +277,41 @@ public class UserController {
 		return "commentTemplate";
 	}
 
-
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String userLogin(HttpServletRequest request,HttpServletResponse response, HttpSession session, Model model,
-			@ModelAttribute("user") @Valid UserLogin user, BindingResult result) {
-		String retWeb = "login";
+	@RequestMapping(value = "/addComment", method = RequestMethod.POST)
+	@LoginCheck(check=true,autoLogin=true)
+	public String addComment(HttpServletRequest request,HttpServletResponse response, HttpSession session, Model model,
+			 ArticleComment articleComment) {
+		String retWeb = "ajaxResultTemplate";
+		
+		model.addAttribute(CommonConstants.COMMENT_AJAX, "评论AJAX返回");
 		do {
-			model.addAttribute("userName", user.getUserName());
-			if (!result.hasErrors()) {
-				// validator.validate(user, result);
-				User userLogin = userService.selectByUserName(user.getUserName());
-				if (userLogin == null ||!userLogin.getPassword()
-						.equals(MD5Encoding.MD5Encode(user.getPassword() + CommonConstants.SALT))) {
-					model.addAttribute(RetInfos.ERROR, RetInfos.LOGIN_FAIL_MSG);
-					break;
-				} else {
-					SSMUtils.storeSession(session, userLogin);
-					model.addAttribute("userName", null);//去掉url显示的参数
-					//记住密码
-					SSMUtils.rememberMe(userService, user.isRememberMe(), response,request, userLogin);
-					retWeb = CommonConstants.WEB_REDIRECT_ABS + "index";
-					break;
-				}
-			} else {
-				//model.addAttribute(RetInfos.ERROR, result.getAllErrors());
+			if(CommonUtils.isBlank(articleComment.getCommentContent()))
+			{
+				model.addAttribute(RetInfos.ERROR, "评论内容不能为空啊！");
 				break;
 			}
+			Comment comment=new Comment();
+			comment.setAnonymous(articleComment.isCommentAnonymous());
+			comment.setArticleid(articleComment.getArticleId());
+			comment.setCommenttime(new Date());
+			comment.setFromuserid(SSMUtils.getUserId(session));
+			comment.setContent(articleComment.getCommentContent());
+			comment.setModifytime(new Date());
+			commentService.insertSelective(comment);
+			
+			UserAndComment userAndComment=new UserAndComment();
+			userAndComment.setComment(comment);
+			User user=userService.getUserById(comment.getFromuserid());
+			userAndComment.setUser(user);
+			model.addAttribute("userAndComment", userAndComment);
+			model.addAttribute(RetInfos.SUCCESS, "评论成功！");
 
 		} while (false);
 		return retWeb;
 	}
+
+	
+	
+	
 
 }

@@ -47,5 +47,7 @@ public class CommonConstants {
     public static final boolean ARTICLE_ISPASS=true;
     public static final boolean COMMENT_ISPASS=true;
     
+    public static final String COMMENT_AJAX="COMMENT_AJAX";
+    
     
 }

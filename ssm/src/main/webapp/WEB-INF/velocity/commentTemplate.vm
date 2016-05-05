@@ -26,20 +26,21 @@
 	#set($index=$index+1)
 #end
 #if($!{NOT_LOGIN})
-<div class="input-block">
+<div class="input-block $!{articleId}-input-block">
     <a class="btn btn-info"href="user/login">登录</a><span class="input-block-text text-warning">后才能发表评论</span>
 </div>
 	#else
-<div class="input-block">
-        <form role="form" action="http://localhost:8080/ssm/user/addArticle" enctype="multipart/form-data" method="post" >
-            <div class="form-group">
-                <textarea name="commentInput" class="form-control" rows="1" placeholder="记请不要发表与本内容无关的评论，您有了账号就是有身份的人了，我们可认识您!"></textarea>
+<div class="input-block $!{articleId}-input-block">
+        <form id="$!{articleId}-form" role="form" action="http://localhost:8080/ssm/user/addComment" enctype="multipart/form-data" method="post" >
+            <input type="hidden" name="articleId" value=$!{articleId}>
+			<div class="form-group">
+                <textarea id="$!{articleId}-textarea" name="commentContent" class="form-control" rows="1" placeholder="记请不要发表与本内容无关的评论，您有了账号就是有身份的人了，我们可认识您!"></textarea>
             </div>
             <div class="btn-send">
-                <button type="submit" class="btn btn-success">  发　表  </button>
+                <div  class="btn btn-success" onclick="avascript:addComment($!{articleId})">  发　表  </div>
                 <span class="form-group form-select text-left">
                     <label class="checkbox form-select comment-check ">
-                        <input name="articleAnonymous" type="checkbox"> 匿名发表
+                        <input id="$!{articleId}-checkbox" name="commentAnonymous" type="checkbox"> 匿名发表
                     </label>
                 </span>
             </div>
