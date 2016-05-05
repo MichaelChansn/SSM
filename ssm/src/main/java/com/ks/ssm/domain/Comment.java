@@ -2,6 +2,8 @@ package com.ks.ssm.domain;
 
 import java.util.Date;
 
+import com.ks.ssm.constant.CommonConstants;
+
 public class Comment {
     private Long id;
 
@@ -11,7 +13,7 @@ public class Comment {
 
     private Date commenttime=new Date();
 
-    private Boolean status=true;
+    private Boolean status=CommonConstants.COMMENT_ISPASS;
 
     private Date modifytime;
     

@@ -25,6 +25,7 @@ import com.ks.ssm.constant.RetInfos;
 import com.ks.ssm.domain.Article;
 import com.ks.ssm.domain.Comment;
 import com.ks.ssm.domain.User;
+import com.ks.ssm.domain.UserAndComment;
 import com.ks.ssm.form.domain.ArticlePublish;
 import com.ks.ssm.form.domain.UserLogin;
 import com.ks.ssm.form.domain.UserRegister;
@@ -32,6 +33,8 @@ import com.ks.ssm.interceptors.LoginCheck;
 import com.ks.ssm.interceptors.TokenCheck;
 import com.ks.ssm.service.IArticleService;
 import com.ks.ssm.service.ICommentService;
+import com.ks.ssm.service.IUserAndArticleService;
+import com.ks.ssm.service.IUserAndCommentService;
 import com.ks.ssm.service.IUserService;
 import com.ks.ssm.utils.CommonUtils;
 import com.ks.ssm.utils.MD5Encoding;
@@ -50,6 +53,9 @@ public class UserController {
 	
 	@Resource
 	private ICommentService commentService;
+	
+	@Resource
+	private IUserAndCommentService userAndCommentService;
 	/* 域模型的校验，框架提供，自动对网页提交的参数检验 validator和@Valid标注只要使用一个就可以 */
 	/*
 	 * private Validator validator; public Validator getValidator() { return
@@ -226,7 +232,8 @@ public class UserController {
 			{
 				long articleId=Long.parseLong(request.getParameter("articleComment"));
 				List<Comment> commentList=commentService.selectByArticleID(articleId);
-				model.addAttribute("commentList", commentList);
+				List<UserAndComment> userAndcommentList=userAndCommentService.getUserAndCommentByComment(commentList);
+				model.addAttribute("userAndcommentList", userAndcommentList);
 			}
 			catch(Exception e)
 			{

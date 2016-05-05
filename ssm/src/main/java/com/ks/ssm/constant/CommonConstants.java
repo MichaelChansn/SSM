@@ -44,7 +44,8 @@ public class CommonConstants {
     
     /**分页大小*/
     public static final int PAGE_SIZE=10;
-    public static final boolean ISPASS=true;
+    public static final boolean ARTICLE_ISPASS=true;
+    public static final boolean COMMENT_ISPASS=true;
     
     
 }

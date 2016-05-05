@@ -13,7 +13,7 @@ public class Article {
 
     private Integer up=0;
 
-    private Boolean status=CommonConstants.ISPASS;
+    private Boolean status=CommonConstants.ARTICLE_ISPASS;
 
     private Date writetime;
 

@@ -241,3 +241,51 @@ border: none;
 .comment-hide {
 	display: none;
 }
+
+/**comments*/
+.comment-content .row {
+     margin-right: 0px;
+     margin-left: 0px;
+}
+.comments{font-size:12px;line-height:18px;border-top-width:2px;border-top-style:solid;border-top-color:#dfd5cb;margin: 0}
+.comment-block{border-bottom:1px dotted #dfd5cb;padding:10px 0;}
+.comment-block .avatar{width:35px;margin-left: 10px;float: left}
+.comment-block .avatar img{height:20px;width:20px;}
+.comment-block .reply{ word-break:break-all;padding: 0px;padding-left: 15px;float: left;margin-right: 15px}
+.comment-block .report{width:60px;margin-left:-10px; padding-right: 0px;right:30px;padding-left:0px;text-align:right;color:#d7d0c6;float: right}
+.comment-block a.link{visibility:hidden;}
+.comment-block:hover a.link{visibility:visible;}
+.input-block{clear:both;padding:10px 0 10px 25px;margin-right: 25px}
+.input-block textarea{width:550px;height:28px;font-size:12px;padding:5px;color:#54412E;}
+.input-block textarea.original {color:#999;}
+.input-block .input-block-text{margin-left: 10px}
+/* User  */
+.userlogin a{float: left;display: block;margin: 0 15px 0 0;}
+.comment-block .anomynous {color:#9b8878;}
+.comment-block .hostname a, .comment-block .hostname a:hover{color:#bf4131;}
+.comment-block .manager {color:black;font-weight:bold;}
+.comment-block .spam {color:#bbb;}
+
+.input-block .form-control {
+    height: 35px;
+    display: block;
+    font-size: 14px;
+    padding: 5px;
+    margin: 0;
+    margin-bottom: 10px;
+    color: #54412E;
+}
+
+.input-block .comment-check {
+    display: inline-block;
+    margin-top: 10px;
+    padding-top: 0px;
+    margin-right: 10px;
+    color: #7a4624;
+}
+.input-block .btn-send {
+	margin-top: -10px;
+}
+
+
+

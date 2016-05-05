@@ -10,7 +10,7 @@ function upArticle(id) {
 		     type:'post',   
 		     data:'upArticle='+id,   
 		     async:true, //默认为true 异步   
-		     dataType:'json',
+		     dataType:'html',
 		     error:function(){ 
 		    	 alert("点赞失败");
 		     },   
