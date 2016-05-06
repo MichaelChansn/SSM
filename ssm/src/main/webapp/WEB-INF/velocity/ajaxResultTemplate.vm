@@ -20,12 +20,13 @@
                         </a>
                     </span>
                     <span class="body">$!{userAndComment.comment.content}
+						  <span class="text-danger pull-right" style="padding-right:0px; padding-left:15px">评论于$!date.format('yyyy-MM-dd HH:mm:ss',$!{userAndComment.comment.commenttime})</span>
                     </span>
                     </div>
                     <div class="report col-sm-1">
-                        <a href="javascript:showReport($!{$userAndComment.comment.id})" class="link">举报
+                        <a href="javascript:showReport($!{userAndComment.comment.id})" class="link">举报
                         </a> &nbsp;
-		                <span title="$!date.format('yyyy-MM-dd HH:mm:ss',$!{userAndComment.comment.commenttime})">
+		                <span title="$!date.format('yyyy-MM-dd HH:mm:ss',$!{userAndComment.comment.commenttime})">你
 		                </span>
                     </div>
             </div>

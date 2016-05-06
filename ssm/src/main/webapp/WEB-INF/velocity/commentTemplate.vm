@@ -12,6 +12,7 @@
                         </a>
                     </span>
                     <span class="body">$!{userAndcomment.comment.content}
+                        <span class="text-warning pull-right" style="color:#ccc;padding-right:0px;padding-left:15px">评论于$!date.format('yyyy-MM-dd HH:mm:ss',$!{userAndcomment.comment.commenttime})</span>
                     </span>
                     </div>
                     <div class="report col-sm-1">

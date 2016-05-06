@@ -1,5 +1,7 @@
 package com.ks.ssm.form.domain;
 
+import com.ks.ssm.utils.EscapeUtils;
+
 public class ArticleComment {
 	
 	//@NotBlank(message="文章ID不正确，非法请求！")
@@ -31,7 +33,7 @@ public class ArticleComment {
 	}
 
 	public void setCommentContent(String commentContent) {
-		this.commentContent = commentContent;
+		this.commentContent = EscapeUtils.escapeString(commentContent);
 	}
 
 	
