@@ -26,8 +26,10 @@
             </div>
             <div class="panel-footer">
                 <a class="btn btn-success $!{userAndarticle.article.id}btn" href="javascript:upArticle($!{userAndarticle.article.id});"><i class="icon-thumbs-up"></i>点赞<span class="$!{userAndarticle.article.id}upArticleNum">($!{userAndarticle.article.up})</span></a> 
-                <a class="btn btn-danger" href="#"><i class=" icon-edit"></i>评论</a>
+                <a class="btn btn-danger" href="javascript:articleComment($!{userAndarticle.article.id});"><i class=" icon-edit"></i>评论<span class="$!{userAndarticle.article.id}commentNum">($!{userAndarticle.commentNum})</span></a>
     			<span class="panel-footer-date">发表于 $!date.format('yyyy-MM-dd',$!{userAndarticle.article.publishtime})</span>
+            </div>
+			<div  class="$!{userAndarticle.article.id}comment comment-hide comments">
             </div>
         </div> 
 #end 

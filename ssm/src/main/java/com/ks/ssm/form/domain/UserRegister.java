@@ -29,7 +29,7 @@ public class UserRegister {
 	}
 
 	public void setPasswordConfirm(String passwordConfirm) {
-		this.passwordConfirm = passwordConfirm;
+		this.passwordConfirm = passwordConfirm.trim();
 	}
 
 	public String getUserNickName() {
@@ -37,7 +37,7 @@ public class UserRegister {
 	}
 
 	public void setUserNickName(String userNickName) {
-		this.userNickName = EscapeUtils.escapeString(userNickName);
+		this.userNickName = EscapeUtils.escapeString(userNickName.trim());
 	}
 
 	public String getEmail() {
@@ -45,7 +45,7 @@ public class UserRegister {
 	}
 
 	public void setEmail(String email) {
-		this.email = email;
+		this.email = email.trim();
 	}
 
 	public String getPassword() {
@@ -53,7 +53,7 @@ public class UserRegister {
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		this.password = password.trim();
 	}
 
 	public boolean isSamePassword()

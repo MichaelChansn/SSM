@@ -1,6 +1,11 @@
-#if($!{AJAX_RESULT})
-	($!{AJAX_RESULT})
+#if($!{USER_LIKE_AJAX_RESULT})
+	($!{USER_LIKE_AJAX_RESULT})
 #end
+
+#if($!{REPORT_COMMENT})
+	<div class="text-center text-danger">$!{REPORT_COMMENT}</div>
+#end
+
 
 #if($!{COMMENT_AJAX})
 	#if($!{ERROR})
@@ -24,7 +29,7 @@
                     </span>
                     </div>
                     <div class="report col-sm-1">
-                        <a href="javascript:showReport($!{userAndComment.comment.id})" class="link">举报
+                        <a href="javascript:reportComment($!{userAndComment.comment.id})" class="link"><span class="text-warning">举报</span>
                         </a> &nbsp;
 		                <span title="$!date.format('yyyy-MM-dd HH:mm:ss',$!{userAndComment.comment.commenttime})">你
 		                </span>

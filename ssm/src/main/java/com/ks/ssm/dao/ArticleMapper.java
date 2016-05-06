@@ -14,6 +14,8 @@ public interface ArticleMapper {
 
     Article selectByPrimaryKey(Long id);
     
+    Article selectByPrimaryKeyWithoutBLOBs(Long id);
+    
     List<Article> selectByUserID(Long userid);
     
     List<Article> selectByStatus(Boolean status);

@@ -82,4 +82,10 @@ public class ArticleServiceImpl implements IArticleService {
 		return articleDao.selectByPageWithNotPublish(pageQuery);
 	}
 
+	@Override
+	public Article selectByPrimaryKeyWithoutBLOBs(Long id) {
+		// TODO Auto-generated method stub
+		return articleDao.selectByPrimaryKeyWithoutBLOBs(id);
+	}
+
 }

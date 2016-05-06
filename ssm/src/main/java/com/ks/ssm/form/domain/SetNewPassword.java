@@ -29,7 +29,7 @@ public class SetNewPassword {
 	}
 
 	public void setNewPassword(String newPassword) {
-		this.newPassword = newPassword;
+		this.newPassword = newPassword.trim();
 	}
 
 	public String getNewPasswordConfirm() {
@@ -37,7 +37,7 @@ public class SetNewPassword {
 	}
 
 	public void setNewPasswordConfirm(String newPasswordConfirm) {
-		this.newPasswordConfirm = newPasswordConfirm;
+		this.newPasswordConfirm = newPasswordConfirm.trim();
 	}
 
 	public String getCaptcha() {
@@ -45,7 +45,7 @@ public class SetNewPassword {
 	}
 
 	public void setCaptcha(String captcha) {
-		this.captcha = captcha;
+		this.captcha = captcha.trim();
 	}
 
 	public String getToken() {

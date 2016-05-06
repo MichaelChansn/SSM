@@ -38,6 +38,15 @@
     where articleid = #{articleid,jdbcType=BIGINT}
   </select>
   
+  <select id="selectByArticleIDWithStatus" resultMap="ResultMapWithBLOBs" parameterType="com.ks.ssm.domain.ArticleIdAndStatus" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from comment_info
+    where articleid = #{articleid,jdbcType=BIGINT} and status = #{status,jdbcType=BIGINT}
+  </select>
+  
   <select id="selectByUserID" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
@@ -46,7 +55,12 @@
     from comment_info
     where fromuserid = #{fromuserid,jdbcType=BIGINT}
   </select>
-  
+  <select id="selectByPrimaryKeyWithOutBLOBs" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from comment_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
     <select id="selectByStatus" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Boolean" >
     select 
     <include refid="Base_Column_List" />
@@ -54,6 +68,18 @@
     <include refid="Blob_Column_List" />
     from comment_info
     where status = #{status,jdbcType=BIGINT}
+  </select>
+    <select id="countWithStatus" resultType="java.lang.Integer" parameterType="java.lang.Boolean" >
+    select 
+    count(*)
+    from comment_info
+    where status = #{status,jdbcType=BIGINT}
+  </select>
+  <select id="countWithArticleIdAndStatus" resultType="java.lang.Integer" parameterType="com.ks.ssm.domain.ArticleIdAndStatus" >
+    select 
+    count(*)
+    from comment_info
+    where articleid = #{articleid,jdbcType=BIGINT} and status = #{status,jdbcType=BIGINT}
   </select>
   <!-- end by ks -->
   

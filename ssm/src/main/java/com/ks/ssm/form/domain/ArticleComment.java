@@ -33,7 +33,7 @@ public class ArticleComment {
 	}
 
 	public void setCommentContent(String commentContent) {
-		this.commentContent = EscapeUtils.escapeString(commentContent);
+		this.commentContent = EscapeUtils.escapeString(commentContent.trim());
 	}
 
 	

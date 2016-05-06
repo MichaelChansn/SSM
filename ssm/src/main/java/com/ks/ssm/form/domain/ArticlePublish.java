@@ -14,7 +14,7 @@ public class ArticlePublish {
 	}
 
 	public void setArticleContent(String articleContent) {
-		this.articleContent = EscapeUtils.escapeString(articleContent);
+		this.articleContent = EscapeUtils.escapeString(articleContent.trim());
 	}
 
 	public boolean isArticleAnonymous() {

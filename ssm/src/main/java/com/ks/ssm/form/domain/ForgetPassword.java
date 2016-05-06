@@ -19,7 +19,7 @@ public class ForgetPassword {
 	}
 
 	public void setEmail(String email) {
-		this.email = EscapeUtils.escapeString(email);
+		this.email = EscapeUtils.escapeString(email.trim());
 	}
 
 	public String getCaptcha() {
@@ -27,7 +27,7 @@ public class ForgetPassword {
 	}
 
 	public void setCaptcha(String captcha) {
-		this.captcha = captcha;
+		this.captcha = captcha.trim();
 	}
 
 }

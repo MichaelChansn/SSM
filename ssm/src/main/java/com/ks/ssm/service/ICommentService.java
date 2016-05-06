@@ -3,6 +3,7 @@ package com.ks.ssm.service;
 import java.util.List;
 
 import com.ks.ssm.domain.Article;
+import com.ks.ssm.domain.ArticleIdAndStatus;
 import com.ks.ssm.domain.Comment;
 import com.ks.ssm.domain.PageQuery;
 
@@ -15,7 +16,11 @@ public interface ICommentService {
 
     Comment selectByPrimaryKey(Long id);
     
+    Comment selectByPrimaryKeyWithOutBLOBs(Long id);
+    
     List<Comment> selectByArticleID(Long articleid);
+    
+    List<Comment> selectByArticleIDWithStatus(ArticleIdAndStatus articleIdAndStatus);
     
     List<Comment> selectByUserID(Long fromuserid);
     
@@ -27,4 +32,7 @@ public interface ICommentService {
 
     int updateByPrimaryKey(Comment record);
 
+    int countWithStatus(boolean status);
+    
+    int countWithArticleIdAndStatus(ArticleIdAndStatus articleIdAndStatus);
 }

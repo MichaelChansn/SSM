@@ -2,6 +2,7 @@ package com.ks.ssm.dao;
 
 import java.util.List;
 
+import com.ks.ssm.domain.ArticleIdAndStatus;
 import com.ks.ssm.domain.Comment;
 
 public interface CommentMapper {
@@ -13,7 +14,11 @@ public interface CommentMapper {
 
     Comment selectByPrimaryKey(Long id);
     
+    Comment selectByPrimaryKeyWithOutBLOBs(Long id);
+    
     List<Comment> selectByArticleID(Long articleid);
+    
+    List<Comment> selectByArticleIDWithStatus(ArticleIdAndStatus articleIdAndStatus);
     
     List<Comment> selectByUserID(Long fromuserid);
     
@@ -24,4 +29,8 @@ public interface CommentMapper {
     int updateByPrimaryKeyWithBLOBs(Comment record);
 
     int updateByPrimaryKey(Comment record);
+    
+    int countWithStatus(boolean status);
+    
+    int countWithArticleIdAndStatus(ArticleIdAndStatus articleIdAndStatus);
 }

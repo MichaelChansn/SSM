@@ -46,8 +46,28 @@ public class CommonConstants {
     public static final int PAGE_SIZE=10;
     public static final boolean ARTICLE_ISPASS=true;
     public static final boolean COMMENT_ISPASS=true;
+    public static final boolean COMMENT_STATUS_PASS=true;
+    public static final boolean ARTICLE_STATUS_PASS=true;
+    public static final boolean COMMENT_STATUS_NOPASS=false;
+    public static final boolean ARTICLE_STATUS_NOPASS=false;
+    
     
     public static final String COMMENT_AJAX="COMMENT_AJAX";
+    
+    public static final String ADMIN_EMAIL="564289319@qq.com";
+    
+    /**
+     *放在cookie中的点赞结果，防止重复点赞，暂时放在cookie中的
+     *要想从根本上解决点赞的高并发和重复点赞的问题，必须得有一张独立的点赞数据表
+	 *id articleid fromuserid touserid  time ip loginuserid…
+	 *基于IP的判断也是可以通过伪造IP绕过
+	 *但是基于登陆用户ID的判断是绝对不会被绕过的，只有登陆的用户才能点赞。
+	 *现在好多是把点赞信息放到cookie或session中，完全没有任何意义
+     * */
+    public static final String USER_LIKE_IN_COOKIE="USER_LIKE_IN_COOKIE";
+    public static final String USER_LIKE_SEPARATOR="<#LIKE#>";
+    public static final String USER_ALREADY_LIKE="USER_ALREADY_LIKE";
+    public static final String REPORT_COMMENT="REPORT_COMMENT";
     
     
 }

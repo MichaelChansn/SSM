@@ -54,6 +54,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 							}
 
 						} catch (Exception e) {
+							SSMUtils.clearRememberMe(response);
 							log.error("auto login error", e);
 						}
 					}

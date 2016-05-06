@@ -19,7 +19,7 @@ public class UserLogin {
 	}
 
 	public void setUserName(String userName) {
-		this.userName = EscapeUtils.escapeString(userName);
+		this.userName = EscapeUtils.escapeString(userName.trim());
 	}
 
 	public String getPassword() {
@@ -27,7 +27,7 @@ public class UserLogin {
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		this.password = password.trim();
 	}
 
 	public boolean isRememberMe() {

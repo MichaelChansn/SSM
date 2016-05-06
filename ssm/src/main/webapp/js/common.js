@@ -14,14 +14,38 @@ function upArticle(id) {
 		     error:function(){ 
 		    	 alert("点赞失败");
 		     },   
-		     success:function(data){   
-		        $("span."+id+"upArticleNum").html(data);   
-		        $("a."+id+"btn").addClass("disabled");   
+		     success:function(data){  
+		    	 if(data.trim().length>0)
+		    		 {
+				        $("span."+id+"upArticleNum").html(data);   
+		    		 }
+		    	 $("a."+id+"btn").addClass("disabled");
 		        
 		     }
 		 });
 }  
-
+function reportComment(id)
+{
+	if(id==null)
+		return;
+	$.ajax({   
+	     url:'user/reportComment',   
+	     type:'post',   
+	     data:'reportComment='+id,   
+	     async:true, //默认为true 异步   
+	     dataType:'html',
+	     error:function(){ 
+	    	 alert("举报失败，稍后再试");
+	     },   
+	     success:function(data){  
+	    	 if(data.trim().length>0)
+	    		 {
+			        $("#comment-"+id).html(data);   
+	    		 }
+	        
+	     }
+	 });
+}
 function addComment(id)
 {
 	if(id==null) return;
@@ -62,13 +86,13 @@ function articleComment(id) {
 		     },   
 		     success:function(data){   
 		        $("div."+id+"comment").html(data);   
-		        $("div."+id+"comment").slideDown(500);
+		        $("div."+id+"comment").slideDown(300);
 		     }
 		 });
 		}
 	else
 		{
-		$("div."+id+"comment").slideToggle(500);
+		$("div."+id+"comment").slideToggle(300);
 		}
 
 }  

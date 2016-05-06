@@ -28,7 +28,7 @@ public class RetInfos {
 	public static final String UPLOAD_PIC_ERROR_MSG="请上传jpg,jpeg,bmp,gif,png形式的图片,1M以内";
 	
 	/**ajax返回模板数据键值*/
-    public static final String AJAX_RESULT="AJAX_RESULT";
+    public static final String USER_LIKE_AJAX_RESULT="USER_LIKE_AJAX_RESULT";
     public static final String NOT_LOGIN="NOT_LOGIN";
 	
 

@@ -5,6 +5,8 @@ public class UserAndArticle {
 	private User user;
 	
 	private Article article;
+	
+	private int commentNum;
 
 	public User getUser() {
 		return user;
@@ -20,6 +22,14 @@ public class UserAndArticle {
 
 	public void setArticle(Article article) {
 		this.article = article;
+	}
+
+	public int getCommentNum() {
+		return commentNum;
+	}
+
+	public void setCommentNums(int commentNum) {
+		this.commentNum = commentNum;
 	}
 	
 }

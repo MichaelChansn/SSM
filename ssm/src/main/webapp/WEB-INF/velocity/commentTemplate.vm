@@ -16,7 +16,7 @@
                     </span>
                     </div>
                     <div class="report col-sm-1">
-                        <a href="javascript:showReport($!{$userAndcomment.comment.id})" class="link">举报
+                        <a href="javascript:reportComment($!{userAndcomment.comment.id})" class="link"><span class="text-warning">举报</span>
                         </a> &nbsp;
 		                <span title="$!date.format('yyyy-MM-dd HH:mm:ss',$!{userAndcomment.comment.commenttime})">$index
 		                </span>

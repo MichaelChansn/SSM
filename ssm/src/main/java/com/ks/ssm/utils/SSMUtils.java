@@ -32,7 +32,7 @@ public class SSMUtils {
 	private static String[] imgs = { "jpg", "jpeg", "bmp", "gif", "png" };
 	private static List<String> imgsList = Arrays.asList(imgs);
 	private static SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");// 设置日期格式
-	private static int CookieExpiresTime = 10 * 365 * 24 * 60 * 60;// cookie过期时间10年，记住密码
+	public static final int CookieExpiresTime = 10 * 365 * 24 * 60 * 60;// cookie过期时间10年，记住密码
 	private static String InfoSeparator = "<#nankai#>";
 
 	/**
@@ -114,13 +114,23 @@ public class SSMUtils {
 		cookieRememberMeToken.setPath("/");
 		cookieRememberMeToken.setMaxAge(0);
 		cookieRememberMeUserID.setMaxAge(0);
-		cookieRememberMeToken.setMaxAge(0);
 		response.addCookie(cookieRememberMeUserID);
 		response.addCookie(cookieRememberMeToken);
 		// 返回新的session
 		session = request.getSession(true);
 	}
 
+	public static void clearRememberMe(HttpServletResponse response)
+	{
+		Cookie cookieRememberMeUserID = new Cookie(CommonConstants.REMEMBER_ME_USERID, null);
+		Cookie cookieRememberMeToken = new Cookie(CommonConstants.REMEMBER_ME_TOKEN, null);
+		cookieRememberMeUserID.setPath("/");
+		cookieRememberMeToken.setPath("/");
+		cookieRememberMeToken.setMaxAge(0);
+		cookieRememberMeUserID.setMaxAge(0);
+		response.addCookie(cookieRememberMeUserID);
+		response.addCookie(cookieRememberMeToken);
+	}
 	public static File getFile(MultipartFile imgFile, String userID, String articleImg) {
 		String fileName = imgFile.getOriginalFilename();
 		// 获取上传文件类型的扩展名,先得到.的位置，再截取从.的下一个位置到文件的最后，最后得到扩展名
@@ -224,7 +234,7 @@ public class SSMUtils {
 		String rootPath = "http://" + request.getLocalAddr() + ":" + request.getLocalPort()
 				+ session.getServletContext().getContextPath();
 		model.put("forgetPasswordUrl", rootPath + "/user/forgetPassword" + "?token=" + base64String);
-		model.put("adminEmail", "564289319@qq.com");
+		model.put("adminEmail", CommonConstants.ADMIN_EMAIL);
 		try {
 			sendEmailService.sendWithTemplate(model);
 			System.out.println("邮件发送成功！");

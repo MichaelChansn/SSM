@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.ks.ssm.dao.ArticleMapper;
 import com.ks.ssm.dao.CommentMapper;
+import com.ks.ssm.domain.ArticleIdAndStatus;
 import com.ks.ssm.domain.Comment;
 import com.ks.ssm.service.ICommentService;
 
@@ -74,6 +75,30 @@ public class CommentServiceImpl implements ICommentService {
 	public int updateByPrimaryKey(Comment record) {
 		// TODO Auto-generated method stub
 		return commentDao.updateByPrimaryKey(record);
+	}
+
+	@Override
+	public int countWithStatus(boolean status) {
+		// TODO Auto-generated method stub
+		return commentDao.countWithStatus(status);
+	}
+
+	@Override
+	public int countWithArticleIdAndStatus(ArticleIdAndStatus articleIdAndStatus) {
+		// TODO Auto-generated method stub
+		return commentDao.countWithArticleIdAndStatus(articleIdAndStatus);
+	}
+
+	@Override
+	public Comment selectByPrimaryKeyWithOutBLOBs(Long id) {
+		// TODO Auto-generated method stub
+		return commentDao.selectByPrimaryKeyWithOutBLOBs(id);
+	}
+
+	@Override
+	public List<Comment> selectByArticleIDWithStatus(ArticleIdAndStatus articleIdAndStatus) {
+		// TODO Auto-generated method stub
+		return commentDao.selectByArticleIDWithStatus(articleIdAndStatus);
 	}
 
 }

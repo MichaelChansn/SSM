@@ -30,6 +30,12 @@
     where id = #{id,jdbcType=BIGINT}
   </select>
   <!-- add by ks -->
+  <select id="selectByPrimaryKeyWithoutBLOBs" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from article_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
     <select id="selectByUserID" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
