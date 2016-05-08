@@ -40,9 +40,8 @@ public class IndexController {
 	@LoginCheck(saveInfo=true,autoLogin=true)
 	public String toIndex(HttpServletRequest request,HttpServletResponse response, HttpSession session, Model model) {
 		String retWeb = "index";
-		logger.info("this is a test");
-		//System.err.println(System.getProperty("ssm.root"));
-		//System.err.println(session.getServletContext().getContextPath());
+		logger.info(System.getProperty("catalina.base"));
+//		System.err.println(System.getProperty("ssm.root"));
 		if (SSMUtils.isLogin(session)) {
 			switch (SSMUtils.getAuth(session)) {
 			case CommonConstants.USER_AUTH_ADMIN:

@@ -4,12 +4,24 @@
         <div id="comment-$!{userAndcomment.comment.id}" class="comment-block">
             <div class="row">
                     <div class="avatar col-sm-1">
-                        <img src="http://localhost:8080/ssm/user/img/$userAndcomment.user.id/articleImg/$userAndcomment.user.pic">
+						#if(${userAndcomment.comment.anonymous})
+    						<img src="img/anonymous.png">
+						#else
+							#if(${userAndcomment.user.titlepic} && ${userAndcomment.user.titlepic.length()}>0)
+    							<img src="user/img/$userAndcomment.user.id/headerImg/$userAndcomment.user.pic">
+    					    #else
+    							<img src="img/no_header_img.png">
+    						#end
+						#end
+                        
                     </div>
                     <div class="reply col-sm-10">
                     <span class="userlogin">
-                        <a href="/user/$!{userAndcomment.user.id}">$!{userAndcomment.user.username}
-                        </a>
+						#if(${userAndcomment.comment.anonymous})
+							<a href="javascript:void(0)">匿名</a>
+						#else
+							<a href="user/$!{userAndcomment.user.id}">$!{userAndcomment.user.username}</a>
+						#end
                     </span>
                     <span class="body">$!{userAndcomment.comment.content}
                         <span class="text-warning pull-right" style="color:#ccc;padding-right:0px;padding-left:15px">评论于$!date.format('yyyy-MM-dd HH:mm:ss',$!{userAndcomment.comment.commenttime})</span>
@@ -32,10 +44,10 @@
 </div>
 	#else
 <div class="input-block $!{articleId}-input-block">
-        <form id="$!{articleId}-form" role="form" action="http://localhost:8080/ssm/user/addComment" enctype="multipart/form-data" method="post" >
+        <form id="$!{articleId}-form" role="form" action="user/addComment" enctype="multipart/form-data" method="post" >
             <input type="hidden" name="articleId" value=$!{articleId}>
 			<div class="form-group">
-                <textarea id="$!{articleId}-textarea" name="commentContent" class="form-control" rows="1" placeholder="记请不要发表与本内容无关的评论，您有了账号就是有身份的人了，我们可认识您!"></textarea>
+                <textarea id="$!{articleId}-textarea" name="commentContent" class="form-control" rows="1" placeholder="您有了账号就是有身份的人了,记请不要发表与本内容无关的评论!"></textarea>
             </div>
             <div class="btn-send">
                 <div  class="btn btn-success" onclick="avascript:addComment($!{articleId})">  发　表  </div>

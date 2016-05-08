@@ -82,7 +82,7 @@
 					#getErrorMessages("articlePublish","articleContent")
                 </div>
                 <div class="form-group form-select">
-                    <label class="form-control-static" for="inputfile">图片:</label>
+                    <label class="form-control-static" for="inputfile">图片(<span class="text-danger">小于1M</span>):</label>
                     <input name="articleImg" class="file-select" type="file" id="inputfile" >
                         <label class="checkbox form-select check ">
                             <input name="articleAnonymous" type="checkbox" #if($!{articleAnonymous}) checked #end> 匿名发表

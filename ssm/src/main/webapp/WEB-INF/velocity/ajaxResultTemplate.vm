@@ -17,12 +17,23 @@
         <div id="comment-$!{userAndComment.comment.id}" class="comment-block">
             <div class="row">
                     <div class="avatar col-sm-1">
-                        <img src="http://localhost:8080/ssm/user/img/$userAndComment.user.id/articleImg/$userAndComment.user.pic">
+                       #if(${userAndcomment.comment.anonymous})
+    						<img src="img/anonymous.png">
+						#else
+							#if(${userAndcomment.user.titlepic} && ${userAndcomment.user.titlepic.length()}>0)
+    							<img src="user/img/$userAndcomment.user.id/headerImg/$userAndcomment.user.pic">
+    					    #else
+    							<img src="img/no_header_img.png">
+    						#end
+						#end
                     </div>
                     <div class="reply col-sm-10">
                     <span class="userlogin">
-                        <a href="/user/$!{userAndComment.user.id}">$!{userAndComment.user.username}
-                        </a>
+                        #if(${userAndcomment.comment.anonymous})
+							<a href="javascript:void(0)">匿名</a>
+						#else
+							<a href="user/$!{userAndcomment.user.id}">$!{userAndcomment.user.username}</a>
+						#end
                     </span>
                     <span class="body">$!{userAndComment.comment.content}
 						  <span class="text-danger pull-right" style="padding-right:0px; padding-left:15px">评论于$!date.format('yyyy-MM-dd HH:mm:ss',$!{userAndComment.comment.commenttime})</span>

@@ -1,1 +1,132 @@
-this is  in user manager page
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>留言板</title>
+     <link href="../css/bootstrap.min.css" rel="stylesheet">
+     <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/index.css" rel="stylesheet">
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/common.js"></script>
+</head>
+<body class="index-body">
+<div class="head-nav ">
+    <div class="head">
+        <div class="content-block" >
+			#if($!{SESSION_USER_NAME})
+				<div class="login" ><a href="userManager" style=" text-decoration: underline;color:red">[$!{SESSION_USER_NAME}]的个人中心</a>|<a href="logout">退出</a></div>
+			#else
+				<div class="login"><a href="user/login">登录</a> | <a href="user/register">注册</a></div>
+			#end
+            
+            <img class="img-responsive " src="../img/web_logo.png">
+        </div>
+    </div>
+    <nav class="navbar navbar-default " role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#example-navbar-collapse">
+                <span class="sr-only">切换导航</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class=" navbar-brand " href="javascript:void(0)"><img class="img-responsive center-block" src="../img/logo.png"></a>
+        </div>
+        <div class="collapse navbar-collapse navbar-centre" id="example-navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="../index">最新</a></li>
+                <li><a href="addArticle">发帖</a></li>
+                <li class="drop-divider"></li>
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+                        Java <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="javascript:void(0)">jmeter</a></li>
+                        <li class="divider"></li>
+                        <li><a href="javascript:void(0)">EJB</a></li>
+                        <li class="divider"></li>
+                        <li><a href="javascript:void(0)">Jasper Report</a></li>
+                        <li class="divider"></li>
+                        <li><a href="javascript:void(0)">分离的链接</a></li>
+                        <li class="divider"></li>
+                        <li><a href="javascript:void(0)">另一个分离的链接</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<div class="panel-show ">
+    <div class="panel panel-primary">
+            <div class="panel-heading">
+				<span class="user-info text-"><i class=" icon-edit"></i> (<span class="text-danger">$!{SESSION_USER_NAME}</span>) 的资料</span>
+            </div>
+			<div class="text-center container ">
+				<img src="../img/test.jpg" class="img-responsive center-block" alt="NO IMAGE" height="250" width="250"  >
+			</div>
+            <div class="panel-body ">
+                <div>用户名：${user.username}</div>
+                <div>性别：${user.gender}</div>
+                <div>生日：${user.birthday}</div>
+                <div>Emial：${user.email}</div>
+                <div>QQ：${user.qq}</div>
+                <div>手机：${user.phone}</div>
+                <div>城市：${user.city}</div>
+                <div>情感：${user.single}</div>
+                <div>心情：${user.mood}</div>
+                <div>等级：${user.level}</div>
+                <div>注册时间：$!date.format('yyyy年MM月dd日  HH:mm:ss',${user.enrolltime})</div>
+                <div>工作：${user.job}</div>
+            </div>
+            <div class="panel-footer text-center">
+                <a class="btn btn-danger " href="#"><i class=" icon-edit"></i>修改资料</a>
+            </div>
+        </div> 
+</div>
+<div class="panel-show ">
+    <div class="panel panel-primary" style="border-bottom:none">
+            <div class="panel-heading">
+				<span class="user-info text-"><i class=" icon-file-alt"></i> (<span class="text-danger">$!{SESSION_USER_NAME}</span>) 发表的文章</span>
+            </div>
+			#foreach(${article} in ${articles}) 
+                 #if(${article.pic} && ${article.pic.length()}>0)
+                <div class="container text-center">
+                    <img src="user/img/$user.userid/articleImg/$article.pic" class="img-responsive center-block" alt="NO IMAGE" height="500"  >
+                </div>
+    			#end
+                <div class="panel-body ">
+                    <p class="text-content">
+    					$!{article.content}
+                    </p>
+                </div>
+                <div class="panel-footer">
+                    <span class="btn btn-success $!{userAndarticle.article.id}btn"><i class="icon-thumbs-up"></i>点赞数<span class="$!{userAndarticle.article.id}upArticleNum">($!{article.up})</span></span> 
+                    <a class="btn btn-danger" href="javascript:articleComment($!{article.id});"><i class=" icon-edit"></i>评论<span class="$!{article.id}commentNum">($!{userAndarticle.commentNum})</span></a>
+        			<span class="panel-footer-date">发表于$!date.format('yyyy-MM-dd',$!{article.publishtime})</span>
+                </div>
+    			<div  class="$!{userAndarticle.article.id}comment comment-hide comments">
+                </div>
+				<div style="margin:0px -1px 0px -1px;border-bottom:20px solid rgb(255,228,196);"></div>
+			#end
+        </div> 
+</div>
+
+<div class="panel-show ">
+    <div class="panel panel-primary" style="border-bottom:none">
+            <div class="panel-heading">
+				<span class="user-info text-"><i class=" icon-comments"></i> (<span class="text-danger">$!{SESSION_USER_NAME}</span>) 发表的评论</span>
+            </div>
+			#foreach(${comment} in ${comments}) 
+                <div class="panel-body ">
+    					$!{comment.content}
+                </div>
+				<div style="margin:0px -1px 0px -1px;border-bottom:20px solid rgb(255,228,196);"></div>
+			#end
+        </div> 
+</div>
+</body>
+</html>

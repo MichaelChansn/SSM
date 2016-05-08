@@ -1,13 +1,10 @@
 package com.ks.ssm.controller;
 
 import java.io.File;
-import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
@@ -41,7 +38,6 @@ import com.ks.ssm.interceptors.LoginCheck;
 import com.ks.ssm.interceptors.TokenCheck;
 import com.ks.ssm.service.IArticleService;
 import com.ks.ssm.service.ICommentService;
-import com.ks.ssm.service.IUserAndArticleService;
 import com.ks.ssm.service.IUserAndCommentService;
 import com.ks.ssm.service.IUserService;
 import com.ks.ssm.utils.CommonUtils;
@@ -138,7 +134,7 @@ public class UserController {
 							fileName = file.getName();
 						} else {
 							model.addAttribute(RetInfos.ERROR, RetInfos.UPLOAD_PIC_ERROR_MSG);
-							model.addAttribute("articleContent", articlePublish.getArticleContent());
+							model.addAttribute("articleContent", articlePublish.getArticleContent().replaceAll("<br>","\r\n"));
 							model.addAttribute("articleAnonymous", articlePublish.isArticleAnonymous());
 							break;
 						}

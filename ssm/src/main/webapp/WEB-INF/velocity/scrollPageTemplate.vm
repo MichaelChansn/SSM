@@ -9,14 +9,22 @@
     <div class="panel panel-primary">
 		<div class="articleId">$!{userAndarticle.article.id}</div>
             <div class="panel-heading">
-				<img src="http://localhost:8080/ssm/user/img/$userAndarticle.article.userid/articleImg/$userAndarticle.article.pic"
-                 class="img-circle" width="35" height="35">
-            <span class="user-info"><a href="#" class="text-danger">$!{userAndarticle.user.username}</a></span>
+				#if(${userAndarticle.article.anonymous})
+					<img src="img/anonymous.png" class="img-circle" width="35" height="35">
+					<span class="user-info">匿名</span>
+				#else
+    				#if(${userAndarticle.user.titlepic} && $userAndarticle.user.titlepic.length()>0)
+    				<img src="user/img/$userAndarticle.article.userid/headerImg/$userAndarticle.article.pic" class="img-circle" width="35" height="35">
+    				 #else
+    					<img src="img/no_header_img.png" class="img-circle" width="35" height="35">
+    				 #end
+                   <span class="user-info"><a href="user/$!{userAndarticle.user.id}" class="text-danger">$!{userAndarticle.user.username}</a></span>
+			    #end
             </div>
 			
-            #if($userAndarticle.article.pic.length()>0)
+            #if(${userAndarticle.article.pic} && ${userAndarticle.article.pic.length()}>0)
             <div class="container text-center">
-                <img src="http://localhost:8080/ssm/user/img/$userAndarticle.article.userid/articleImg/$userAndarticle.article.pic" class="img-responsive center-block" alt="Cinque Terre" width="304"  >
+                <img src="user/img/$userAndarticle.article.userid/articleImg/$userAndarticle.article.pic" class="img-responsive center-block" alt="NO IMAGE" height="500"  >
             </div>
 			#end
             <div class="panel-body ">
@@ -27,7 +35,7 @@
             <div class="panel-footer">
                 <a class="btn btn-success $!{userAndarticle.article.id}btn" href="javascript:upArticle($!{userAndarticle.article.id});"><i class="icon-thumbs-up"></i>点赞<span class="$!{userAndarticle.article.id}upArticleNum">($!{userAndarticle.article.up})</span></a> 
                 <a class="btn btn-danger" href="javascript:articleComment($!{userAndarticle.article.id});"><i class=" icon-edit"></i>评论<span class="$!{userAndarticle.article.id}commentNum">($!{userAndarticle.commentNum})</span></a>
-    			<span class="panel-footer-date">发表于 $!date.format('yyyy-MM-dd',$!{userAndarticle.article.publishtime})</span>
+    			<span class="panel-footer-date">发表于$!date.format('yyyy-MM-dd',$!{userAndarticle.article.publishtime})</span>
             </div>
 			<div  class="$!{userAndarticle.article.id}comment comment-hide comments">
             </div>

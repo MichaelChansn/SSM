@@ -25,7 +25,7 @@ public class RetInfos {
 	
 	
 	public static final String ARTICLE_PUBLISH_SUCCESS_MSG="您的帖子发表成功，将在管理员审核通过之后发表";
-	public static final String UPLOAD_PIC_ERROR_MSG="请上传jpg,jpeg,bmp,gif,png形式的图片,1M以内";
+	public static final String UPLOAD_PIC_ERROR_MSG="请上传jpg,jpeg,bmp,gif,png形式的图片,大小1M以内";
 	
 	/**ajax返回模板数据键值*/
     public static final String USER_LIKE_AJAX_RESULT="USER_LIKE_AJAX_RESULT";

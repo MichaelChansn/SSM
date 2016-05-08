@@ -77,7 +77,7 @@ public class EscapeUtils {
 		if(CommonUtils.isBlank(str))
 			return null;
 		String retString=str;
-		retString=retString.replaceAll(">", "&gt;").replaceAll( "<", "&lt;").replaceAll("\n", "<br>");
+		retString=retString.replaceAll(">", "&gt;").replaceAll( "<", "&lt;").replaceAll("\r\n", "<br>");
 		return retString;
 		
 	}

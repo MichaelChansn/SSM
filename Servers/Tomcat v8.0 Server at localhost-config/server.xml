@@ -124,7 +124,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 		<!-- 虚拟路径映射，必须使用全路径-->
-       <Context path="/ssm/user/img" docBase="C:/" debug="0" reloadable="true" />
+       <Context path="/ssm/user/img" docBase="C:/ssm" debug="0" reloadable="true" />
       <Context docBase="ssm" path="/ssm" reloadable="true" source="org.eclipse.jst.jee.server:ssm"/></Host>
     </Engine>
   </Service>

@@ -91,7 +91,8 @@
         <!-- 文件大小最大值 -->
         <property name="maxUploadSize" value="1048576" />  
         <!-- 内存中的最大值 -->
-        <property name="maxInMemorySize" value="40960" />  
+        <property name="maxInMemorySize" value="4096000" />  
+        
     </bean> 
     
     <!-- SpringMVC在超出上传文件限制时，会抛出org.springframework.web.multipart.MaxUploadSizeExceededException -->  
@@ -102,7 +103,7 @@
             <props>  
                 <!-- 遇到MaxUploadSizeExceededException异常时，自动跳转到/WEB-INF/jsp/error_fileupload.jsp页面 -->  
                 <prop  
-                    key="org.springframework.web.multipart.MaxUploadSizeExceededException">error</prop>  
+                    key="org.springframework.web.multipart.MaxUploadSizeExceededException">fileSizeExceededError</prop>  
             </props>  
         </property>  
     </bean>  

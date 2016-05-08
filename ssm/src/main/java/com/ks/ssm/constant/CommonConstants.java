@@ -6,6 +6,8 @@ public class CommonConstants {
 	
 	public final static String SALT="copy right by ks";
 	
+	/**用户上传的文件存放的路径*/
+	public static final String IMG_VIRTUAL_PATH="C:/ssm/";
 	public static final String headImg = "headerImg";
 	public static final String articleImg = "articleImg";
 	public static final String USER_IMG_ROOT_PATH=ContextLoader.getCurrentWebApplicationContext().getServletContext().getContextPath()+ "/user/" + "img/";

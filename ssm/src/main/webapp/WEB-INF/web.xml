@@ -61,6 +61,7 @@
     <servlet-name>SpringMVC</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
+  
   	<servlet-mapping>
    	<servlet-name>default</servlet-name>      
 	<url-pattern>*.jpg</url-pattern>     
@@ -109,6 +110,7 @@
 	<servlet-name>default</servlet-name>           
 	<url-pattern>*.woff2</url-pattern> 
    </servlet-mapping>
+   
   <!-- <welcome-file-list>
     <welcome-file>/index.jsp</welcome-file>
   </welcome-file-list> -->
