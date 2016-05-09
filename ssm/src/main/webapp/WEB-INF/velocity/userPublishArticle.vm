@@ -9,7 +9,8 @@
     <link href="../css/index.css" rel="stylesheet">
     <script src="../js/jquery.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/common.js"></script>
+    <script src="../js/common2.js"></script>
+	<script src="../js/jquery.infinitescroll.min.js" type="text/javascript"></script>
 </head>
 <body class="index-body">
 <div class="head-nav ">
@@ -64,34 +65,78 @@
 </div>
 
 <div class="panel-show ">
-    <div class="panel panel-primary" style="border-bottom:none">
+    <div class="panel panel-primary userArticles "style="border-bottom:none">
             <div class="panel-heading">
 				<span class="user-info text-"><i class=" icon-file-alt"></i> (<span class="text-danger">$!{SESSION_USER_NAME}</span>) 发表的文章</span>
             </div>
-			#foreach(${article} in ${articles}) 
-				<div class="publish-article-date">
-					<span class="text-left">发表于 $!date.format('yyyy-MM-dd HH:mm:ss',$!{article.publishtime})</span>
+			#foreach(${articleAndCommentNum} in ${articleAndCommentNums}) 
+				<div class="userArticle">
+        				<div class="articleId">
+        					$!{articleAndCommentNum.article.id}
+        				</div>
+        				<div class="publish-article-date">
+        					<span class="text-left">发表于 $!date.format('yyyy-MM-dd HH:mm:ss',$!{articleAndCommentNum.article.publishtime})</span>
+        				</div>
+                        #if(${articleAndCommentNum.article.pic} && ${articleAndCommentNum.article.pic.length()}>0)
+                        <div class="container text-center">
+                            <img src="$!{SESSION_WEB_ROOT_PATH}/user/img/$articleAndCommentNum.article.userid/articleImg/$articleAndCommentNum.article.pic" class="img-responsive center-block" alt="NO IMAGE" width="400"  >
+                        </div>
+            			#end
+                        <div class="panel-body ">
+                            <p class="text-content">
+            					$!{articleAndCommentNum.article.content}
+                            </p>
+                        </div>
+                        <div class="panel-footer">
+                            <span class=" text-info" ><i class="icon-thumbs-up"></i>点赞数($!{articleAndCommentNum.article.up})</span></span> 
+                            <a class=" text-danger" href="javascript:articleComment($!{articleAndCommentNum.article.id});"><i class=" icon-edit"></i>评论<span class="$!{articleAndCommentNum.article.id}commentNum">($!{articleAndCommentNum.commentNum})</span></a>
+                        </div>
+            			<div  class="$!{articleAndCommentNum.article.id}comment comment-hide comments">
+                        </div>
+						<div style="margin:0px -1px 0px -1px;border-bottom:20px solid rgb(255,228,196);"></div>
 				</div>
-                 #if(${article.pic} && ${article.pic.length()}>0)
-                <div class="container text-center">
-                    <img src="img/$article.userid/articleImg/$article.pic" class="img-responsive center-block" alt="NO IMAGE" width="400px"  >
-                </div>
-    			#end
-                <div class="panel-body ">
-                    <p class="text-content">
-    					$!{article.content}
-                    </p>
-                </div>
-                <div class="panel-footer">
-                    <span class=" text-info disabled"><i class="icon-thumbs-up"></i>点赞数<span class="$!{userAndarticle.article.id}upArticleNum">($!{article.up})</span></span> 
-                    <a class=" text-danger " href="javascript:articleComment($!{article.id});"><i class=" icon-edit"></i>评论数<span class="$!{article.id}commentNum">($!{userAndarticle.commentNum})</span></a>
-                </div>
-    			<div  class="$!{userAndarticle.article.id}comment comment-hide comments">
-                </div>
-				<div style="margin:0px -1px 0px -1px;border-bottom:20px solid rgb(255,228,196);"></div>
-			#end
-        </div> 
+				#end 
+    </div> 
 </div>
+<div class="panel-loading ">
+    <div class="panel panel-primary">
+        <div class="panel-body text-center">
+    			<div class="loading">
+    				<img src="../img/loading.gif"><span>正在加载...</span>
+    			</div>
+        </div>
+    </div>
+</div>
+<div id="navigation"><a href="userPublishArticle?page=1"></a></div>
+<script type="text/javascript">
+$(document).ready(function() {
 
+            $('.userArticles').infinitescroll({
+                navSelector: "#navigation", //导航的选择器，会被隐藏
+                nextSelector: "#navigation a", //包含下一页链接的选择器
+                itemSelector: ".userArticle", //你将要取回的选项(内容块)
+                debug: true, //启用调试信息
+                animate: false, //当有新数据加载进来的时候，页面是否有动画效果，默认没有
+                extraScrollPx: 150, //滚动条距离底部多少像素的时候开始加载，默认150
+                bufferPx: 40, //载入信息的显示时间，时间越大，载入信息显示时间越短
+                errorCallback: function() {
+                    $(".loading").html("<span>没有数据了。。。</span>");
+                }, //当出错的时候，比如404页面的时候执行的函数
+                localMode: true, //是否允许载入具有相同函数的页面，默认为false
+                dataType: 'html',//可以是json
+                loading: {
+                    msgText: "加载中...",
+                    finishedMsg: '没有新数据了...',
+                    selector: '.loading' // 显示loading信息的div
+                }
+            }, function(newElems) {
+                //程序执行完的回调函数
+                var $newElems = $(newElems);
+                $('.userArticles').append($newElems);
+            });
+
+        });
+
+    </script>
 </body>
 </html>

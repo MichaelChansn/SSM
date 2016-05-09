@@ -74,7 +74,9 @@
             </div>
 			<div class="text-center container ">
 				#if(${user.titlepic} && ${user.titlepic.length()}>0)
+				<img src="$!{SESSION_WEB_ROOT_PATH}/user/img/$user.id/headerImg/$user.titlepic" class="img-circle img-thumbnail img-responsive center-block" alt="NO IMAGE" height="200" width="200"  >
 				#else
+				<img src="$!{SESSION_WEB_ROOT_PATH}/img/no_header_img.png" class="img-circle img-thumbnail img-responsive center-block" alt="NO IMAGE" height="200" width="200"  >
 				#end
 			</div>
             <div class="panel-body text-center text-info text-content">
