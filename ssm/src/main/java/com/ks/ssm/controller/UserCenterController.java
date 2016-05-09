@@ -11,11 +11,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ks.ssm.domain.Article;
 import com.ks.ssm.domain.Comment;
 import com.ks.ssm.domain.User;
 import com.ks.ssm.interceptors.LoginCheck;
+import com.ks.ssm.interceptors.TokenCheck;
 import com.ks.ssm.service.IArticleService;
 import com.ks.ssm.service.ICommentService;
 import com.ks.ssm.service.IUserService;
@@ -36,15 +38,26 @@ public class UserCenterController {
 	@Resource
 	private ICommentService commentService;
 	
-	@RequestMapping(value = "/userManager")
+	@RequestMapping(value = "/userManager",method=RequestMethod.GET)
 	@LoginCheck(check=true,autoLogin=true)
-	public String userManager(HttpServletRequest request,HttpSession session, Model model) {
+	@TokenCheck(generateToken=true)
+	public String userManagerGet(HttpServletRequest request,HttpSession session, Model model) {
 		
 		User user=userService.getUserById(SSMUtils.getUserId(session));
 		model.addAttribute("user", user);
 		return "userManager";
 	}
 
+	@RequestMapping(value = "/userManager",method=RequestMethod.POST)
+	@LoginCheck(check=true,autoLogin=true)
+	@TokenCheck(generateToken=true)
+	public String userManagerPost(HttpServletRequest request,HttpSession session, Model model) {
+		
+		User user=userService.getUserById(SSMUtils.getUserId(session));
+		model.addAttribute("user", user);
+		return "userManager";
+	}
+	
 	@RequestMapping(value = "/userPublishArticle")
 	@LoginCheck(check=true,autoLogin=true)
 	public String userPublishArticle(HttpServletRequest request,HttpSession session, Model model) {
@@ -61,6 +74,9 @@ public class UserCenterController {
 		model.addAttribute("comments", comments);
 		return "userPublishComment";
 	}
+	
+	
+	
 	/**查看别人的主页 restful风格的url*/
 	@RequestMapping(value = "/{userId}")
 	@LoginCheck(saveInfo=true,autoLogin=true)
