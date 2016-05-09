@@ -5,12 +5,12 @@
             <div class="row">
                     <div class="avatar col-sm-1">
 						#if(${userAndcomment.comment.anonymous})
-    						<img src="img/anonymous.png">
+    						<img src="$!{SESSION_WEB_ROOT_PATH}/img/anonymous.png">
 						#else
 							#if(${userAndcomment.user.titlepic} && ${userAndcomment.user.titlepic.length()}>0)
-    							<img src="user/img/$userAndcomment.user.id/headerImg/$userAndcomment.user.pic">
+    							<img src="$!{SESSION_WEB_ROOT_PATH}/user/img/$userAndcomment.user.id/headerImg/$userAndcomment.user.titlepic">
     					    #else
-    							<img src="img/no_header_img.png">
+    							<img src="$!{SESSION_WEB_ROOT_PATH}/img/no_header_img.png">
     						#end
 						#end
                         
@@ -20,19 +20,23 @@
 						#if(${userAndcomment.comment.anonymous})
 							<a href="javascript:void(0)">匿名</a>
 						#else
-							<a href="user/$!{userAndcomment.user.id}">$!{userAndcomment.user.username}</a>
+							<a href="$!{SESSION_WEB_ROOT_PATH}/user/$!{userAndcomment.user.id}">$!{userAndcomment.user.username}</a>
 						#end
                     </span>
                     <span class="body">$!{userAndcomment.comment.content}
                         <span class="text-warning pull-right" style="color:#ccc;padding-right:0px;padding-left:15px">评论于$!date.format('yyyy-MM-dd HH:mm:ss',$!{userAndcomment.comment.commenttime})</span>
                     </span>
                     </div>
+					
                     <div class="report col-sm-1">
+						#if($!{SESSION_ISLOGIN})
                         <a href="javascript:reportComment($!{userAndcomment.comment.id})" class="link"><span class="text-warning">举报</span>
-                        </a> &nbsp;
+                        </a>
+						#end
 		                <span title="$!date.format('yyyy-MM-dd HH:mm:ss',$!{userAndcomment.comment.commenttime})">$index
 		                </span>
                     </div>
+					
             </div>
         </div>
     </div>
@@ -44,7 +48,7 @@
 </div>
 	#else
 <div class="input-block $!{articleId}-input-block">
-        <form id="$!{articleId}-form" role="form" action="user/addComment" enctype="multipart/form-data" method="post" >
+        <form id="$!{articleId}-form" role="form"  enctype="multipart/form-data" method="post" >
             <input type="hidden" name="articleId" value=$!{articleId}>
 			<div class="form-group">
                 <textarea id="$!{articleId}-textarea" name="commentContent" class="form-control" rows="1" placeholder="您有了账号就是有身份的人了,记请不要发表与本内容无关的评论!"></textarea>

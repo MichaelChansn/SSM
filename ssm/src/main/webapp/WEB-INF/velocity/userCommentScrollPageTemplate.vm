@@ -1,0 +1,12 @@
+#foreach(${comment} in ${comments})
+				<div class="userComment">
+    				<div class="publish-article-date">
+            			<span class="text-left">评论于 $!date.format('yyyy-MM-dd HH:mm:ss',$!{comment.commenttime})</span>
+    					<span class="text-danger text-left" style="padding-left:10px;"><a class="text-danger" href="$!{SESSION_WEB_ROOT_PATH}/user/article/$!{comment.articleid}">查看详情</a></span>
+            		</div>
+                    <div class="panel-body " style="padding-top:0px;">
+        					<span class="text-left text-info" style="padding-right:10px;">您评论了</span>$!{comment.content}
+                    </div>
+					<div style="margin:0px -1px 0px -1px;border-bottom:20px solid rgb(255,228,196);"></div>
+				</div>
+#end

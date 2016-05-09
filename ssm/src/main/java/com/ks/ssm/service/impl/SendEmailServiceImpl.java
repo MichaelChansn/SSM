@@ -11,10 +11,10 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.velocity.VelocityEngineUtils;
 
-import com.ks.ssm.service.SendEmailService;
+import com.ks.ssm.service.ISendEmailService;
 
 @Service("sendEmailService")
-public class SendEmailServiceImpl implements SendEmailService {
+public class SendEmailServiceImpl implements ISendEmailService {
 
 	@Resource
 	private JavaMailSender mailSender;//spring配置中定义  

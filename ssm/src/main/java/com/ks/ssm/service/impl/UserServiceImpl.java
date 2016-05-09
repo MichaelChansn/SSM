@@ -46,6 +46,12 @@ public class UserServiceImpl implements IUserService {
 		return userDao.updateByPrimaryKeySelective(record);
 	}
 
+	@Override
+	public User selectByPrimaryKey(Long id) {
+		// TODO Auto-generated method stub
+		return userDao.selectByPrimaryKey(id);
+	}
+
 
 	
 

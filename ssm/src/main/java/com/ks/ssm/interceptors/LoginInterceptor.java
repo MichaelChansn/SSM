@@ -37,7 +37,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 
 				boolean rememberMe = annotation.autoLogin();
 				if (rememberMe && !SSMUtils.isLogin(session)) {
-					
+					session.setAttribute(CommonConstants.SESSION_WEB_ROOT_PATH, CommonConstants.WEB_ROOT_PATH);
 					String sUserId = SSMUtils.getCookieByName(CommonConstants.REMEMBER_ME_USERID, request);
 					String token = SSMUtils.getCookieByName(CommonConstants.REMEMBER_ME_TOKEN, request);
 

@@ -18,12 +18,12 @@
             <div class="row">
                     <div class="avatar col-sm-1">
                        #if(${userAndComment.comment.anonymous})
-    						<img src="img/anonymous.png">
+    						<img src="$!{SESSION_WEB_ROOT_PATH}/img/anonymous.png">
 						#else
 							#if(${userAndComment.user.titlepic} && ${userAndComment.user.titlepic.length()}>0)
-    							<img src="user/img/$userAndcomment.user.id/headerImg/$userAndcomment.user.pic">
+    							<img src="$!{SESSION_WEB_ROOT_PATH}/user/img/$userAndComment.user.id/headerImg/$userAndComment.user.titlepic">
     					    #else
-    							<img src="img/no_header_img.png">
+    							<img src="$!{SESSION_WEB_ROOT_PATH}/img/no_header_img.png">
     						#end
 						#end
                     </div>
@@ -32,17 +32,19 @@
                         #if(${userAndComment.comment.anonymous})
 							<a href="javascript:void(0)">匿名</a>
 						#else
-							<a href="user/$!{userAndcomment.user.id}">${userAndComment.user.username}</a>
+							<a href="$!{SESSION_WEB_ROOT_PATH}/user/$!{userAndComment.user.id}">${userAndComment.user.username}</a>
 						#end
                     </span>
                     <span class="body">$!{userAndComment.comment.content}
 						  <span class="text-danger pull-right" style="padding-right:0px; padding-left:15px">评论于$!date.format('yyyy-MM-dd HH:mm:ss',$!{userAndComment.comment.commenttime})</span>
                     </span>
                     </div>
-                    <div class="report col-sm-1">
+                   <div class="report col-sm-1">
+						#if($!{SESSION_ISLOGIN})
                         <a href="javascript:reportComment($!{userAndComment.comment.id})" class="link"><span class="text-warning">举报</span>
-                        </a> &nbsp;
-		                <span title="$!date.format('yyyy-MM-dd HH:mm:ss',$!{userAndComment.comment.commenttime})">你
+                        </a>
+						#end
+		                <span title="$!date.format('yyyy-MM-dd HH:mm:ss',$!{userAndComment.comment.commenttime})">您
 		                </span>
                     </div>
             </div>

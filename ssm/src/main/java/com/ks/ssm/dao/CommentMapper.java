@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.ks.ssm.domain.ArticleIdAndStatus;
 import com.ks.ssm.domain.Comment;
+import com.ks.ssm.domain.UserIdAndPageQuery;
 
 public interface CommentMapper {
     int deleteByPrimaryKey(Long id);
@@ -23,6 +24,8 @@ public interface CommentMapper {
     List<Comment> selectByUserID(Long fromuserid);
     
     List<Comment> selectByStatus(Boolean status);
+    
+    List<Comment> selectByPageWithUserId(UserIdAndPageQuery userIdAndPageQuery);
 
     int updateByPrimaryKeySelective(Comment record);
 

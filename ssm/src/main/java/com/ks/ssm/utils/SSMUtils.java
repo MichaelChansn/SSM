@@ -23,7 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.ks.ssm.constant.CommonConstants;
 import com.ks.ssm.domain.User;
 import com.ks.ssm.service.IUserService;
-import com.ks.ssm.service.SendEmailService;
+import com.ks.ssm.service.ISendEmailService;
 
 public class SSMUtils {
 
@@ -77,6 +77,7 @@ public class SSMUtils {
 		session.setAttribute(CommonConstants.SESSION_USERID, userInfo.getId());
 		session.setAttribute(CommonConstants.SESSION_USEREMAIL, userInfo.getEmail());
 		session.setAttribute(CommonConstants.SESSION_USER_NAME, userInfo.getUsername());
+		session.setAttribute(CommonConstants.SESSION_WEB_ROOT_PATH, CommonConstants.WEB_ROOT_PATH);
 	}
 
 	public static boolean isLogin(HttpSession session) {
@@ -219,7 +220,7 @@ public class SSMUtils {
 	}
 
 	public static String generateForgetPasswordToken(HttpServletRequest request, HttpSession session,
-			IUserService userService, SendEmailService sendEmailService, User user) {
+			IUserService userService, ISendEmailService sendEmailService, User user) {
 		String uuid = UUID.randomUUID().toString();
 		String token = MD5Encoding.MD5Encode(uuid + CommonConstants.SALT + user.getUsername() + user.getId());
 		String tokenAndUserId = user.getId() + InfoSeparator + token;

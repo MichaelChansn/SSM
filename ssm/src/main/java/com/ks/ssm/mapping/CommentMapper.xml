@@ -47,6 +47,15 @@
     where articleid = #{articleid,jdbcType=BIGINT} and status = #{status,jdbcType=BIGINT}
   </select>
   
+  <select id="selectByPageWithUserId" resultMap="ResultMapWithBLOBs" parameterType="com.ks.ssm.domain.UserIdAndPageQuery" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from comment_info
+    WHERE id<![CDATA[<=]]> (SELECT id FROM comment_info WHERE fromuserid=#{userId,jdbcType=BIGINT} ORDER BY id DESC LIMIT #{offset,jdbcType=BIGINT}, 1) AND fromuserid=#{userId,jdbcType=BIGINT} ORDER BY id DESC LIMIT #{pageSize,jdbcType=BIGINT}
+  </select>
+  
   <select id="selectByUserID" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />

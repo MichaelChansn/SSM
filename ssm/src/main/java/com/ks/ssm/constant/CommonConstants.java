@@ -10,7 +10,7 @@ public class CommonConstants {
 	public static final String IMG_VIRTUAL_PATH="C:/ssm/";
 	public static final String headImg = "headerImg";
 	public static final String articleImg = "articleImg";
-	public static final String USER_IMG_ROOT_PATH=ContextLoader.getCurrentWebApplicationContext().getServletContext().getContextPath()+ "/user/" + "img/";
+	public static final String WEB_ROOT_PATH=ContextLoader.getCurrentWebApplicationContext().getServletContext().getContextPath();
 /*
  * request.getSession().getServletContext().getContextPath() + "/user" + "/"
 						+ "img/" + userID + "/" + articleImg + "/" + file.getName()
@@ -23,6 +23,7 @@ public class CommonConstants {
     public static final String SESSION_USERID="SESSION_USERID";
     public static final String SESSION_AUTH="SESSION_AUTH";
     public static final String SESSION_ISLOGIN="SESSION_ISLOGIN";
+    public static final String SESSION_WEB_ROOT_PATH="SESSION_WEB_ROOT_PATH";
     
     public static final boolean SESSION_LOGIN=true;
     public static final boolean SESSION_NOT_LOGIN=false;

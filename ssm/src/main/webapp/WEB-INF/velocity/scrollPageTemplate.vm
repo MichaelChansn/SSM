@@ -10,21 +10,21 @@
 		<div class="articleId">$!{userAndarticle.article.id}</div>
             <div class="panel-heading">
 				#if(${userAndarticle.article.anonymous})
-					<img src="img/anonymous.png" class="img-circle" width="35" height="35">
+					<img src="img/anonymous.png" class="img-circle img-thumbnail" width="35" height="35">
 					<span class="user-info">匿名</span>
 				#else
     				#if(${userAndarticle.user.titlepic} && $userAndarticle.user.titlepic.length()>0)
-    				<img src="user/img/$userAndarticle.article.userid/headerImg/$userAndarticle.article.pic" class="img-circle" width="35" height="35">
+    				<img src="$!{SESSION_WEB_ROOT_PATH}/user/img/$userAndarticle.article.userid/headerImg/$userAndarticle.user.titlepic" class="img-circle img-thumbnail" width="35" height="35">
     				 #else
-    					<img src="img/no_header_img.png" class="img-circle" width="35" height="35">
+    					<img src="$!{SESSION_WEB_ROOT_PATH}/img/no_header_img.png" class="img-circle img-thumbnail" width="35" height="35">
     				 #end
-                   <span class="user-info"><a href="user/$!{userAndarticle.user.id}" class="text-danger">$!{userAndarticle.user.username}</a></span>
+                   <span class="user-info"><a href="$!{SESSION_WEB_ROOT_PATH}/user/$!{userAndarticle.user.id}" class="text-danger">$!{userAndarticle.user.username}</a></span>
 			    #end
             </div>
 			
             #if(${userAndarticle.article.pic} && ${userAndarticle.article.pic.length()}>0)
             <div class="container text-center">
-                <img src="user/img/$userAndarticle.article.userid/articleImg/$userAndarticle.article.pic" class="img-responsive center-block" alt="NO IMAGE" width="400"  >
+                <img src="$!{SESSION_WEB_ROOT_PATH}/user/img/$userAndarticle.article.userid/articleImg/$userAndarticle.article.pic" class="img-responsive center-block" alt="NO IMAGE" width="400"  >
             </div>
 			#end
             <div class="panel-body ">

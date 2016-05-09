@@ -10,6 +10,7 @@ import com.ks.ssm.dao.ArticleMapper;
 import com.ks.ssm.dao.CommentMapper;
 import com.ks.ssm.domain.ArticleIdAndStatus;
 import com.ks.ssm.domain.Comment;
+import com.ks.ssm.domain.UserIdAndPageQuery;
 import com.ks.ssm.service.ICommentService;
 
 @Service("commentService")
@@ -99,6 +100,12 @@ public class CommentServiceImpl implements ICommentService {
 	public List<Comment> selectByArticleIDWithStatus(ArticleIdAndStatus articleIdAndStatus) {
 		// TODO Auto-generated method stub
 		return commentDao.selectByArticleIDWithStatus(articleIdAndStatus);
+	}
+
+	@Override
+	public List<Comment> selectByPageWithUserId(UserIdAndPageQuery userIdAndPageQuery) {
+		// TODO Auto-generated method stub
+		return commentDao.selectByPageWithUserId(userIdAndPageQuery);
 	}
 
 }

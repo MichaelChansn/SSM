@@ -3,7 +3,9 @@ package com.ks.ssm.service;
 import java.util.List;
 
 import com.ks.ssm.domain.Article;
+import com.ks.ssm.domain.ArticleAndCommentNum;
 import com.ks.ssm.domain.PageQuery;
+import com.ks.ssm.domain.UserIdAndPageQuery;
 
 public interface IArticleService {
 	int deleteByPrimaryKey(Long id);
@@ -23,11 +25,15 @@ public interface IArticleService {
     List<Article> selectByPageWithPublish(PageQuery pageQuery);
     
     List<Article> selectByPageWithNotPublish(PageQuery pageQuery);
+    
+    List<Article> selectByPageWithUserId(UserIdAndPageQuery userIdAndPageQuery);
 
     int updateByPrimaryKeySelective(Article record);
 
     int updateByPrimaryKeyWithBLOBs(Article record);
 
     int updateByPrimaryKey(Article record);
+    
+    
 
 }

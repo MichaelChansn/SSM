@@ -20,7 +20,7 @@ import com.ks.ssm.form.domain.SetNewPassword;
 import com.ks.ssm.interceptors.LoginCheck;
 import com.ks.ssm.interceptors.TokenCheck;
 import com.ks.ssm.service.IUserService;
-import com.ks.ssm.service.SendEmailService;
+import com.ks.ssm.service.ISendEmailService;
 import com.ks.ssm.utils.CommonUtils;
 import com.ks.ssm.utils.SSMUtils;
 
@@ -32,7 +32,7 @@ public class ForgetPasswordController {
 	private IUserService userService;
 	
 	@Resource
-	private SendEmailService sendEmailService;
+	private ISendEmailService sendEmailService;
 
 	
 	@RequestMapping(value = "/forgetPassword", method = RequestMethod.GET)

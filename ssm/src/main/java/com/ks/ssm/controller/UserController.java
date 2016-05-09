@@ -342,7 +342,6 @@ public class UserController {
 			userAndComment.setUser(user);
 			model.addAttribute("userAndComment", userAndComment);
 			model.addAttribute(RetInfos.SUCCESS, "评论成功！");
-
 		} while (false);
 		return retWeb;
 	}

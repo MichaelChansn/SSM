@@ -7,6 +7,6 @@ import com.ks.ssm.domain.UserAndArticle;
 
 public interface IUserAndArticleService {
 	
-	public List<UserAndArticle>getUserAndArticleByArticle(List<Article> articleList);
+	public List<UserAndArticle> getUserAndArticleByArticle(List<Article> articleList);
 
 }

@@ -1,0 +1,27 @@
+   #foreach(${articleAndCommentNum} in ${articleAndCommentNums}) 
+	<div class="userArticle">
+			<div class="articleId">
+				$!{articleAndCommentNum.article.id}
+			</div>
+			<div class="publish-article-date">
+				<span class="text-left">发表于 $!date.format('yyyy-MM-dd HH:mm:ss',$!{articleAndCommentNum.article.publishtime})</span>
+			</div>
+            #if(${articleAndCommentNum.article.pic} && ${articleAndCommentNum.article.pic.length()}>0)
+            <div class="container text-center">
+                <img src="$!{SESSION_WEB_ROOT_PATH}/user/img/$articleAndCommentNum.article.userid/articleImg/$articleAndCommentNum.article.pic" class="img-responsive center-block" alt="NO IMAGE" width="400"  >
+            </div>
+			#end
+            <div class="panel-body ">
+                <p class="text-content">
+					$!{articleAndCommentNum.article.content}
+                </p>
+            </div>
+            <div class="panel-footer">
+                <span class=" text-info" ><i class="icon-thumbs-up"></i>点赞数($!{articleAndCommentNum.article.up})</span></span> 
+                <a class=" text-danger" href="javascript:articleComment($!{articleAndCommentNum.article.id});"><i class=" icon-edit"></i>评论<span class="$!{articleAndCommentNum.article.id}commentNum">($!{articleAndCommentNum.commentNum})</span></a>
+            </div>
+			<div  class="$!{articleAndCommentNum.article.id}comment comment-hide comments">
+            </div>
+			<div style="margin:0px -1px 0px -1px;border-bottom:20px solid rgb(255,228,196);"></div>
+	</div>
+#end

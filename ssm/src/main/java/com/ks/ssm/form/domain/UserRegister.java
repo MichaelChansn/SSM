@@ -17,11 +17,11 @@ public class UserRegister {
 	private String email;
 	
 	@NotBlank(message="密码不能为空")
-	@Length(min=6,max=50,message="密码长度在6到50个字符之间")
+	@Length(min=6,max=15,message="密码长度在6到15个字符之间")
 	private String password;
 	
 	@NotBlank(message="密码确认不能为空")
-	@Length(min=6,max=50,message="密码长度在6到50个字符之间")
+	@Length(min=6,max=15,message="密码长度在6到15个字符之间")
 	private String passwordConfirm;
 
 	public String getPasswordConfirm() {

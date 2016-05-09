@@ -73,17 +73,21 @@
 				<span class="user-info text-"><i class=" icon-edit"></i> (<span class="text-danger">$!{SESSION_USER_NAME}</span>) 的资料</span>
             </div>
 			<div class="text-center container ">
-				<img src="../img/test.jpg" class="img-circle img-responsive center-block" alt="NO IMAGE" height="200" width="200"  >
+				#if(${user.titlepic} && ${user.titlepic.length()}>0)
+				#else
+				#end
 			</div>
             <div class="panel-body text-center text-info text-content">
                 <div>${user.username}</div>
-				#if(${user.gender})
-                <div>${user.gender}</div>
+				#if(${user.gender}==true)
+                <div>男</div>
+				#elseif(${user.gender}==false)
+				<div>女</div>
 				#else
 				<div>未设置性别</div>
 				#end
 				#if(${user.birthday})
-                <div>${user.birthday}</div>
+                <div>$!date.format('yyyy年MM月dd日 ',${user.birthday})出生</div>
 				#else
 				<div>未设置生日</div>
 				#end
@@ -96,138 +100,140 @@
             </div>
 			
 			<div style="margin:0px -1px 0px -1px;border-bottom:20px solid rgb(255,228,196);"></div>
-			<div class="panel-body ">
-                <p class="text-content">
-            		<div class="login-form-div" style="padding-bottom:0px;padding-top:10px;">
-                        <form class="form-horizontal" role="form" action="register" method="post">
-                            <div class="form-group text-center">
-                            #if($!{ERROR})
-            				<h2><label  class="text-center" style="color:red">$!{ERROR}</label></h2>
-							#end
-                            </div>
-							<div class="text-center container ">
-                				<img src="../img/test.jpg" class="img-circle img-responsive center-block" alt="NO IMAGE" height="200" width="200"  >
-                			</div>
-							<div class="form-group form-select text-content text-center" style="margin-bottom:0px;padding-top:20px;">
-                                <input name="articleImg"  type="file" id="inputfile" >
-								<div style="font-size:14px;margin-top:15px">
-									<span class="text-danger" for="inputfile">图片支持JPG,jpeg,png,gif格式，尺寸小于400x400像素，文件容量1M以内</span>
-								</div>
-            					#if($!{ERROR})
-            						<span class="fm-error">$!{ERROR}</span>
-            					#end
-                            </div>
-            				<div class="form-group">
-            				#addToken(${SSM_TOKEN})
-            				</div>
-                        </form>
-                    </div>
-                </p>
-            </div>
-            <div class="panel-footer text-center">
-                <a class="btn btn-danger " href="#"><i class=" icon-edit"></i>修改头像</a>
-            </div>
+			<form class="form-horizontal" role="form" action="userManagerHeaderImg" enctype="multipart/form-data" method="post">
+    			<div class="panel-body ">
+                    <p class="text-content">
+                		<div class="login-form-div" style="padding-bottom:0px;padding-top:10px;">
+                           
+                                <div class="form-group text-center">
+                                #if($!{ERROR} && $!{headerImgError})
+                				<h4><label  class="text-center" style="color:red">$!{ERROR}</label></h4>
+    							#end
+                                </div>
+    							<div class="text-center container ">
+    								#if(${user.titlepic} && ${user.titlepic.length()}>0)
+                    				<img src="img/$user.id/headerImg/$user.titlepic" class="img-circle img-thumbnail img-responsive center-block" alt="NO IMAGE" height="200" width="200"  >
+    								#else
+    								<img src="../img/no_header_img.png" class="img-thumbnail img-responsive center-block" alt="NO IMAGE" height="200" width="200"  >
+    								#end
+                    			</div>
+    							<div class="form-group form-select text-content text-center" style="margin-bottom:0px;padding-top:20px;">
+                                    <input name="headerImg"  type="file" id="inputfile" >
+    								<div style="font-size:14px;margin-top:15px">
+    									<span class="text-danger" for="inputfile">图片支持JPG,jpeg,png,gif格式，尺寸小于400x400像素，文件容量1M以内</span>
+    								</div>
+                                </div>
+                				<div class="form-group">
+                				#addToken(${SSM_TOKEN})
+                				</div>
+                        </div>
+                    </p>
+                </div>
+                <div class="panel-footer text-center">
+                    <button class="btn btn-danger "type="submit"><i class=" icon-edit"></i>修改头像</button>
+                </div>
+			</form>
 			
 			
-			<div style="margin:0px -1px 0px -1px;border-bottom:20px solid rgb(255,228,196);"></div>
-			<div class="panel-body ">
-                <p class="text-content">
-            		<div class="login-form-div" style="padding-bottom:0px;padding-top:10px;">
-                        <form class="form-horizontal" role="form" action="register" method="post">
-                            <div class="form-group text-center">
-                            #if($!{ERROR})
-            				<h2><label  class="col-sm-offset-2 col-sm-7 control-label " style="color:red">$!{ERROR}</label></h2>
-							#else
-							<h4><label  class="text-center text-danger" >只需要填写需要修改的信息即可，空白表示不修改！</label></h4>
-            				#end
-                            </div>
-                            <div class="form-group ">
-                                <label for="userNickName" class="col-sm-3 control-label">用户名</label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="userNickName" name="userNickName"  placeholder="请输入用户名" value=$!{userNickName}>
-            							#getErrorMessages("user","userNickName")
-                                </div>
-                            </div>
-							 <div class="form-group ">
-    							<label for="userNickName" class="col-sm-3 control-label">性别</label>
-    							<div class="radio col-sm-8">
-                                   <label>
-                                      <input type="radio" name="optionsRadios" id="optionsRadios1"  value="option1"> 男 
-                                   </label>
-    							    <label style="padding-left:35px">
-                                      <input type="radio" name="optionsRadios" id="optionsRadios2"  value="option2"> 女
-                                   </label>
-								   <label style="padding-left:35px">
-                                      <input type="radio" name="optionsRadios" id="optionsRadios2"  value="" checked> 不修改
-                                   </label>
-                                </div>
-							</div>
-                            <div class="form-group ">
-                                <label for="email" class="col-sm-3 control-label">邮箱</label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="email" name="email"  placeholder="请输入邮箱" value=$!{email}>
-            							#getErrorMessages("user","email")
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="datetimepicker" class="col-sm-3 control-label">生日</label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="datetimepicker" name="password" placeholder="选择出生日期">
-										#getErrorMessages("user","password")
-                                </div>
-                            </div>
-            				<div class="form-group">
-            				#addToken(${SSM_TOKEN})
-            				</div>
-                        </form>
-                    </div>
-                </p>
-            </div>
-			 <div class="panel-footer text-center">
-                <a class="btn btn-danger " href="#"><i class=" icon-edit"></i>修改资料</a>
-            </div>
-			
-<script type="text/javascript">
-    jQuery("#datetimepicker").datetimepicker({format: 'yyyy-mm-dd',language:'zh-CN', autoclose: true,showMeridian: true,minView:2,});
-	
-</script>
 			
 			<div style="margin:0px -1px 0px -1px;border-bottom:20px solid rgb(255,228,196);"></div>
-			<div class="panel-body ">
-                <p class="text-content">
-            		<div class="login-form-div" style="padding-bottom:0px;padding-top:10px;">
-                        <form class="form-horizontal" role="form" action="register" method="post">
-                            <div class="form-group ">
-                            #if($!{ERROR})
-            				<h2><label  class="col-sm-offset-2 col-sm-7 control-label " style="color:red">$!{ERROR}</label></h2>
-            				#end
-                            </div>
-                            <div class="form-group ">
-                                <label for="email" class="col-sm-3 control-label">新密码</label>
-                                <div class="col-sm-8">
-                                    <input type="password" class="form-control" id="email" name="email"  placeholder="请输入新密码，6-15字符" value=$!{email}>
-            							#getErrorMessages("user","email")
+			 <form class="form-horizontal" role="form" action="userManagerInfo" method="post">
+    			<div class="panel-body ">
+                    <p class="text-content">
+                		<div class="login-form-div" style="padding-bottom:0px;padding-top:10px;">
+                           
+                                <div class="form-group text-center">
+                                #if($!{ERROR} && $!{userChangeInfoError})
+                				<h4><label  class="text-canter" style="color:red">$!{ERROR}</label></h4>
+    							#else
+    							<h4><label  class="text-center text-danger" >只需要填写需要修改的信息即可，空白表示不修改！</label></h4>
+                				#end
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="password" class="col-sm-3 control-label">新密码确认</label>
-                                <div class="col-sm-8">
-                                    <input type="password" class="form-control" id="password" name="password" placeholder="请重复输入密码,6-15个字符">
-            							#getErrorMessages("user","password")
+                                <div class="form-group ">
+                                    <label for="userName" class="col-sm-3 control-label">用户名</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="userName" name="userName"  placeholder="请输入用户名" value=$!{userChangeInfos.userName}>
+                                    </div>
                                 </div>
-                            </div>
-            				<div class="form-group">
-            				#addToken(${SSM_TOKEN})
-            				</div>
-                        </form>
-                    </div>
-                </p>
-            </div>
-            <div class="panel-footer text-center">
-                <a class="btn btn-danger " href="#"><i class=" icon-edit"></i>修改密码</a>
-            </div>
+    							 <div class="form-group ">
+        							<label  class="col-sm-3 control-label">性别</label>
+        							<div class="radio col-sm-8">
+                                       <label>
+                                          <input type="radio" name="gender" id="optionsRadios1"  value="true"> 男 
+                                       </label>
+        							    <label style="padding-left:35px">
+                                          <input type="radio" name="gender" id="optionsRadios2"  value="false"> 女
+                                       </label>
+    								   <label style="padding-left:35px">
+                                          <input type="radio" name="gender" id="optionsRadios2"  value="null" checked> 不修改
+                                       </label>
+                                    </div>
+    							</div>
+                                <div class="form-group ">
+                                    <label for="email" class="col-sm-3 control-label">邮箱</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="email" name="email"  placeholder="请输入邮箱" value=$!{userChangeInfos.email}>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="datetimepicker" class="col-sm-3 control-label">生日</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="datetimepicker" name="birthday" value="$!{userChangeInfos.birthday}" placeholder="选择出生日期">
+                                    </div>
+                                </div>
+                				<div class="form-group">
+                				#addToken(${SSM_TOKEN})
+                				</div>
+                            
+                        </div>
+                    </p>
+                </div>
+    			 <div class="panel-footer text-center">
+                    <button class="btn btn-danger " type="submit"><i class=" icon-edit"></i>修改资料</button>
+                </div>
+			</form>
 			
-        </div> 
+			
+            <script type="text/javascript">
+                jQuery("#datetimepicker").datetimepicker({format: 'yyyy-mm-dd',language:'zh-CN', autoclose: true,showMeridian: true,minView:2,});
+            	
+            </script>
+			
+			<div style="margin:0px -1px 0px -1px;border-bottom:20px solid rgb(255,228,196);"></div>
+			<form class="form-horizontal" role="form" action="userManagerPassword" method="post">
+    			<div class="panel-body ">
+                    <p class="text-content">
+                		<div class="login-form-div" style="padding-bottom:0px;padding-top:10px;">
+                                <div class="form-group ">
+                                #if($!{ERROR} && $!{changePasswordError})
+                				<h2><label  class="col-sm-offset-2 col-sm-7 control-label " style="color:red">$!{ERROR}</label></h2>
+                				#end
+                                </div>
+                                <div class="form-group ">
+                                    <label for="password" class="col-sm-3 control-label">新密码</label>
+                                    <div class="col-sm-8">
+                                        <input type="password" class="form-control" id="password" name="password"  placeholder="请输入新密码，6-15字符">
+                							#getErrorMessages("changePassword","password")
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="passwordConfirm" class="col-sm-3 control-label">新密码确认</label>
+                                    <div class="col-sm-8">
+                                        <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm" placeholder="请重复输入密码,6-15个字符">
+                							#getErrorMessages("changePassword","passwordConfirm")
+                                    </div>
+                                </div>
+                				<div class="form-group">
+                				#addToken(${SSM_TOKEN})
+                				</div>
+                        </div>
+                    </p>
+                </div>
+                <div class="panel-footer text-center">
+                    <button class="btn btn-danger " type="submit" ><i class=" icon-edit"></i>修改密码</button>
+                </div>
+			 </form>
+    </div> 
 </div>
 							
 </body>

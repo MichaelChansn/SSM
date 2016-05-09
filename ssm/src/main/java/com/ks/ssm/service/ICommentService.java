@@ -6,6 +6,7 @@ import com.ks.ssm.domain.Article;
 import com.ks.ssm.domain.ArticleIdAndStatus;
 import com.ks.ssm.domain.Comment;
 import com.ks.ssm.domain.PageQuery;
+import com.ks.ssm.domain.UserIdAndPageQuery;
 
 public interface ICommentService {
 	int deleteByPrimaryKey(Long id);
@@ -35,4 +36,6 @@ public interface ICommentService {
     int countWithStatus(boolean status);
     
     int countWithArticleIdAndStatus(ArticleIdAndStatus articleIdAndStatus);
+    
+    List<Comment> selectByPageWithUserId(UserIdAndPageQuery userIdAndPageQuery);
 }

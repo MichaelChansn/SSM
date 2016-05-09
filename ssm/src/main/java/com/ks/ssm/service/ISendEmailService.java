@@ -2,7 +2,7 @@ package com.ks.ssm.service;
 
 import java.util.Map;
 
-public interface SendEmailService {
+public interface ISendEmailService {
 	/** 
      * 发送模板邮件 
      * 
