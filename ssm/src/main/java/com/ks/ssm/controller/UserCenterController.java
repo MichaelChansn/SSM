@@ -36,20 +36,31 @@ public class UserCenterController {
 	@Resource
 	private ICommentService commentService;
 	
-	/**用户自己的主页*/
 	@RequestMapping(value = "/userManager")
 	@LoginCheck(check=true,autoLogin=true)
 	public String userManager(HttpServletRequest request,HttpSession session, Model model) {
 		
 		User user=userService.getUserById(SSMUtils.getUserId(session));
-		List<Article> articles=articleService.selectByUserID(user.getId());
-		List<Comment> comments=commentService.selectByUserID(user.getId());
 		model.addAttribute("user", user);
-		model.addAttribute("articles", articles);
-		model.addAttribute("comments", comments);
 		return "userManager";
 	}
 
+	@RequestMapping(value = "/userPublishArticle")
+	@LoginCheck(check=true,autoLogin=true)
+	public String userPublishArticle(HttpServletRequest request,HttpSession session, Model model) {
+		
+		List<Article> articles=articleService.selectByUserID(SSMUtils.getUserId(session));
+		model.addAttribute("articles", articles);
+		return "userPublishArticle";
+	}
+	@RequestMapping(value = "/userPublishComment")
+	@LoginCheck(check=true,autoLogin=true)
+	public String userPublishComment(HttpServletRequest request,HttpSession session, Model model) {
+		
+		List<Comment> comments=commentService.selectByUserID(SSMUtils.getUserId(session));
+		model.addAttribute("comments", comments);
+		return "userPublishComment";
+	}
 	/**查看别人的主页 restful风格的url*/
 	@RequestMapping(value = "/{userId}")
 	@LoginCheck(saveInfo=true,autoLogin=true)

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>留言板</title>
+     <link href="../css/bootstrap.min.css" rel="stylesheet">
+     <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/index.css" rel="stylesheet">
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/common.js"></script>
+</head>
+<body class="index-body">
+<div class="head-nav ">
+    <div class="head">
+        <div class="content-block" >
+			#if($!{SESSION_USER_NAME})
+				<div class="login" ><a href="userManager" style=" text-decoration: underline;color:red">[$!{SESSION_USER_NAME}]的个人中心</a>|<a href="../logout">退出</a></div>
+			#else
+				<div class="login"><a href="login">登录</a> | <a href="register">注册</a></div>
+			#end
+            
+            <img class="img-responsive " src="../img/web_logo.png">
+        </div>
+    </div>
+    <nav class="navbar navbar-default " role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#example-navbar-collapse">
+                <span class="sr-only">切换导航</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class=" navbar-brand " href="javascript:void(0)"><img class="img-responsive center-block" src="../img/logo.png"></a>
+        </div>
+        <div class="collapse navbar-collapse navbar-centre" id="example-navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="../index">最新</a></li>
+                <li><a href="addArticle">发帖</a></li>
+                <li class="drop-divider"></li>
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">设置 <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="javascript:void(0)">资料修改</a></li>
+                        <li class="divider"></li>
+                        <li><a href="javascript:void(0)">发表的文章</a></li>
+                        <li class="divider"></li>
+                        <li><a href="javascript:void(0)">发表的评论</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<div class="panel-show " style="margin-bottom:-20px;margin-top:-10px;">
+<ul class="nav nav-tabs">
+   <li ><a href="userManager">Home</a></li>
+   <li ><a href="userPublishArticle">发表的文章</a></li>
+   <li class="active"><a href="userPublishComment">发表的评论</a></li>
+</ul>
+</div>
+
+<div class="panel-show ">
+    <div class="panel panel-primary" style="border-bottom:none">
+            <div class="panel-heading">
+				<span class="user-info text-"><i class=" icon-comments"></i> (<span class="text-danger">$!{SESSION_USER_NAME}</span>) 发表的评论</span>
+            </div>
+			#foreach(${comment} in ${comments}) 
+                <div class="panel-body ">
+    					$!{comment.content}
+                </div>
+				<div style="margin:0px -1px 0px -1px;border-bottom:20px solid rgb(255,228,196);"></div>
+			#end
+        </div> 
+</div>
+
+</body>
+</html>

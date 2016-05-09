@@ -116,7 +116,7 @@
 
 }
 .text-content {
-    text-indent:2rem;
+   /*  text-indent:2rem; */
     margin-bottom: 10px;
     font-size: 16px;
     line-height: 1.8;
@@ -290,5 +290,11 @@ border: none;
 	margin-top: -10px;
 }
 
-
+.publish-article-date {
+	margin:10px 0px 10px 0px;
+	border-bottom: 1px solid #dedede;
+	padding-bottom:10px;
+	padding-left:10px;
+	color: #7a4624;
+}
 

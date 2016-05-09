@@ -24,7 +24,7 @@
 			
             #if(${userAndarticle.article.pic} && ${userAndarticle.article.pic.length()}>0)
             <div class="container text-center">
-                <img src="user/img/$userAndarticle.article.userid/articleImg/$userAndarticle.article.pic" class="img-responsive center-block" alt="NO IMAGE" height="500"  >
+                <img src="user/img/$userAndarticle.article.userid/articleImg/$userAndarticle.article.pic" class="img-responsive center-block" alt="NO IMAGE" width="400"  >
             </div>
 			#end
             <div class="panel-body ">
