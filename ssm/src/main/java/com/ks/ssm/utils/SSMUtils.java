@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -17,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.codec.binary.Base64;
 import org.apache.log4j.Logger;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -229,7 +229,7 @@ public class SSMUtils {
 		String uuid = UUID.randomUUID().toString();
 		String token = MD5Encoding.MD5Encode(uuid + CommonConstants.SALT + user.getUsername() + user.getId());
 		String tokenAndUserId = user.getId() + InfoSeparator + token;
-		String base64String = Base64.getUrlEncoder().encodeToString(tokenAndUserId.getBytes());
+		String base64String = Base64.encodeBase64URLSafeString(tokenAndUserId.getBytes());
 		System.err.println(sendEmailService == null);
 		sendEmailService.setTo(user.getEmail());
 		sendEmailService.setSubject("找回密码");
@@ -260,7 +260,7 @@ public class SSMUtils {
 
 	public static boolean verifyToken(String tokenFromUrl, IUserService userService,ArrayList<User> list) {
 		try {
-			String userAndTokenDecodeFromBase64 = new String(Base64.getUrlDecoder().decode(tokenFromUrl));
+			String userAndTokenDecodeFromBase64 = new String(Base64.decodeBase64(tokenFromUrl));
 			String[] usrIdAndTokenInString = userAndTokenDecodeFromBase64.split(InfoSeparator);
 			if (usrIdAndTokenInString.length == 2) {
 

@@ -20,10 +20,16 @@
 						#if(${userAndcomment.comment.anonymous})
 							<a href="javascript:void(0)">匿名</a>
 						#else
-							<a href="$!{SESSION_WEB_ROOT_PATH}/user/$!{userAndcomment.user.id}">$!{userAndcomment.user.username}</a>
+							#if($!{article.userid}==$!{userAndcomment.comment.fromuserid})
+								<a href="$!{SESSION_WEB_ROOT_PATH}/user/$!{userAndcomment.user.id}" class="text-danger">$!{userAndcomment.user.username}(题主)</a>
+							#else
+								<a href="$!{SESSION_WEB_ROOT_PATH}/user/$!{userAndcomment.user.id}">$!{userAndcomment.user.username}</a>
+							#end
+							
 						#end
                     </span>
-                    <span class="body">$!{userAndcomment.comment.content}
+                    <span class="body">
+						$!{userAndcomment.comment.content}
                         <span class="text-warning pull-right" style="color:#ccc;padding-right:0px;padding-left:15px">评论于$!date.format('yyyy-MM-dd HH:mm:ss',$!{userAndcomment.comment.commenttime})</span>
                     </span>
                     </div>

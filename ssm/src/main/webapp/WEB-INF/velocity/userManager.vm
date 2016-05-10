@@ -83,9 +83,9 @@
             </div>
 			<div class="text-center container ">
 				#if(${user.titlepic} && ${user.titlepic.length()}>0)
-				<img src="$!{SESSION_WEB_ROOT_PATH}/user/img/$user.id/headerImg/$user.titlepic" class="img-circle img-thumbnail img-responsive center-block" alt="NO IMAGE" height="200" width="200"  >
+				<img src="$!{SESSION_WEB_ROOT_PATH}/user/img/$user.id/headerImg/$user.titlepic" class="img-circle  img-responsive center-block" alt="NO IMAGE"  width="200" height="200"  >
 				#else
-				<img src="$!{SESSION_WEB_ROOT_PATH}/img/no_header_img.png" class="img-circle img-thumbnail img-responsive center-block" alt="NO IMAGE" height="200" width="200"  >
+				<img src="$!{SESSION_WEB_ROOT_PATH}/img/no_header_img.png" class="img-circle  img-responsive center-block" alt="NO IMAGE"  width="200"  height="200">
 				#end
 			</div>
             <div class="panel-body text-center text-info text-content">
@@ -123,9 +123,9 @@
                                 </div>
     							<div class="text-center container ">
     								#if(${user.titlepic} && ${user.titlepic.length()}>0)
-                    				<img src="img/$user.id/headerImg/$user.titlepic" class="img-circle img-thumbnail img-responsive center-block" alt="NO IMAGE" height="200" width="200"  >
+                    				<img src="img/$user.id/headerImg/$user.titlepic" class="img-thumbnail  img-responsive center-block" alt="NO IMAGE"  width="200"  height="200">
     								#else
-    								<img src="$!{SESSION_WEB_ROOT_PATH}/img/no_header_img.png" class="img-thumbnail img-responsive center-block" alt="NO IMAGE" height="200" width="200"  >
+    								<img src="$!{SESSION_WEB_ROOT_PATH}/img/no_header_img.png" class="img-thumbnail img-responsive center-block" alt="NO IMAGE"  width="200"  height="200">
     								#end
                     			</div>
     							<div class="form-group form-select text-content text-center" style="margin-bottom:0px;padding-top:20px;">
@@ -255,9 +255,9 @@
                 </div>
     			<div class="text-center container ">
     				#if(${user.titlepic} && ${user.titlepic.length()}>0)
-    				<img src="$!{SESSION_WEB_ROOT_PATH}/user/img/$user.id/headerImg/$user.titlepic" class="img-circle img-thumbnail img-responsive center-block" alt="NO IMAGE" height="200" width="200"  >
+    				<img src="$!{SESSION_WEB_ROOT_PATH}/user/img/$user.id/headerImg/$user.titlepic" class="img-circle  img-responsive center-block" alt="NO IMAGE" width="200"  height="200" >
     				#else
-    				<img src="$!{SESSION_WEB_ROOT_PATH}/img/no_header_img.png" class="img-circle img-thumbnail img-responsive center-block" alt="NO IMAGE" height="200" width="200"  >
+    				<img src="$!{SESSION_WEB_ROOT_PATH}/img/no_header_img.png" class="img-circle  img-responsive center-block" alt="NO IMAGE"  width="200"  height="200">
     				#end
     			</div>
                 <div class="panel-body text-center text-info text-content">

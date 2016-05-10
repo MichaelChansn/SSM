@@ -2,7 +2,6 @@ package com.ks.ssm.controller;
 
 import java.io.File;
 import java.util.Arrays;
-import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 
@@ -13,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.apache.commons.codec.binary.Base64;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -238,13 +238,13 @@ public class UserController {
 				String userLikeInCookieInBase64 = SSMUtils.getCookieByName(CommonConstants.USER_LIKE_IN_COOKIE,
 						request);
 				if (userLikeInCookieInBase64 == null) {
-					String articleIdInBase64 = Base64.getUrlEncoder().encodeToString((articleId + "").getBytes());
+					String articleIdInBase64 = Base64.encodeBase64URLSafeString((articleId + "").getBytes());
 					Cookie cookieUserLike = new Cookie(CommonConstants.USER_LIKE_IN_COOKIE, articleIdInBase64);
 					cookieUserLike.setPath("/");
 					cookieUserLike.setMaxAge(SSMUtils.CookieExpiresTime);
 					response.addCookie(cookieUserLike);
 				} else {
-					String userLikeInCookie = new String(Base64.getUrlDecoder().decode(userLikeInCookieInBase64));
+					String userLikeInCookie = new String(Base64.decodeBase64(userLikeInCookieInBase64));
 					String[] articleIdsInString = userLikeInCookie.split(CommonConstants.USER_LIKE_SEPARATOR);
 					List<String> articleIdList = Arrays.asList(articleIdsInString);
 					if (articleIdList.contains(articleId + ""))// 该文章已经点赞过了
@@ -254,7 +254,7 @@ public class UserController {
 					}
 					else
 					{
-						String articleIdInBase64Add=Base64.getUrlEncoder().encodeToString((userLikeInCookie+CommonConstants.USER_LIKE_SEPARATOR+articleId).getBytes());
+						String articleIdInBase64Add=Base64.encodeBase64URLSafeString((userLikeInCookie+CommonConstants.USER_LIKE_SEPARATOR+articleId).getBytes());
 						Cookie cookieUserLike = new Cookie(CommonConstants.USER_LIKE_IN_COOKIE, articleIdInBase64Add);
 						cookieUserLike.setPath("/");
 						cookieUserLike.setMaxAge(SSMUtils.CookieExpiresTime);
@@ -284,10 +284,12 @@ public class UserController {
 			}
 			try {
 				long articleId = Long.parseLong(request.getParameter("articleComment"));
+				Article article=articleService.selectByPrimaryKeyWithoutBLOBs(articleId);
 				List<Comment> commentList = commentService.selectByArticleIDWithStatus(new ArticleIdAndStatus(articleId,CommonConstants.COMMENT_STATUS_PASS));
 				List<UserAndComment> userAndcommentList = userAndCommentService.getUserAndCommentByComment(commentList);
 				model.addAttribute("userAndcommentList", userAndcommentList);
 				model.addAttribute("articleId", articleId);
+				model.addAttribute("article", article);
 			} catch (Exception e) {
 				log4j.error("comment article error", e);
 			}
