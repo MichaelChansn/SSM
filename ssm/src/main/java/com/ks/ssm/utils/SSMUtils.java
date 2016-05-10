@@ -90,7 +90,12 @@ public class SSMUtils {
 		return false;
 
 	}
-
+	public static  boolean isSelf(HttpSession session,Long userId)
+	{
+		if(isLogin(session) && userId==getUserId(session))
+			return true;
+		return false;
+	}
 	public static int getAuth(HttpSession session) {
 		Object auth = session.getAttribute(CommonConstants.SESSION_AUTH);
 		return auth == null ? CommonConstants.USER_AUTH_ERROR : (int) auth;

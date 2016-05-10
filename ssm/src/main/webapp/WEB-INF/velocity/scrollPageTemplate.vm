@@ -10,7 +10,7 @@
 		<div class="articleId">$!{userAndarticle.article.id}</div>
             <div class="panel-heading">
 				#if(${userAndarticle.article.anonymous})
-					<img src="img/anonymous.png" class="img-circle img-thumbnail" width="35" height="35">
+					<img src="$!{SESSION_WEB_ROOT_PATH}/img/anonymous.png" class="img-circle img-thumbnail" width="35" height="35">
 					<span class="user-info">匿名</span>
 				#else
     				#if(${userAndarticle.user.titlepic} && $userAndarticle.user.titlepic.length()>0)

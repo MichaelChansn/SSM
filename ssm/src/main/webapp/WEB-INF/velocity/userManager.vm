@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>留言板</title>
-     <link href="../css/bootstrap.min.css" rel="stylesheet">
-     <link href="../css/font-awesome.min.css" rel="stylesheet">
-    <link href="../css/index.css" rel="stylesheet">
-    <link href="../css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+     <link href="$!{SESSION_WEB_ROOT_PATH}/css/bootstrap.min.css" rel="stylesheet">
+     <link href="$!{SESSION_WEB_ROOT_PATH}/css/font-awesome.min.css" rel="stylesheet">
+    <link href="$!{SESSION_WEB_ROOT_PATH}/css/index.css" rel="stylesheet">
+    <link href="$!{SESSION_WEB_ROOT_PATH}/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 		
-    <script src="../js/jquery.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/common.js"></script>
-	<script src="../js/bootstrap-datetimepicker.min.js"></script>
-	<script src="../js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="$!{SESSION_WEB_ROOT_PATH}/js/jquery.min.js"></script>
+    <script src="$!{SESSION_WEB_ROOT_PATH}/js/bootstrap.min.js"></script>
+    <script src="$!{SESSION_WEB_ROOT_PATH}/js/common.js"></script>
+	<script src="$!{SESSION_WEB_ROOT_PATH}/js/bootstrap-datetimepicker.min.js"></script>
+	<script src="$!{SESSION_WEB_ROOT_PATH}/js/bootstrap-datetimepicker.zh-CN.js"></script>
 	
 </head>
 <body class="index-body">
@@ -21,12 +21,12 @@
     <div class="head">
         <div class="content-block" >
 			#if($!{SESSION_USER_NAME})
-				<div class="login" ><a href="userManager" style=" text-decoration: underline;color:red">[$!{SESSION_USER_NAME}]的个人中心</a>|<a href="../logout">退出</a></div>
+				<div class="login" ><a href="$!{SESSION_WEB_ROOT_PATH}/user/$!{SESSION_USERID}" style=" text-decoration: underline;color:red">[$!{SESSION_USER_NAME}]的个人中心</a>|<a href="$!{SESSION_WEB_ROOT_PATH}/logout">退出</a></div>
 			#else
 				<div class="login"><a href="login">登录</a> | <a href="register">注册</a></div>
 			#end
             
-            <img class="img-responsive " src="../img/web_logo.png">
+            <img class="img-responsive " src="$!{SESSION_WEB_ROOT_PATH}/img/web_logo.png">
         </div>
     </div>
     <nav class="navbar navbar-default " role="navigation">
@@ -38,39 +38,48 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class=" navbar-brand " href="javascript:void(0)"><img class="img-responsive center-block" src="../img/logo.png"></a>
+            <a class=" navbar-brand " href="javascript:void(0)"><img class="img-responsive center-block" src="$!{SESSION_WEB_ROOT_PATH}/img/logo.png"></a>
         </div>
         <div class="collapse navbar-collapse navbar-centre" id="example-navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="../index">最新</a></li>
-                <li><a href="addArticle">发帖</a></li>
-                <li class="drop-divider"></li>
+                <li><a href="$!{SESSION_WEB_ROOT_PATH}/index">最新</a></li>
+                <li><a href="$!{SESSION_WEB_ROOT_PATH}/user/addArticle">发帖</a></li>
+                 #if(1==2)
+				<li class="drop-divider"></li>
                 <li class="dropdown">
-                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">设置 <b class="caret"></b>
+                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+                        Java <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="javascript:void(0)">资料修改</a></li>
+                        <li><a href="javascript:void(0)">jmeter</a></li>
                         <li class="divider"></li>
-                        <li><a href="javascript:void(0)">发表的文章</a></li>
+                        <li><a href="javascript:void(0)">EJB</a></li>
                         <li class="divider"></li>
-                        <li><a href="javascript:void(0)">发表的评论</a></li>
+                        <li><a href="javascript:void(0)">Jasper Report</a></li>
+                        <li class="divider"></li>
+                        <li><a href="javascript:void(0)">分离的链接</a></li>
+                        <li class="divider"></li>
+                        <li><a href="javascript:void(0)">另一个分离的链接</a></li>
                     </ul>
                 </li>
+				#end
             </ul>
         </div>
     </nav>
 </div>
 <div class="panel-show " style="margin-bottom:-20px;margin-top:-10px;">
 <ul class="nav nav-tabs">
-   <li class="active"><a href="userManager">Home</a></li>
-   <li><a href="userPublishArticle">发表的文章</a></li>
-   <li><a href="userPublishComment">发表的评论</a></li>
+   <li class="active"><a href="$!{SESSION_WEB_ROOT_PATH}/user/$!{user.id}">Home</a></li>
+   <li><a href="$!{SESSION_WEB_ROOT_PATH}/user/$!{user.id}/userPublishArticle">发表的文章</a></li>
+   <li><a href="$!{SESSION_WEB_ROOT_PATH}/user/$!{user.id}/userPublishComment">发表的评论</a></li>
 </ul>
 </div>
+
+#if($!{MY_SELF})
 <div class="panel-show ">
     <div class="panel panel-primary">
             <div class="panel-heading">
-				<span class="user-info text-"><i class=" icon-edit"></i> (<span class="text-danger">$!{SESSION_USER_NAME}</span>) 的资料</span>
+				<span class="user-info text-"><i class=" icon-edit"></i> (<span class="text-danger">$!{user.username}</span>) 的资料</span>
             </div>
 			<div class="text-center container ">
 				#if(${user.titlepic} && ${user.titlepic.length()}>0)
@@ -102,7 +111,7 @@
             </div>
 			
 			<div style="margin:0px -1px 0px -1px;border-bottom:20px solid rgb(255,228,196);"></div>
-			<form class="form-horizontal" role="form" action="userManagerHeaderImg" enctype="multipart/form-data" method="post">
+			<form class="form-horizontal" role="form" action="$!{SESSION_WEB_ROOT_PATH}/user/userManagerHeaderImg" enctype="multipart/form-data" method="post">
     			<div class="panel-body ">
                     <p class="text-content">
                 		<div class="login-form-div" style="padding-bottom:0px;padding-top:10px;">
@@ -116,7 +125,7 @@
     								#if(${user.titlepic} && ${user.titlepic.length()}>0)
                     				<img src="img/$user.id/headerImg/$user.titlepic" class="img-circle img-thumbnail img-responsive center-block" alt="NO IMAGE" height="200" width="200"  >
     								#else
-    								<img src="../img/no_header_img.png" class="img-thumbnail img-responsive center-block" alt="NO IMAGE" height="200" width="200"  >
+    								<img src="$!{SESSION_WEB_ROOT_PATH}/img/no_header_img.png" class="img-thumbnail img-responsive center-block" alt="NO IMAGE" height="200" width="200"  >
     								#end
                     			</div>
     							<div class="form-group form-select text-content text-center" style="margin-bottom:0px;padding-top:20px;">
@@ -139,7 +148,7 @@
 			
 			
 			<div style="margin:0px -1px 0px -1px;border-bottom:20px solid rgb(255,228,196);"></div>
-			 <form class="form-horizontal" role="form" action="userManagerInfo" method="post">
+			 <form class="form-horizontal" role="form" action="$!{SESSION_WEB_ROOT_PATH}/user/userManagerInfo" method="post">
     			<div class="panel-body ">
                     <p class="text-content">
                 		<div class="login-form-div" style="padding-bottom:0px;padding-top:10px;">
@@ -202,7 +211,7 @@
             </script>
 			
 			<div style="margin:0px -1px 0px -1px;border-bottom:20px solid rgb(255,228,196);"></div>
-			<form class="form-horizontal" role="form" action="userManagerPassword" method="post">
+			<form class="form-horizontal" role="form" action="$!{SESSION_WEB_ROOT_PATH}/user/userManagerPassword" method="post">
     			<div class="panel-body ">
                     <p class="text-content">
                 		<div class="login-form-div" style="padding-bottom:0px;padding-top:10px;">
@@ -237,6 +246,39 @@
 			 </form>
     </div> 
 </div>
-							
+#end
+#if($!{OTHER})
+	<div class="panel-show ">
+        <div class="panel panel-primary">
+                <div class="panel-heading">
+    				<span class="user-info text-"><i class=" icon-edit"></i> (<span class="text-danger">$!{user.username}</span>) 的资料</span>
+                </div>
+    			<div class="text-center container ">
+    				#if(${user.titlepic} && ${user.titlepic.length()}>0)
+    				<img src="$!{SESSION_WEB_ROOT_PATH}/user/img/$user.id/headerImg/$user.titlepic" class="img-circle img-thumbnail img-responsive center-block" alt="NO IMAGE" height="200" width="200"  >
+    				#else
+    				<img src="$!{SESSION_WEB_ROOT_PATH}/img/no_header_img.png" class="img-circle img-thumbnail img-responsive center-block" alt="NO IMAGE" height="200" width="200"  >
+    				#end
+    			</div>
+                <div class="panel-body text-center text-info text-content">
+                    <div>${user.username}</div>
+    				#if(${user.gender}==true)
+                    <div>男</div>
+    				#elseif(${user.gender}==false)
+    				<div>女</div>
+    				#else
+    				<div>未设置性别</div>
+    				#end
+    				#if(${user.birthday})
+                    <div>$!date.format('yyyy年MM月dd日 ',${user.birthday})出生</div>
+    				#else
+    				<div>未设置生日</div>
+    				#end
+                    <div>注册于 $!date.format('yyyy年MM月dd日  HH:mm:ss',${user.enrolltime})</div>
+                </div>
+    	</div>
+    </div>
+#end
+
 </body>
 </html>

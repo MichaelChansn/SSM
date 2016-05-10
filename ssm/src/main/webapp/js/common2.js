@@ -1,10 +1,31 @@
+function upArticle(id) {
+	if(id!=null)
+	$.ajax({   
+		     url:'../upArticle',   
+		     type:'post',   
+		     data:'upArticle='+id,   
+		     async:true, //默认为true 异步   
+		     dataType:'html',
+		     error:function(){ 
+		    	 alert("点赞失败");
+		     },   
+		     success:function(data){  
+		    	 if(data.trim().length>0)
+		    		 {
+				        $("span."+id+"upArticleNum").html(data);   
+		    		 }
+		    	 $("a."+id+"btn").addClass("disabled");
+		        
+		     }
+		 });
+} 
 
 function reportComment(id)
 {
 	if(id==null)
 		return;
 	$.ajax({   
-	     url:'reportComment',   
+	     url:'../reportComment',   
 	     type:'post',   
 	     data:'reportComment='+id,   
 	     async:true, //默认为true 异步   
@@ -26,7 +47,7 @@ function addComment(id)
 {
 	if(id==null) return;
 	$.ajax({   
-	     url:'addComment',   
+	     url:'../addComment',   
 	     type:'post',   
 	     data:$('#'+id+"-form").serialize(),   
 	     async:true, //默认为true 异步   
@@ -52,7 +73,7 @@ function articleComment(id) {
 		{
 		
 	$.ajax({   
-		     url:'articleComment',   
+		     url:'../articleComment',   
 		     type:'post',   
 		     data:'articleComment='+id,   
 		     async:true, //默认为true 异步   

@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>留言板</title>
-     <link href="../../css/bootstrap.min.css" rel="stylesheet">
-     <link href="../../css/font-awesome.min.css" rel="stylesheet">
-    <link href="../../css/index.css" rel="stylesheet">
-    <script src="../../js/jquery.min.js"></script>
-    <script src="../../js/bootstrap.min.js"></script>
-    <script src="../../js/common3.js"></script>
+     <link href="$!{SESSION_WEB_ROOT_PATH}/css/bootstrap.min.css" rel="stylesheet">
+     <link href="$!{SESSION_WEB_ROOT_PATH}/css/font-awesome.min.css" rel="stylesheet">
+    <link href="$!{SESSION_WEB_ROOT_PATH}/css/index.css" rel="stylesheet">
+    <script src="$!{SESSION_WEB_ROOT_PATH}/js/jquery.min.js"></script>
+    <script src="$!{SESSION_WEB_ROOT_PATH}/js/bootstrap.min.js"></script>
+    <script src="$!{SESSION_WEB_ROOT_PATH}/js/common3.js"></script>
 </head>
+
 <body class="index-body">
 	
 
@@ -18,12 +19,12 @@
     <div class="head">
         <div class="content-block" >
 			#if($!{SESSION_USER_NAME})
-				<div class="login" ><a href="../userManager" style=" text-decoration: underline;color:red">[$!{SESSION_USER_NAME}]的个人中心</a>|<a href="logout">退出</a></div>
+				<div class="login" ><a href="$!{SESSION_WEB_ROOT_PATH}/user/$!{SESSION_USERID}" style=" text-decoration: underline;color:red">[$!{SESSION_USER_NAME}]的个人中心</a>|<a href="$!{SESSION_WEB_ROOT_PATH}/logout">退出</a></div>
 			#else
-				<div class="login"><a href="../login">登录</a> | <a href="../register">注册</a></div>
+				<div class="login"><a href="$!{SESSION_WEB_ROOT_PATH}/user/login">登录</a> | <a href="$!{SESSION_WEB_ROOT_PATH}/user/register">注册</a></div>
 			#end
             
-            <img class="img-responsive " src="../../img/web_logo.png">
+            <img class="img-responsive " src="$!{SESSION_WEB_ROOT_PATH}/img/web_logo.png">
         </div>
     </div>
     <nav class="navbar navbar-default " role="navigation">
@@ -35,13 +36,14 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class=" navbar-brand " href="javascript:void(0)"><img class="img-responsive center-block" src="../../img/logo.png"></a>
+            <a class=" navbar-brand " href="javascript:void(0)"><img class="img-responsive center-block" src="$!{SESSION_WEB_ROOT_PATH}/img/logo.png"></a>
         </div>
         <div class="collapse navbar-collapse navbar-centre" id="example-navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="javascript:void(0)">最新</a></li>
-                <li><a href="user/addArticle">发帖</a></li>
-                <li class="drop-divider"></li>
+                <li class=""><a href="$!{SESSION_WEB_ROOT_PATH}/index">最新</a></li>
+                <li><a href="$!{SESSION_WEB_ROOT_PATH}/user/addArticle">发帖</a></li>
+                #if(1==2)
+				<li class="drop-divider"></li>
                 <li class="dropdown">
                     <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
                         Java <b class="caret"></b>
@@ -58,13 +60,25 @@
                         <li><a href="javascript:void(0)">另一个分离的链接</a></li>
                     </ul>
                 </li>
+				#end
             </ul>
         </div>
     </nav>
 </div>
+<div class="panel-show " style="margin-bottom:-20px;margin-top:-10px;">
+<ul class="nav nav-tabs">
+   <li class=""><a href="$!{SESSION_WEB_ROOT_PATH}/user/$!{userId}">Home</a></li>
+   <li><a href="$!{SESSION_WEB_ROOT_PATH}/user/$!{userId}/userPublishArticle">发表的文章</a></li>
+   <li><a href="$!{SESSION_WEB_ROOT_PATH}/user/$!{userId}/userPublishComment">发表的评论</a></li>
+   <li class="active"><a href="javascript:void(0);">评论详情</a></li>
+</ul>
+</div>
+#if($!{MY_SELF})
 <div class="panel-show ">
     <div class="panel panel-primary">
+	#if($!{article.status}==true)
 		<div class="articleId">$!{article.id}</div>
+		
             <div class="panel-heading">
 				#if(${article.anonymous})
 					<img src="$!{SESSION_WEB_ROOT_PATH}/img/anonymous.png" class="img-circle img-thumbnail" width="35" height="35">
@@ -97,7 +111,8 @@
             </div>
 			<div  class="$!{article.id}comment  comments">
 				#set($index=1)
-                    #foreach(${userAndComment} in ${userAndComments}) 
+                    #foreach(${userAndComment} in ${userAndComments})
+						#if(${userAndComment.status}==true || ${userAndComment.comment.fromuserid}==${userId})
                     	<div class="comment-content">
                             <div id="comment-$!{userAndComment.comment.id}" class="comment-block">
                                 <div class="row">
@@ -118,10 +133,109 @@
                     						#if(${userAndComment.comment.anonymous})
                     							<a href="javascript:void(0)">匿名</a>
                     						#else
-                    							<a href="$!{SESSION_WEB_ROOT_PATH}/user/$!{userAndcomment.user.id}">$!{userAndComment.user.username}</a>
+                    							<a href="$!{SESSION_WEB_ROOT_PATH}/user/$!{userAndComment.user.id}">$!{userAndComment.user.username}</a>
                     						#end
                                         </span>
-                                        <span class="body" #if($!{SESSION_USER_NAME} && $!{SESSION_USERID}==${userAndComment.comment.fromuserid}) style="color:red;" #end>
+                                        <span class="body" #if($!{userId}==${userAndComment.comment.fromuserid}) style="color:red;" #end>
+											$!{userAndComment.comment.content}
+                                            <span class="text-warning pull-right" style="color:#ccc;padding-right:0px;padding-left:15px">评论于$!date.format('yyyy-MM-dd HH:mm:ss',$!{userAndComment.comment.commenttime})</span>
+                                        </span>
+                                        </div>
+                    					
+                                        <div class="report col-sm-1">
+                    						#if(${userAndComment.comment.status}==true)
+                                            <a href="javascript:reportComment($!{userAndComment.comment.id})" class="link"><span class="text-warning">举报</span>
+                                            </a>
+											#else
+										   <span class="link"><span class="text-danger">评论被举报</span>
+                                            </span>
+                    						#end
+                    		                <span title="$!date.format('yyyy-MM-dd HH:mm:ss',$!{userAndComment.comment.commenttime})">$index
+                    		                </span>
+                                        </div>
+                    					
+                                </div>
+                            </div>
+                        </div>
+                    	#set($index=$index+1)
+					  #end
+                    #end
+            </div>
+	#else
+		<div class="panel-body ">
+                <p class="text-content text-danger">
+					当前文章已经不存在了，有可能被删除或审核不合格。
+                </p>
+        </div>
+	#end
+        </div> 
+</div>
+#end
+
+#if($!{OTHER})
+	<div class="panel-show ">
+    <div class="panel panel-primary">
+	#if($!{article.status}==true)
+		<div class="articleId">$!{article.id}</div>
+		
+            <div class="panel-heading">
+				#if(${article.anonymous})
+					<img src="$!{SESSION_WEB_ROOT_PATH}/img/anonymous.png" class="img-circle img-thumbnail" width="35" height="35">
+					<span class="user-info">匿名</span>
+				#else
+    				#if(${user.titlepic} && $user.titlepic.length()>0)
+    				<img src="$!{SESSION_WEB_ROOT_PATH}/user/img/$user.id/headerImg/$user.titlepic"
+                     class="img-circle img-thumbnail" width="35" height="35">
+    				 #else
+    					<img src="$!{SESSION_WEB_ROOT_PATH}/img/no_header_img.png"
+                     class="img-circle img-thumbnail" width="35" height="35">
+    				 #end
+                   <span class="user-info"><a href="$!{SESSION_WEB_ROOT_PATH}/user/$!{user.id}" class="text-danger">$!{user.username}</a></span>
+			    #end
+            </div>
+			
+            #if(${article.pic} && ${article.pic.length()}>0)
+            <div class="container text-center">
+                <img src="$!{SESSION_WEB_ROOT_PATH}/user/img/$article.userid/articleImg/$article.pic" class="img-responsive center-block" alt="NO IMAGE" width="400"  >
+            </div>
+			#end
+            <div class="panel-body ">
+                <p class="text-content">
+					$!{article.content}
+                </p>
+            </div>
+            <div class="panel-footer">
+                <span class=" text-info" ><i class="icon-thumbs-up"></i>点赞数($!{article.up})</span></span> 
+                <span class=" text-danger"><i class=" icon-edit"></i>评论数<span>($!{userAndComments.size()})</span></span>
+            </div>
+			<div  class="$!{article.id}comment  comments">
+				#set($index=1)
+                    #foreach(${userAndComment} in ${userAndComments})
+						#if(${userAndComment.comment.status}==true)
+                    	<div class="comment-content">
+                            <div id="comment-$!{userAndComment.comment.id}" class="comment-block">
+                                <div class="row">
+                                        <div class="avatar col-sm-1">
+                    						#if(${userAndComment.comment.anonymous})
+                        						<img src="$!{SESSION_WEB_ROOT_PATH}/img/anonymous.png">
+                    						#else
+                    							#if(${userAndComment.user.titlepic} && ${userAndComment.user.titlepic.length()}>0)
+                        							<img src="$!{SESSION_WEB_ROOT_PATH}/user/img/$userAndComment.user.id/headerImg/$userAndComment.user.titlepic">
+                        					    #else
+                        							<img src="$!{SESSION_WEB_ROOT_PATH}/img/no_header_img.png">
+                        						#end
+                    						#end
+                                            
+                                        </div>
+                                        <div class="reply col-sm-10">
+                                        <span class="userlogin">
+                    						#if(${userAndComment.comment.anonymous})
+                    							<a href="javascript:void(0)">匿名</a>
+                    						#else
+                    							<a href="$!{SESSION_WEB_ROOT_PATH}/user/$!{userAndComment.user.id}">$!{userAndComment.user.username}</a>
+                    						#end
+                                        </span>
+                                        <span class="body" #if($!{userId}==${userAndComment.comment.fromuserid} && ${userAndComment.comment.anonymous}!=true) style="color:red;" #end>
 											$!{userAndComment.comment.content}
                                             <span class="text-warning pull-right" style="color:#ccc;padding-right:0px;padding-left:15px">评论于$!date.format('yyyy-MM-dd HH:mm:ss',$!{userAndComment.comment.commenttime})</span>
                                         </span>
@@ -140,10 +254,18 @@
                             </div>
                         </div>
                     	#set($index=$index+1)
+					  #end
                     #end
             </div>
+	#else
+		<div class="panel-body ">
+                <p class="text-content text-danger">
+					当前文章已经不存在了，有可能被删除或审核不合格。
+                </p>
+        </div>
+	#end
         </div> 
 </div>
-
+#end
 </body>
 </html>

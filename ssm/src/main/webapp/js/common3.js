@@ -4,7 +4,7 @@ function reportComment(id)
 	if(id==null)
 		return;
 	$.ajax({   
-	     url:'../reportComment',   
+	     url:'../../reportComment',   
 	     type:'post',   
 	     data:'reportComment='+id,   
 	     async:true, //默认为true 异步   

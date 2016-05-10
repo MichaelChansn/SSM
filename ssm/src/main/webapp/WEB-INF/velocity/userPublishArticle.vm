@@ -4,25 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>留言板</title>
-     <link href="../css/bootstrap.min.css" rel="stylesheet">
-     <link href="../css/font-awesome.min.css" rel="stylesheet">
-    <link href="../css/index.css" rel="stylesheet">
-    <script src="../js/jquery.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/common2.js"></script>
-	<script src="../js/jquery.infinitescroll.min.js" type="text/javascript"></script>
+     <link href="$!{SESSION_WEB_ROOT_PATH}/css/bootstrap.min.css" rel="stylesheet">
+     <link href="$!{SESSION_WEB_ROOT_PATH}/css/font-awesome.min.css" rel="stylesheet">
+    <link href="$!{SESSION_WEB_ROOT_PATH}/css/index.css" rel="stylesheet">
+    <script src="$!{SESSION_WEB_ROOT_PATH}/js/jquery.min.js"></script>
+    <script src="$!{SESSION_WEB_ROOT_PATH}/js/bootstrap.min.js"></script>
+    <script src="$!{SESSION_WEB_ROOT_PATH}/js/common2.js"></script>
+	<script src="$!{SESSION_WEB_ROOT_PATH}/js/jquery.infinitescroll.min.js" type="text/javascript"></script>
 </head>
 <body class="index-body">
 <div class="head-nav ">
     <div class="head">
         <div class="content-block" >
 			#if($!{SESSION_USER_NAME})
-				<div class="login" ><a href="userManager" style=" text-decoration: underline;color:red">[$!{SESSION_USER_NAME}]的个人中心</a>|<a href="../logout">退出</a></div>
+				<div class="login" ><a href="$!{SESSION_WEB_ROOT_PATH}/user/$!{SESSION_USERID}" style=" text-decoration: underline;color:red">[$!{SESSION_USER_NAME}]的个人中心</a>|<a href="$!{SESSION_WEB_ROOT_PATH}/logout">退出</a></div>
 			#else
-				<div class="login"><a href="login">登录</a> | <a href="register">注册</a></div>
+				<div class="login"><a href="$!{SESSION_WEB_ROOT_PATH}/user/login">登录</a> | <a href="register">注册</a></div>
 			#end
             
-            <img class="img-responsive " src="../img/web_logo.png">
+            <img class="img-responsive " src="$!{SESSION_WEB_ROOT_PATH}/img/web_logo.png">
         </div>
     </div>
     <nav class="navbar navbar-default " role="navigation">
@@ -34,40 +34,49 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class=" navbar-brand " href="javascript:void(0)"><img class="img-responsive center-block" src="../img/logo.png"></a>
+            <a class=" navbar-brand " href="javascript:void(0)"><img class="img-responsive center-block" src="$!{SESSION_WEB_ROOT_PATH}/img/logo.png"></a>
         </div>
         <div class="collapse navbar-collapse navbar-centre" id="example-navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="../index">最新</a></li>
-                <li><a href="addArticle">发帖</a></li>
-                <li class="drop-divider"></li>
+                <li><a href="$!{SESSION_WEB_ROOT_PATH}/index">最新</a></li>
+                <li><a href="$!{SESSION_WEB_ROOT_PATH}/user/addArticle">发帖</a></li>
+                 #if(1==2)
+				<li class="drop-divider"></li>
                 <li class="dropdown">
-                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">设置 <b class="caret"></b>
+                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+                        Java <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="javascript:void(0)">资料修改</a></li>
+                        <li><a href="javascript:void(0)">jmeter</a></li>
                         <li class="divider"></li>
-                        <li><a href="javascript:void(0)">发表的文章</a></li>
+                        <li><a href="javascript:void(0)">EJB</a></li>
                         <li class="divider"></li>
-                        <li><a href="javascript:void(0)">发表的评论</a></li>
+                        <li><a href="javascript:void(0)">Jasper Report</a></li>
+                        <li class="divider"></li>
+                        <li><a href="javascript:void(0)">分离的链接</a></li>
+                        <li class="divider"></li>
+                        <li><a href="javascript:void(0)">另一个分离的链接</a></li>
                     </ul>
                 </li>
+				#end
             </ul>
         </div>
     </nav>
 </div>
 <div class="panel-show " style="margin-bottom:-20px;margin-top:-10px;">
 <ul class="nav nav-tabs">
-   <li ><a href="userManager">Home</a></li>
-   <li class="active"><a href="userPublishArticle">发表的文章</a></li>
-   <li><a href="userPublishComment">发表的评论</a></li>
+   <li ><a href="$!{SESSION_WEB_ROOT_PATH}/user/$!{user.id}">Home</a></li>
+   <li class="active"><a href="$!{SESSION_WEB_ROOT_PATH}/user/$!{user.id}/userPublishArticle">发表的文章</a></li>
+   <li><a href="$!{SESSION_WEB_ROOT_PATH}/user/$!{user.id}/userPublishComment">发表的评论</a></li>
 </ul>
 </div>
 
+
+#if($!{MY_SELF})
 <div class="panel-show ">
     <div class="panel panel-primary userArticles "style="border-bottom:none">
             <div class="panel-heading">
-				<span class="user-info text-"><i class=" icon-file-alt"></i> (<span class="text-danger">$!{SESSION_USER_NAME}</span>) 发表的文章</span>
+				<span class="user-info text-"><i class=" icon-file-alt"></i> (<span class="text-danger">$!{user.username}</span>) 发表的文章</span>
             </div>
 			#foreach(${articleAndCommentNum} in ${articleAndCommentNums}) 
 				<div class="userArticle">
@@ -75,7 +84,15 @@
         					$!{articleAndCommentNum.article.id}
         				</div>
         				<div class="publish-article-date">
+							#if($!{articleAndCommentNum.article.anonymous}==true)
+								<span class="text-left" style="color:red">匿名发表</span>
+							#end
         					<span class="text-left">发表于 $!date.format('yyyy-MM-dd HH:mm:ss',$!{articleAndCommentNum.article.publishtime})</span>
+							#if($!{articleAndCommentNum.article.status}==true)
+								<span class="text-left text-info">审核通过，已发表</span>
+							#else
+								<span class="text-left " style="color:red">正在审核或审核未通过，未能发表</span>
+							#end
         				</div>
                         #if(${articleAndCommentNum.article.pic} && ${articleAndCommentNum.article.pic.length()}>0)
                         <div class="container text-center">
@@ -98,16 +115,57 @@
 				#end 
     </div> 
 </div>
+#end
+
+#if($!{OTHER})
+	<div class="panel-show ">
+    <div class="panel panel-primary userArticles "style="border-bottom:none">
+            <div class="panel-heading">
+				<span class="user-info text-"><i class=" icon-file-alt"></i> (<span class="text-danger">$!{user.username}</span>) 发表的文章</span>
+            </div>
+			#foreach(${articleAndCommentNum} in ${articleAndCommentNums}) 
+				#if($!{articleAndCommentNum.article.anonymous}!=true && $!{articleAndCommentNum.article.status}==true)
+				<div class="userArticle">
+        				<div class="articleId">
+        					$!{articleAndCommentNum.article.id}
+        				</div>
+        				<div class="publish-article-date">
+        					<span class="text-left">发表于 $!date.format('yyyy-MM-dd HH:mm:ss',$!{articleAndCommentNum.article.publishtime})</span>
+        				</div>
+                        #if(${articleAndCommentNum.article.pic} && ${articleAndCommentNum.article.pic.length()}>0)
+                        <div class="container text-center">
+                            <img src="$!{SESSION_WEB_ROOT_PATH}/user/img/$articleAndCommentNum.article.userid/articleImg/$articleAndCommentNum.article.pic" class="img-responsive center-block" alt="NO IMAGE" width="400"  >
+                        </div>
+            			#end
+                        <div class="panel-body ">
+                            <p class="text-content">
+            					$!{articleAndCommentNum.article.content}
+                            </p>
+                        </div>
+                        <div class="panel-footer">
+							<a class="btn btn-success $!{articleAndCommentNum.article.id}btn" href="javascript:upArticle($!{articleAndCommentNum.article.id});"><i class="icon-thumbs-up"></i>点赞<span class="$!{articleAndCommentNum.article.id}upArticleNum">($!{articleAndCommentNum.article.up})</span></a> 
+							<a class="btn btn-danger" href="javascript:articleComment($!{articleAndCommentNum.article.id});"><i class=" icon-edit"></i>评论<span class="$!{articleAndCommentNum.article.id}commentNum">($!{articleAndCommentNum.commentNum})</span></a>
+                        </div>
+            			<div  class="$!{articleAndCommentNum.article.id}comment comment-hide comments">
+                        </div>
+						<div style="margin:0px -1px 0px -1px;border-bottom:20px solid rgb(255,228,196);"></div>
+				</div>
+				#end
+			#end 
+    </div> 
+</div>
+#end
+
 <div class="panel-loading ">
     <div class="panel panel-primary">
         <div class="panel-body text-center">
     			<div class="loading">
-    				<img src="../img/loading.gif"><span>正在加载...</span>
+    				<img src="$!{SESSION_WEB_ROOT_PATH}/img/loading.gif"><span>正在加载...</span>
     			</div>
         </div>
     </div>
 </div>
-<div id="navigation"><a href="userPublishArticle?page=1"></a></div>
+<div id="navigation"><a href="$!{SESSION_WEB_ROOT_PATH}/user/$!{user.id}/userPublishArticle?page=1"></a></div>
 <script type="text/javascript">
 $(document).ready(function() {
 

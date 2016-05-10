@@ -4,17 +4,17 @@
    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>树洞</title>
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/index.css" rel="stylesheet">
-    <script src="../js/jquery.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
+    <link href="$!{SESSION_WEB_ROOT_PATH}/css/bootstrap.min.css" rel="stylesheet">
+    <link href="$!{SESSION_WEB_ROOT_PATH}/css/index.css" rel="stylesheet">
+    <script src="$!{SESSION_WEB_ROOT_PATH}/js/jquery.min.js"></script>
+    <script src="$!{SESSION_WEB_ROOT_PATH}/js/bootstrap.min.js"></script>
 </head>
 <body class="index-body">
 
 <div class="head-nav ">
     <div class="head">
         <div class="content-block" >
-            <img class="img-responsive " src="../img/web_logo.png">
+            <img class="img-responsive " src="$!{SESSION_WEB_ROOT_PATH}/img/web_logo.png">
         </div>
     </div>
     <nav class="navbar navbar-default " role="navigation">
@@ -26,13 +26,14 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class=" navbar-brand " href="javascript:void(0)"><img class="img-responsive center-block" src="../img/logo.png"></a>
+            <a class=" navbar-brand " href="javascript:void(0)"><img class="img-responsive center-block" src="$!{SESSION_WEB_ROOT_PATH}/img/logo.png"></a>
         </div>
         <div class="collapse navbar-collapse navbar-centre" id="example-navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class=""><a href="../index">最新</a></li>
-                <li><a href="addArticle">发帖</a></li>
-                <li class="drop-divider"></li>
+                <li class=""><a href="$!{SESSION_WEB_ROOT_PATH}/index">最新</a></li>
+                <li><a href="$!{SESSION_WEB_ROOT_PATH}/user/addArticle">发帖</a></li>
+                 #if(1==2)
+				<li class="drop-divider"></li>
                 <li class="dropdown">
                     <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
                         Java <b class="caret"></b>
@@ -49,6 +50,7 @@
                         <li><a href="javascript:void(0)">另一个分离的链接</a></li>
                     </ul>
                 </li>
+				#end
             </ul>
         </div>
     </nav>
@@ -59,7 +61,7 @@
             <h3 class="panel-title">欢迎回来！</h3>
         </div>
         <div class="login-form-div">
-            <form class="form-horizontal" role="form" action="login" method="post">
+            <form class="form-horizontal" role="form" action="$!{SESSION_WEB_ROOT_PATH}/user/login" method="post">
                 <div class="form-group ">
 					#if($!{ERROR})
 						<h2><label  class="col-sm-offset-2 col-sm-7 control-label " style="color:red">$!{ERROR}</label></h2>

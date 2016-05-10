@@ -72,5 +72,9 @@ public class CommonConstants {
     public static final String USER_ALREADY_LIKE="USER_ALREADY_LIKE";
     public static final String REPORT_COMMENT="REPORT_COMMENT";
     
+    /**用于区分是本人访问还是其他人访问*/
+    public static final String MY_SELF="MY_SELF";
+    public static final String OTHER="OTHER";
+    
     
 }

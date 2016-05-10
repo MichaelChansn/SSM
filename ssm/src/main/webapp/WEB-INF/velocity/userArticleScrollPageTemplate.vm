@@ -1,27 +1,69 @@
+#if($!{MY_SELF})
    #foreach(${articleAndCommentNum} in ${articleAndCommentNums}) 
-	<div class="userArticle">
-			<div class="articleId">
-				$!{articleAndCommentNum.article.id}
-			</div>
-			<div class="publish-article-date">
-				<span class="text-left">发表于 $!date.format('yyyy-MM-dd HH:mm:ss',$!{articleAndCommentNum.article.publishtime})</span>
-			</div>
-            #if(${articleAndCommentNum.article.pic} && ${articleAndCommentNum.article.pic.length()}>0)
-            <div class="container text-center">
-                <img src="$!{SESSION_WEB_ROOT_PATH}/user/img/$articleAndCommentNum.article.userid/articleImg/$articleAndCommentNum.article.pic" class="img-responsive center-block" alt="NO IMAGE" width="400"  >
-            </div>
-			#end
-            <div class="panel-body ">
-                <p class="text-content">
-					$!{articleAndCommentNum.article.content}
-                </p>
-            </div>
-            <div class="panel-footer">
-                <span class=" text-info" ><i class="icon-thumbs-up"></i>点赞数($!{articleAndCommentNum.article.up})</span></span> 
-                <a class=" text-danger" href="javascript:articleComment($!{articleAndCommentNum.article.id});"><i class=" icon-edit"></i>评论<span class="$!{articleAndCommentNum.article.id}commentNum">($!{articleAndCommentNum.commentNum})</span></a>
-            </div>
-			<div  class="$!{articleAndCommentNum.article.id}comment comment-hide comments">
-            </div>
-			<div style="margin:0px -1px 0px -1px;border-bottom:20px solid rgb(255,228,196);"></div>
-	</div>
+				<div class="userArticle">
+        				<div class="articleId">
+        					$!{articleAndCommentNum.article.id}
+        				</div>
+        				<div class="publish-article-date">
+							#if($!{articleAndCommentNum.article.anonymous}==true)
+								<span class="text-left" style="color:red">匿名发表</span>
+							#end
+        					<span class="text-left">发表于 $!date.format('yyyy-MM-dd HH:mm:ss',$!{articleAndCommentNum.article.publishtime})</span>
+							#if($!{articleAndCommentNum.article.status}==true)
+								<span class="text-left text-info">审核通过，已发表</span>
+							#else
+								<span class="text-left " style="color:red">正在审核或审核未通过，未能发表</span>
+							#end
+        				</div>
+                        #if(${articleAndCommentNum.article.pic} && ${articleAndCommentNum.article.pic.length()}>0)
+                        <div class="container text-center">
+                            <img src="$!{SESSION_WEB_ROOT_PATH}/user/img/$articleAndCommentNum.article.userid/articleImg/$articleAndCommentNum.article.pic" class="img-responsive center-block" alt="NO IMAGE" width="400"  >
+                        </div>
+            			#end
+                        <div class="panel-body ">
+                            <p class="text-content">
+            					$!{articleAndCommentNum.article.content}
+                            </p>
+                        </div>
+                        <div class="panel-footer">
+                            <span class=" text-info" ><i class="icon-thumbs-up"></i>点赞数($!{articleAndCommentNum.article.up})</span></span> 
+                            <a class=" text-danger" href="javascript:articleComment($!{articleAndCommentNum.article.id});"><i class=" icon-edit"></i>评论<span class="$!{articleAndCommentNum.article.id}commentNum">($!{articleAndCommentNum.commentNum})</span></a>
+                        </div>
+            			<div  class="$!{articleAndCommentNum.article.id}comment comment-hide comments">
+                        </div>
+						<div style="margin:0px -1px 0px -1px;border-bottom:20px solid rgb(255,228,196);"></div>
+				</div>
+   #end
+#end
+
+#if($!{OTHER})
+	#foreach(${articleAndCommentNum} in ${articleAndCommentNums}) 
+				#if($!{articleAndCommentNum.article.anonymous}!=true && $!{articleAndCommentNum.article.status}==true)
+				<div class="userArticle">
+        				<div class="articleId">
+        					$!{articleAndCommentNum.article.id}
+        				</div>
+        				<div class="publish-article-date">
+        					<span class="text-left">发表于 $!date.format('yyyy-MM-dd HH:mm:ss',$!{articleAndCommentNum.article.publishtime})</span>
+        				</div>
+                        #if(${articleAndCommentNum.article.pic} && ${articleAndCommentNum.article.pic.length()}>0)
+                        <div class="container text-center">
+                            <img src="$!{SESSION_WEB_ROOT_PATH}/user/img/$articleAndCommentNum.article.userid/articleImg/$articleAndCommentNum.article.pic" class="img-responsive center-block" alt="NO IMAGE" width="400"  >
+                        </div>
+            			#end
+                        <div class="panel-body ">
+                            <p class="text-content">
+            					$!{articleAndCommentNum.article.content}
+                            </p>
+                        </div>
+                        <div class="panel-footer">
+							<a class="btn btn-success $!{articleAndCommentNum.article.id}btn" href="javascript:upArticle($!{articleAndCommentNum.article.id});"><i class="icon-thumbs-up"></i>点赞<span class="$!{articleAndCommentNum.article.id}upArticleNum">($!{articleAndCommentNum.article.up})</span></a> 
+							<a class="btn btn-danger" href="javascript:articleComment($!{articleAndCommentNum.article.id});"><i class=" icon-edit"></i>评论<span class="$!{articleAndCommentNum.article.id}commentNum">($!{articleAndCommentNum.commentNum})</span></a>
+                        </div>
+            			<div  class="$!{articleAndCommentNum.article.id}comment comment-hide comments">
+                        </div>
+						<div style="margin:0px -1px 0px -1px;border-bottom:20px solid rgb(255,228,196);"></div>
+				</div>
+				#end
+			#end 
 #end

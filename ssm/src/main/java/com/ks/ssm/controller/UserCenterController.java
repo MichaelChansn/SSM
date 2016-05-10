@@ -70,15 +70,6 @@ public class UserCenterController {
 	@Resource
 	private IUserAndCommentService userAndCommentService;
 
-	@RequestMapping(value = "/userManager", method = RequestMethod.GET)
-	@LoginCheck(check = true, autoLogin = true)
-	@TokenCheck(generateToken = true)
-	public String userManagerGet(HttpServletRequest request, HttpSession session, Model model) {
-
-		User user = userService.getUserById(SSMUtils.getUserId(session));
-		model.addAttribute("user", user);
-		return "userManager";
-	}
 
 	@RequestMapping(value = "/userManagerHeaderImg", method = RequestMethod.POST)
 	@LoginCheck(check = true, autoLogin = true)
@@ -86,6 +77,7 @@ public class UserCenterController {
 
 		String retWeb = "userManager";
 		do {
+			model.addAttribute(CommonConstants.MY_SELF, true);
 			User user = userService.getUserById(SSMUtils.getUserId(session));
 			File file = null;
 			String fileName = null;
@@ -109,7 +101,7 @@ public class UserCenterController {
 					userService.updateByPrimaryKeySelective(user);
 				}
 				model.addAttribute("user", user);
-				retWeb = CommonConstants.WEB_REDIRECT_REL + "userManager";
+				retWeb = CommonConstants.WEB_REDIRECT_REL + user.getId();
 			} else {
 				model.addAttribute(RetInfos.ERROR, RetInfos.UPLOAD_PIC_ERROR_MSG);
 				model.addAttribute("headerImgError", RetInfos.UPLOAD_PIC_ERROR_MSG);
@@ -126,6 +118,7 @@ public class UserCenterController {
 	public String userManagerInfoPost(HttpServletRequest request, HttpSession session, Model model,
 			UserChangeInfos userChangeInfos, BindingResult result) {
 
+		model.addAttribute(CommonConstants.MY_SELF, true);
 		System.err.println(userChangeInfos.getUserName() + " " + userChangeInfos.getEmail() + " "
 				+ userChangeInfos.getBirthday() + " " + userChangeInfos.isGender());
 		String retWeb = "userManager";
@@ -176,7 +169,7 @@ public class UserCenterController {
 					userService.updateByPrimaryKeySelective(user);
 					SSMUtils.storeSession(session, user);
 					model.addAttribute("user", user);
-					retWeb = CommonConstants.WEB_REDIRECT_REL + "userManager";
+					retWeb = CommonConstants.WEB_REDIRECT_REL + user.getId();
 
 				}
 			} catch (Exception e) {
@@ -194,6 +187,7 @@ public class UserCenterController {
 	public String userManagerPasswordPost(HttpServletRequest request, HttpSession session, Model model,@ModelAttribute("changePassword") @Valid ChangePassword changePassword, BindingResult result) {
 		String retWeb="userManager";
 		do{
+			model.addAttribute(CommonConstants.MY_SELF, true);
 			User user = userService.getUserById(SSMUtils.getUserId(session));
 			if(!result.hasErrors())
 			{
@@ -208,7 +202,7 @@ public class UserCenterController {
 				user.setModifytime(new Date());
 				userService.updateByPrimaryKeySelective(user);
 				model.addAttribute("user", user);
-				retWeb = CommonConstants.WEB_REDIRECT_REL + "userManager";
+				retWeb = CommonConstants.WEB_REDIRECT_REL + user.getId();
 				break;
 				
 			}
@@ -226,17 +220,29 @@ public class UserCenterController {
 	
 	
 
-	@RequestMapping(value = "/userPublishComment")
-	@LoginCheck(check = true, autoLogin = true)
-	public String userPublishArticle(HttpServletRequest request, HttpSession session, Model model) {
+	@RequestMapping(value = "/{userId}/userPublishComment")
+	@LoginCheck(saveInfo = true, autoLogin = true)
+	public String userPublishArticle(@PathVariable Long userId,HttpServletRequest request, HttpSession session, Model model) {
 
 		String retWeb="error";
 		do{
 			try{
 				String pageString=request.getParameter("page");
+				
+				if (SSMUtils.isSelf(session, userId))
+				{
+					/**自己，显示所有文章，包括匿名和未通过审核的*/
+					model.addAttribute(CommonConstants.MY_SELF, true);
+				}
+				else
+				{   /**查看别人的只显示通过审核的，和非匿名的*/
+					model.addAttribute(CommonConstants.OTHER, true);
+				}
+				User user = userService.getUserById(userId);
+				model.addAttribute("user", user);
 				if(CommonUtils.isBlank(pageString))//没有page，表示第一页
 				{
-					List<Comment> comments=commentService.selectByPageWithUserId(new UserIdAndPageQuery(SSMUtils.getUserId(session), CommonConstants.PAGE_SIZE, 1));
+					List<Comment> comments=commentService.selectByPageWithUserId(new UserIdAndPageQuery(userId, CommonConstants.PAGE_SIZE, 1));
 					model.addAttribute("comments", comments);
 					retWeb="userPublishComment";
 					break;
@@ -245,7 +251,7 @@ public class UserCenterController {
 				else
 				{
 					int page=Integer.parseInt(pageString);
-					List<Comment> comments=commentService.selectByPageWithUserId(new UserIdAndPageQuery(SSMUtils.getUserId(session), CommonConstants.PAGE_SIZE, page));
+					List<Comment> comments=commentService.selectByPageWithUserId(new UserIdAndPageQuery(userId, CommonConstants.PAGE_SIZE, page));
 					model.addAttribute("comments", comments);
 					retWeb="userCommentScrollPageTemplate";
 					break;
@@ -261,30 +267,44 @@ public class UserCenterController {
 		return retWeb;
 	}
 
-	@RequestMapping(value = "/userPublishArticle")
-	@LoginCheck(check = true, autoLogin = true)
-	public String userPublishComment(HttpServletRequest request, HttpSession session, Model model) {
+	@RequestMapping(value = "/{userId}/userPublishArticle")
+	@LoginCheck(saveInfo=true,autoLogin = true)
+	public String userPublishComment(@PathVariable Long userId,HttpServletRequest request, HttpSession session, Model model) {
 
 		String retWeb="error";
 		do{
 			try{
 				String pageString=request.getParameter("page");
-				if(CommonUtils.isBlank(pageString))//没有page，表示第一页
-				{
-					List<ArticleAndCommentNum> articleAndCommentNums=articleAndCommentNumService.getArticleWithCommentNumByPage(new UserIdAndPageQuery(SSMUtils.getUserId(session), CommonConstants.PAGE_SIZE, 1));
-					model.addAttribute("articleAndCommentNums", articleAndCommentNums);
-					retWeb="userPublishArticle";
-					break;
+				
+					if (SSMUtils.isSelf(session, userId))
+					{
+						/**自己，显示所有文章，包括匿名和未通过审核的*/
+						model.addAttribute(CommonConstants.MY_SELF, true);
+					}
+					else
+					{   /**查看别人的只显示通过审核的，和非匿名的*/
+						model.addAttribute(CommonConstants.OTHER, true);
+					}
+					User user = userService.getUserById(userId);
+					model.addAttribute("user", user);
 					
-				}
-				else
-				{
-					int page=Integer.parseInt(pageString);
-					List<ArticleAndCommentNum> articleAndCommentNums=articleAndCommentNumService.getArticleWithCommentNumByPage(new UserIdAndPageQuery(SSMUtils.getUserId(session), CommonConstants.PAGE_SIZE, page));
-					model.addAttribute("articleAndCommentNums", articleAndCommentNums);
-					retWeb="userArticleScrollPageTemplate";
-					break;
-				}
+					if(CommonUtils.isBlank(pageString))//没有page，表示第一页
+					{
+						List<ArticleAndCommentNum> articleAndCommentNums=articleAndCommentNumService.getArticleWithCommentNumByPage(new UserIdAndPageQuery(userId, CommonConstants.PAGE_SIZE, 1));
+						model.addAttribute("articleAndCommentNums", articleAndCommentNums);
+						retWeb="userPublishArticle";
+						break;
+						
+					}
+					else
+					{
+						int page=Integer.parseInt(pageString);
+						List<ArticleAndCommentNum> articleAndCommentNums=articleAndCommentNumService.getArticleWithCommentNumByPage(new UserIdAndPageQuery(userId, CommonConstants.PAGE_SIZE, page));
+						model.addAttribute("articleAndCommentNums", articleAndCommentNums);
+						retWeb="userArticleScrollPageTemplate";
+						break;
+					}
+					
 				}
 				catch(Exception e)
 				{
@@ -296,26 +316,39 @@ public class UserCenterController {
 		return retWeb;
 	}
 
+	
+	
 	/** 查看别人的主页 restful风格的url */
-	@RequestMapping(value = "/{userId}")
-	@LoginCheck(check = true,saveInfo = true, autoLogin = true)
+	@RequestMapping(value = "/{userId}",method = RequestMethod.GET)
+	@LoginCheck(saveInfo = true, autoLogin = true)
+	@TokenCheck(generateToken = true)
 	public String user(@PathVariable Long userId, HttpServletRequest request, HttpSession session, Model model) {
 
+		User user = userService.getUserById(userId);
+		model.addAttribute("user", user);
 		/** 进入了自己的主页 */
-		if (userId == SSMUtils.getUserId(session)) {
-
+		if (SSMUtils.isSelf(session, userId)) {
+			model.addAttribute(CommonConstants.MY_SELF, true);
 		} else/** 别人的主页 */
 		{
-
+			model.addAttribute(CommonConstants.OTHER, true);
 		}
 		return "userManager";
 	}
 
 	/** 查看别人的主页 restful风格的url */
-	@RequestMapping(value = "article/{articleId}")
+	@RequestMapping(value = "/{userId}/article/{articleId}",method = RequestMethod.GET)
 	@LoginCheck(saveInfo = true, autoLogin = true)
-	public String article(@PathVariable Long articleId, HttpServletRequest request, HttpSession session, Model model) {
+	public String article(@PathVariable Long userId,@PathVariable Long articleId, HttpServletRequest request, HttpSession session, Model model) {
 
+		/** 进入了自己的主页 */
+		if (SSMUtils.isSelf(session, userId)) {
+			model.addAttribute(CommonConstants.MY_SELF, true);
+		} else/** 别人的主页 */
+		{
+			model.addAttribute(CommonConstants.OTHER, true);
+		}
+		model.addAttribute("userId", userId);
 		Article article=articleService.selectByPrimaryKey(articleId);
 		User user=userService.selectByPrimaryKey(article.getUserid());
 		List<Comment> comments=commentService.selectByArticleID(articleId);
